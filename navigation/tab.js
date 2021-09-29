@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import plus from '../assets/plus.png';
 
 //Font Awesome Icons
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 // Views
 import Login from '../views/Login';
@@ -28,19 +28,19 @@ const HomeTabs = () => {
 
                     if (route.name == 'Home') {
                         iconName = focused ? 'home' : 'home'
-                        color = focused ? 'red' : 'black'
+                        color = focused ? 'black' : 'grey'
                     } else if (route.name == 'testscreen1') {
-                        iconName = focused ? 'stats-chart' : 'stats-chart'
-                        color = focused ? 'red' : 'black'
+                        iconName = focused ? 'bar-chart' : 'bar-chart'
+                        color = focused ? 'black' : 'grey'
                     } else if (route.name == 'testscreen2') {
-                        iconName = focused ? 'analytics' : 'analytics'
-                        color = focused ? 'red' : 'black'
+                        iconName = focused ? 'trending-up' : 'trending-up'
+                        color = focused ? 'black' : 'grey'
                     } else if (route.name == 'testscreen3') {
                         iconName = focused ? 'settings' : 'settings'
-                        color = focused ? 'red' : 'black'
+                        color = focused ? 'black' : 'grey'
                     }
 
-                    return <Ionicons name={iconName} size={25} color={color} />
+                    return <Feather name={iconName} size={25} color={color} />
                 },
                 tabBarIconStyle: {
                     top: 15
@@ -50,7 +50,7 @@ const HomeTabs = () => {
                     position: 'absolute',
                     bottom: 40,
                     marginHorizontal: 20,
-                    backgroundColor: '#E5E6E8',
+                    backgroundColor: '#f5f5f5',
                     //Max Height
                     height: 60,
                     borderRadius: 10,
@@ -72,7 +72,7 @@ const HomeTabs = () => {
                         <View style={{
                             width: 60,
                             height: 60,
-                            backgroundColor: 'red',
+                            backgroundColor: 'black',
                             borderRadius: '50%',
                             justifyContent: 'center',
                             alignItems: 'center',

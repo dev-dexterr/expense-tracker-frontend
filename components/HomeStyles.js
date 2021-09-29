@@ -37,12 +37,12 @@ export const PageTitle = styled.Text`
 
 `
 export const PageTitleName = styled.Text`
-    font-size: 40px;
+    font-size: 50px;
     text-align: left;
     color: ${secondary};
     padding: 10px;
-    margin-left: 15px
     letter-spacing: 1px;
+    font-weight: bold
 `
 
 export const SubTitle = styled.Text`
