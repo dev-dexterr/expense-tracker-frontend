@@ -22,6 +22,7 @@ import {
 //formik
 import { Formik } from "formik";
 
+
 //API Client
 import axios from "axios";
 
@@ -35,8 +36,8 @@ const Login = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   const handleLogin = async (credentials, setSubmitting) => {
-    const url = "http://192.168.31.159:5000/login";
-    //const url = "http://192.168.1.164:5000/login";
+    //const url = "http://192.168.31.159:5000/login";
+    const url = "http://192.168.1.164:5000/login";
     axios
       .post(url, credentials)
       .then((res) => {
