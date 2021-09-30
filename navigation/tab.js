@@ -30,7 +30,7 @@ const HomeTabs = () => {
                         iconName = focused ? 'home' : 'home'
                         color = focused ? 'black' : 'grey'
                     } else if (route.name == 'testscreen1') {
-                        iconName = focused ? 'bar-chart' : 'bar-chart'
+                        iconName = focused ? 'bar-chart-2' : 'bar-chart-2'
                         color = focused ? 'black' : 'grey'
                     } else if (route.name == 'testscreen2') {
                         iconName = focused ? 'trending-up' : 'trending-up'
@@ -108,7 +108,7 @@ export default function App() {
 //Test screen
 function testscreen1() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff', }}>
             <Text>testscreen1</Text>
         </View>
     )
@@ -116,7 +116,7 @@ function testscreen1() {
 
 function testadd() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff', }}>
             <Text>testadd</Text>
         </View>
     )
@@ -124,7 +124,7 @@ function testadd() {
 
 function testscreen2() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff', }}>
             <Text>testscreen2</Text>
         </View>
     )
@@ -132,7 +132,7 @@ function testscreen2() {
 
 function testscreen3() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff', }}>
             <Text>testscreen3</Text>
         </View>
     )

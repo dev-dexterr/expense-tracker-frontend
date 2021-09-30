@@ -32,6 +32,7 @@ export const PageTitle = styled.Text`
     font-weight: bold;
     color: ${secondary};
     padding: 10px;
+    fontFamily: 'Roboto-Regular'
 `
 
 export const SubTitle = styled.Text`

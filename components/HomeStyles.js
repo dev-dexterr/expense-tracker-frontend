@@ -34,7 +34,7 @@ export const PageTitle = styled.Text`
     padding: 10px;
     margin-bottom: -20px;
     letter-spacing: 1.5px;
-
+    fontFamily: 'Roboto-Regular'
 `
 export const PageTitleName = styled.Text`
     font-size: 50px;
