@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Tabs from './navigation/tab';
 import { NavigationContainer } from '@react-navigation/native';
 import * as Font from 'expo-font';
 
+//debug
+import Home from './views/Home';
 
 export default function App() {
   
-  const [fontLoaded, setFontLoaded] = React.useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
 
   async function loadFonts() {
     await Font.loadAsync({
@@ -25,6 +27,7 @@ export default function App() {
       <>
       {
         fontLoaded ? <NavigationContainer><Tabs /></NavigationContainer> : null
+        //fontLoaded ? <NavigationContainer><Home /></NavigationContainer> : null
       }
       </>
   );

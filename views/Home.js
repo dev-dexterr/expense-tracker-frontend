@@ -5,21 +5,20 @@ import {
   StyledContainer,
   InnerContainer,
   PageTitle,
-  PageTitleName
+  PageTitleName,
+  BalanceBackground,
+  BalanceText,
+  BalanceText2,
+  BalanceText3,
+  BalanceText4
 } from "../components/HomeStyles";
-
-//formik
-import { Formik } from "formik";
-
-//API Client
-import axios from "axios";
 
 //Icons
 import { Ionicons } from "@expo/vector-icons";
 
 const Home = ({ navigation, username }) => {
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     console.log("asdasdas111", username);
   })
   return (
@@ -28,6 +27,20 @@ const Home = ({ navigation, username }) => {
       <InnerContainer>
         <PageTitle>Hello,</PageTitle>
         <PageTitleName>{'Dexter'}</PageTitleName>
+        <BalanceBackground>
+          <BalanceText>
+            <BalanceText2>
+              $
+            </BalanceText2>
+            17,800.88
+          </BalanceText>
+          <BalanceText3>
+            Current Balance
+          </BalanceText3>
+          <BalanceText4>
+            Available
+          </BalanceText4>
+        </BalanceBackground>
       </InnerContainer>
     </StyledContainer>
   );

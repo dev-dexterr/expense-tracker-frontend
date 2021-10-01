@@ -50,10 +50,10 @@ const HomeTabs = () => {
                     position: 'absolute',
                     bottom: 40,
                     marginHorizontal: 20,
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: '#F5F7FA',
                     //Max Height
                     height: 60,
-                    borderRadius: 10,
+                    borderRadius: 15,
                     //Shadow
                     shadowColor: '#000',
                     shadowOpacity: 0.06,
