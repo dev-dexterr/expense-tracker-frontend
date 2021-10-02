@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
 
@@ -61,6 +61,7 @@ export const BalanceBackground = styled.View`
     background-color: ${quaternary}
     height: 130px;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
 `
 export const BalanceText = styled.Text`
     font-weight: bold;
@@ -92,4 +93,48 @@ export const BalanceText4 = styled.Text`
     top: 5px
     font-weight: bold;
 ` 
+export const IEContainer = styled.View`
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 25px;
+    justify-content: space-between;
+`
+
+export const IEBackground = styled.View`
+    background-color: ${quaternary}
+    height: 100px;
+    border-radius: 20px;
+    width: 47%;
+    box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
+`
+export const IEText1 = styled.Text`
+    text-align: center; 
+    top: 15px;
+    font-weight: bold;
+    font-size: 35px;
+    padding: 1px;
+`
+export const IEText2 = styled.Text`
+    text-align: center; 
+    top: 15px;
+    font-weight: bold;
+    font-size: 15px;
+    color: ${senary};
+`
+
+export const IEListTextContainer = styled.View`
+    margin-top: -15px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 5px;
+    padding-left: 5px;
+`
+
+export const IEListText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: ${senary};
+`
+
+
 

@@ -4,9 +4,6 @@ import Tabs from './navigation/tab';
 import { NavigationContainer } from '@react-navigation/native';
 import * as Font from 'expo-font';
 
-//debug
-import Home from './views/Home';
-
 export default function App() {
   
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -27,7 +24,6 @@ export default function App() {
       <>
       {
         fontLoaded ? <NavigationContainer><Tabs /></NavigationContainer> : null
-        //fontLoaded ? <NavigationContainer><Home /></NavigationContainer> : null
       }
       </>
   );
