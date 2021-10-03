@@ -16,51 +16,51 @@ import {
   IEText1,
   IEText2,
   IEListTextContainer,
-  IEListText
+  IEListText,
 } from "../components/HomeStyles";
+
+//Redux
+import { useDispatch, useSelector } from "react-redux";
+import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 
 //Icons
 import { Ionicons } from "@expo/vector-icons";
 
-const Home = ({ navigation, username }) => {
+const Home = () => {
+  const { username } = useSelector((state) => state.userReducer);
+
   useEffect(() => {
-    console.log("asdasdas111", username);
-  })
+    console.log("Username: ", username);
+  }, []);
   return (
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
         <PageTitle>Hello,</PageTitle>
-        <PageTitleName>{'Dexter'}</PageTitleName>
+        <PageTitleName>{username}</PageTitleName>
         <BalanceBackground>
           <BalanceText>
-            <BalanceText2>
-              $
-            </BalanceText2>
+            <BalanceText2>$</BalanceText2>
             17,800.88
           </BalanceText>
-          <BalanceText3>
-            Current Balance
-          </BalanceText3>
-          <BalanceText4>
-            Available
-          </BalanceText4>
+          <BalanceText3>Current Balance</BalanceText3>
+          <BalanceText4>Available</BalanceText4>
         </BalanceBackground>
         <IEContainer>
-            <IEBackground>
-              <IEText1>
-                <BalanceText2>$</BalanceText2>
-                100
-              </IEText1>
-              <IEText2>Income</IEText2>
-            </IEBackground>
-            <IEBackground>
-              <IEText1>
-                <BalanceText2>$</BalanceText2>
-                500
-              </IEText1>
-              <IEText2>Expense</IEText2>
-            </IEBackground>
+          <IEBackground>
+            <IEText1>
+              <BalanceText2>$</BalanceText2>
+              100
+            </IEText1>
+            <IEText2>Income</IEText2>
+          </IEBackground>
+          <IEBackground>
+            <IEText1>
+              <BalanceText2>$</BalanceText2>
+              500
+            </IEText1>
+            <IEText2>Expense</IEText2>
+          </IEBackground>
         </IEContainer>
         <IELists />
       </InnerContainer>
@@ -70,26 +70,28 @@ const Home = ({ navigation, username }) => {
 
 const IELists = () => {
   const [selectedTab, setselectedTab] = useState(0);
-  const IETab = ['All' , 'Income', 'Expense'];
-  return(
+  const IETab = ["All", "Income", "Expense"];
+  return (
     <StyledContainer>
       <InnerContainer>
         <IEListTextContainer>
-          {IETab.map((ie,index)=>(
-            <Pressable key={index} onPress={()=> setselectedTab(index)}>
-              <IEListText style={[index == selectedTab && style.activeIEText]}>{ie}</IEListText>
+          {IETab.map((ie, index) => (
+            <Pressable key={index} onPress={() => setselectedTab(index)}>
+              <IEListText style={[index == selectedTab && style.activeIEText]}>
+                {ie}
+              </IEListText>
             </Pressable>
           ))}
         </IEListTextContainer>
       </InnerContainer>
     </StyledContainer>
-  )
-}
+  );
+};
 
 const style = StyleSheet.create({
-  activeIEText:{
-    color: 'black',
-  }
-})
+  activeIEText: {
+    color: "black",
+  },
+});
 
 export default Home;

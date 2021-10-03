@@ -26,7 +26,7 @@ import { Ionicons } from "@expo/vector-icons";
 //Keyboard Avoiding View
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
   return (

@@ -22,6 +22,9 @@ import {
 //formik
 import { Formik } from "formik";
 
+//Redux
+import { useDispatch } from "react-redux";
+import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 
 //API Client
 import axios from "axios";
@@ -29,21 +32,28 @@ import axios from "axios";
 //Icons
 import { Ionicons } from "@expo/vector-icons";
 
+//BASE_URL
+import baseURL from "../utils/api.js";
+
 //Keyboard Avoiding View
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 const Login = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
+  const dispatch = useDispatch();
+
   const handleLogin = async (credentials, setSubmitting) => {
-    const url = "http://192.168.31.159:5000/login";
-    //const url = "http://192.168.1.164:5000/login";
+    const url = `${baseURL.BASE_API_URL_HOME + baseURL.LOGIN}`;
     axios
       .post(url, credentials)
       .then((res) => {
         const result = res.data;
         const { data } = result;
-        navigation.navigate('HomeTabs', { ...data });
+        dispatch(setUsername(data.username));
+        dispatch(setToken(data.token));
+        dispatch(setEmail(data.email));
+        navigation.navigate("HomeTabs");
         setSubmitting(false);
       })
       .catch((err) => {
@@ -62,15 +72,21 @@ const Login = ({ navigation }) => {
           <Formik
             initialValues={{ username: "dexter", password: "123456" }}
             onSubmit={(values, { setSubmitting }) => {
-              if (values.username == '' || values.password == '') {
-                console.log("Please Fill in the Fields")
+              if (values.username == "" || values.password == "") {
+                console.log("Please Fill in the Fields");
                 setSubmitting(false);
               } else {
                 handleLogin(values, setSubmitting);
               }
             }}
           >
-            {({ handleBlur, handleChange, handleSubmit, values, isSubmitting }) => (
+            {({
+              handleBlur,
+              handleChange,
+              handleSubmit,
+              values,
+              isSubmitting,
+            }) => (
               <StyledFormArea>
                 {/* //Username */}
                 <TextInput

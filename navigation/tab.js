@@ -73,7 +73,7 @@ const HomeTabs = () => {
                             width: 60,
                             height: 60,
                             backgroundColor: 'black',
-                            borderRadius: '50%',
+                            borderRadius: 50,
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginBottom: 60

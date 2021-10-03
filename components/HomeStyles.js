@@ -71,28 +71,31 @@ export const BalanceText = styled.Text`
     text-align: center;
     top: 60px;
     left: 60px;
+    fontFamily: 'Ubuntu-Bold'
 ` 
 export const BalanceText2 = styled.Text`
     font-weight: bold;
     font-size: 18px;
     color: ${senary};
-    fontFamily: 'Roboto-Regular';
+    fontFamily: 'Ubuntu-Bold'
 ` 
 export const BalanceText3 = styled.Text`
     font-weight: bold;
     font-size: 20px;
-    color: ${senary};
+    color: ${secondary};
     text-align: center;
     right: 90px
     top: -25px
+    fontFamily: 'Roboto-Light'
 ` 
 export const BalanceText4 = styled.Text`
     font-size: 15px;
-    color: ${senary};
+    color: ${secondary};
     text-align: center;
     right: 130px
     top: 5px
     font-weight: bold;
+    fontFamily: 'Roboto-Light'
 ` 
 export const IEContainer = styled.View`
     flex-direction: row;
@@ -114,13 +117,15 @@ export const IEText1 = styled.Text`
     font-weight: bold;
     font-size: 35px;
     padding: 1px;
+    fontFamily: 'Ubuntu-Bold'
 `
 export const IEText2 = styled.Text`
     text-align: center; 
     top: 15px;
     font-weight: bold;
     font-size: 15px;
-    color: ${senary};
+    color: ${secondary};
+    fontFamily: 'Roboto-Light'
 `
 
 export const IEListTextContainer = styled.View`
@@ -135,6 +140,7 @@ export const IEListText = styled.Text`
     font-size: 16px;
     font-weight: bold;
     color: ${senary};
+    fontFamily: 'Ubuntu-Bold'
 `
 
 
