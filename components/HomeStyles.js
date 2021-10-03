@@ -37,7 +37,7 @@ export const PageTitle = styled.Text`
     padding: 10px;
     margin-bottom: -20px;
     letter-spacing: 1.5px;
-    fontFamily: 'Roboto-Regular'
+    fontFamily: 'Roboto-Light'
 `
 export const PageTitleName = styled.Text`
     font-size: 40px;
@@ -46,7 +46,8 @@ export const PageTitleName = styled.Text`
     padding: 10px;
     margin-bottom: 10px;
     letter-spacing: 1px;
-    font-weight: bold
+    font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const SubTitle = styled.Text`

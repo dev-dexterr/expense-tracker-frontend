@@ -32,15 +32,17 @@ export const PageTitle = styled.Text`
     font-weight: bold;
     color: ${secondary};
     padding: 10px;
-    fontFamily: 'Roboto-Regular'
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const SubTitle = styled.Text`
     font-size: 16px;
-    margin-bottom: 120px;
-    letter-spacing: 1.5px;
+    margin-bottom: 100px;
+    letter-spacing: 1px;
     font-weight: bold;
+    padding: 10px;
     color: ${secondary};
+    fontFamily: 'Roboto-Light'
 `
 
 export const StyledFormArea = styled.View`
@@ -58,6 +60,7 @@ export const StyledTextInput = styled.TextInput`
     margin-vertical: 3px;
     margin-bottom: 50px;
     color: ${secondary};
+    fontFamily: 'Roboto-Light'
 `
 export const StyledInputLabel = styled.Text`
     color: ${secondary};
@@ -66,6 +69,7 @@ export const StyledInputLabel = styled.Text`
     letter-spacing: 1.5px;
     margin-bottom: 10px;
     font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const StyledButton = styled.TouchableOpacity`
@@ -82,6 +86,7 @@ export const StyledButtonText = styled.Text`
     font-size: 20px;
     text-align: center;
     font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const RightIcon = styled.TouchableOpacity`
@@ -103,7 +108,7 @@ export const ForgetText = styled.Text`
     color: ${secondary}
     align-items: flex-end;
     font-size: 16px;
-    text-decoration-line: underline; 
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const ExtraView = styled.View`
@@ -120,6 +125,7 @@ export const ExtraText = styled.Text`
     font-size: 16px;
     margin: 5px;
     margin-top: 10px;
+    fontFamily: 'Roboto-Light'
 `
 
 export const ExtraTextLink = styled.TouchableOpacity`
@@ -132,6 +138,7 @@ export const ExtraLinkContent = styled.Text`
     font-size: 16px;
     margin: 5px;
     margin-top: 10px;
+    fontFamily: 'Ubuntu-Bold'
     font-weight: bold;
 `
 

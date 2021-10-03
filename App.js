@@ -11,6 +11,12 @@ export default function App() {
   async function loadFonts() {
     await Font.loadAsync({
       'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+      'Roboto-Thin' : require('./assets/fonts/Roboto-Thin.ttf'),
+      'Roboto-Bold' : require('./assets/fonts/Roboto-Bold.ttf'),
+      'Roboto-Light' : require('./assets/fonts/Roboto-Light.ttf'),
+      'Ubuntu-Bold': require('./assets/fonts/Ubuntu-Bold.ttf'),
+      'Ubuntu-Light' : require('./assets/fonts/Ubuntu-Light.ttf'),
+      'Ubuntu-Regular' : require('./assets/fonts/Ubuntu-Regular.ttf')
     });
 
     setFontLoaded(true);

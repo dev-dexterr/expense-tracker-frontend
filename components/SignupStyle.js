@@ -32,14 +32,17 @@ export const PageTitle = styled.Text`
     font-weight: bold;
     color: ${secondary};
     padding: 10px;
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const SubTitle = styled.Text`
     font-size: 16px;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     letter-spacing: 1.5px;
+    padding: 10px;
     font-weight: bold;
     color: ${secondary};
+    fontFamily: 'Roboto-Light'
 `
 
 export const StyledFormArea = styled.View`
@@ -57,6 +60,7 @@ export const StyledTextInput = styled.TextInput`
     margin-vertical: 3px;
     margin-bottom: 50px;
     color: ${secondary};
+    fontFamily: 'Roboto-Light'
 `
 export const StyledInputLabel = styled.Text`
     color: ${secondary};
@@ -65,6 +69,7 @@ export const StyledInputLabel = styled.Text`
     letter-spacing: 1.5px;
     margin-bottom: 10px;
     font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const StyledButton = styled.TouchableOpacity`
@@ -81,6 +86,7 @@ export const StyledButtonText = styled.Text`
     font-size: 20px;
     text-align: center;
     font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const RightIcon = styled.TouchableOpacity`
@@ -88,21 +94,6 @@ export const RightIcon = styled.TouchableOpacity`
     top: 45px;
     position: absolute;
     z-index: 1;
-`
-
-export const ForgetView = styled.View`
-    justify-content: flex-end;
-    flex-direction: row;
-    align-items: flex-end;
-    padding: 10px;
-    margin-top: -35px
-`
-export const ForgetText = styled.Text`
-    justify-content: flex-end;
-    color: ${secondary}
-    align-items: flex-end;
-    font-size: 16px;
-    text-decoration-line: underline; 
 `
 
 export const ExtraView = styled.View`
@@ -119,6 +110,7 @@ export const ExtraText = styled.Text`
     font-size: 16px;
     margin: 5px;
     margin-top: 25px;
+    fontFamily: 'Roboto-Light'
 `
 
 export const ExtraTextLink = styled.TouchableOpacity`
@@ -132,5 +124,6 @@ export const ExtraLinkContent = styled.Text`
     margin: 5px;
     margin-top: 25px;
     font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
 
