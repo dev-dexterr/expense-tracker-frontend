@@ -48,7 +48,7 @@ const HomeTabs = () => {
                 tabBarStyle: {
                     //FLoating Tab Bar
                     position: 'absolute',
-                    bottom: 40,
+                    bottom: 35,
                     marginHorizontal: 20,
                     backgroundColor: '#F5F7FA',
                     //Max Height
@@ -76,7 +76,7 @@ const HomeTabs = () => {
                             borderRadius: 50,
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginBottom: 60
+                            marginBottom: 25
                         }}>
                             <Image source={plus} style={{
                                 width: 25,

@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const handleLogin = async (credentials, setSubmitting) => {
-    const url = `${baseURL.BASE_API_URL_HOME + baseURL.LOGIN}`;
+    const url = `${baseURL.BASE_API_URL_OFFICE + baseURL.LOGIN}`;
     axios
       .post(url, credentials)
       .then((res) => {
