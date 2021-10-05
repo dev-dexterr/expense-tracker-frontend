@@ -6,6 +6,7 @@ const BACKEND_API = {
   BASE_API_URL_HOME: `${BACKEND_BASE_URl_HOME}`,
   BASE_API_URL_OFFICE: `${BACKEND_BASE_URl_OFFICE}`,
   LOGIN: "/login",
+  REGISTER: "/register"
 };
 
 export default BACKEND_API;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -23,11 +23,31 @@ import { Formik } from "formik";
 //Icons
 import { Ionicons } from "@expo/vector-icons";
 
+//API Client
+import axios from "axios";
+
+//Base URL
+import baseURl from "../utils/api.js";
+
 //Keyboard Avoiding View
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 const Signup = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
+
+  const handleSignup = async (credentials, setSubmitting) => {
+    const url = `${baseURl.BASE_API_URL_HOME + baseURl.REGISTER}`;
+    axios
+      .post(url, credentials)
+      .then(() => {
+        navigation.navigate("Login");
+        setSubmitting(false);
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        console.log(err);
+      });
+  };
 
   return (
     <KeyboardAvoidingWrapper>
@@ -38,11 +58,26 @@ const Signup = ({ navigation }) => {
           <SubTitle>Create an account with us</SubTitle>
           <Formik
             initialValues={{ email: "", password: "", username: "" }}
-            onSubmit={(values) => {
-              console.log("Sign-up values", values);
+            onSubmit={(values, { setSubmitting }) => {
+              if (
+                values.username == "" ||
+                values.email == "" ||
+                values.password == ""
+              ) {
+                console.log("Please Fill in the Fields");
+                setSubmitting(false);
+              } else {
+                handleSignup(values, setSubmitting);
+              }
             }}
           >
-            {({ handleBlur, handleChange, handleSubmit, values }) => (
+            {({
+              handleBlur,
+              handleChange,
+              handleSubmit,
+              values,
+              isSubmitting,
+            }) => (
               <StyledFormArea>
                 {/* //Email Address */}
                 <TextInput
@@ -53,7 +88,7 @@ const Signup = ({ navigation }) => {
                   value={values.email}
                   keyboardType="email-address"
                 />
-                {/* //Email Address */}
+                {/* //Username */}
                 <TextInput
                   label="Username"
                   placeholder="name"
@@ -73,9 +108,18 @@ const Signup = ({ navigation }) => {
                   hidePassword={hidePassword}
                   setHidePassword={setHidePassword}
                 />
-                <StyledButton onPress={handleSubmit}>
-                  <StyledButtonText>Create Account</StyledButtonText>
-                </StyledButton>
+                {!isSubmitting && (
+                  <StyledButton onPress={handleSubmit}>
+                    <StyledButtonText>Create Account</StyledButtonText>
+                  </StyledButton>
+                )}
+
+                {isSubmitting && (
+                  <StyledButton disabled={true}>
+                    <ActivityIndicator size="small" color="#FFFFFF" />
+                  </StyledButton>
+                )}
+
                 <ExtraView>
                   <ExtraText>Already have an Account?</ExtraText>
                   <ExtraTextLink onPress={() => navigation.navigate("Login")}>

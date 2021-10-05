@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Pressable, StyleSheet, View } from "react-native";
-import { Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -23,7 +22,6 @@ import {
   TransactionItemWrapper,
   TransactionLeftWrapper,
   TransactionRightWrapper,
-  TransactionTitle,
   TransactionText1,
   TransactionText2,
   TransactionAmount
@@ -34,9 +32,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 
 //SAMPLE DATA TESTING
-import sampledata from '../utils/sampleData.js';
+import sampledata from '../utils/constants/sampleData.js';
 
-//Icons
+//Iconsr
 import { Ionicons } from "@expo/vector-icons";
 
 const Home = () => {

@@ -13,6 +13,8 @@ import { Feather } from '@expo/vector-icons';
 import Login from '../views/Login';
 import Signup from '../views/Signup';
 import Home from '../views/Home';
+import Profile from '../views/Profile';
+import ProfileDetail from '../views/ProfileDetail';
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,8 +37,8 @@ const HomeTabs = () => {
                     } else if (route.name == 'testscreen2') {
                         iconName = focused ? 'trending-up' : 'trending-up'
                         color = focused ? 'black' : 'grey'
-                    } else if (route.name == 'testscreen3') {
-                        iconName = focused ? 'settings' : 'settings'
+                    } else if (route.name == 'Profile') {
+                        iconName = focused ? 'user' : 'user'
                         color = focused ? 'black' : 'grey'
                     }
 
@@ -89,7 +91,7 @@ const HomeTabs = () => {
                 }
             }} />
             <Tab.Screen name="testscreen2" component={testscreen2} />
-            <Tab.Screen name="testscreen3" component={testscreen3} />
+            <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
     )
 }
@@ -100,6 +102,7 @@ export default function App() {
             <stack.Screen component={Login} name="Login" options={{ headerShown: false }} />
             <stack.Screen component={Signup} name="Signup" options={{ headerShown: false }} />
             <stack.Screen component={HomeTabs} name="HomeTabs" options={{ headerShown: false }} />
+            <stack.Screen component={ProfileDetail} name="ProfileDetail" options={{ headerShown: true }} />
         </stack.Navigator>
     );
 }
@@ -130,12 +133,5 @@ function testscreen2() {
     )
 }
 
-function testscreen3() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff', }}>
-            <Text>testscreen3</Text>
-        </View>
-    )
-}
 
 
