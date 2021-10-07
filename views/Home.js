@@ -24,17 +24,14 @@ import {
   TransactionRightWrapper,
   TransactionText1,
   TransactionText2,
-  TransactionAmount
+  TransactionAmount,
 } from "../components/HomeStyles";
 
 //Redux
 import { useSelector } from "react-redux";
 
 //SAMPLE DATA TESTING
-import sampledata from '../utils/constants/sampleData.js';
-
-//Icons
-import { Ionicons } from "@expo/vector-icons";
+import sampledata from "../utils/constants/sampleData.js";
 
 const Home = () => {
   const { username } = useSelector((state) => state.userReducer);
@@ -74,15 +71,19 @@ const Home = () => {
         </IEContainer>
         <IELists />
         <TransactionContainer>
-        <FlatList 
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          data={sampledata}
-          renderItem={({item}) => (
-            <TransactionLists name={item.name} time={item.time} amount={item.price}/>
-          )}
-        />
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={(item) => item.id}
+            data={sampledata}
+            renderItem={({ item }) => (
+              <TransactionLists
+                name={item.name}
+                time={item.time}
+                amount={item.price}
+              />
+            )}
+          />
         </TransactionContainer>
       </InnerContainer>
     </StyledContainer>
@@ -109,32 +110,33 @@ const IELists = () => {
   );
 };
 
-const TransactionLists = ({name , time , amount}) => {
+const TransactionLists = ({ name, time, amount }) => {
   return (
     <>
       {/* <TransactionTitle>Today Transaction</TransactionTitle> */}
       <>
-      <TransactionTouch>
-        <TransactionItemWrapper>
-          <TransactionLeftWrapper>
-            <View>
-              <TransactionText1>{name}</TransactionText1>
-              <TransactionText2>{time}</TransactionText2>
-            </View>
-          </TransactionLeftWrapper>
-          <TransactionRightWrapper>
-            <View>
-              <TransactionAmount>
-                <BalanceText2>$ </BalanceText2>
-                {amount}</TransactionAmount>
-            </View>
-          </TransactionRightWrapper>
-        </TransactionItemWrapper>
+        <TransactionTouch>
+          <TransactionItemWrapper>
+            <TransactionLeftWrapper>
+              <View>
+                <TransactionText1>{name}</TransactionText1>
+                <TransactionText2>{time}</TransactionText2>
+              </View>
+            </TransactionLeftWrapper>
+            <TransactionRightWrapper>
+              <View>
+                <TransactionAmount>
+                  <BalanceText2>$ </BalanceText2>
+                  {amount}
+                </TransactionAmount>
+              </View>
+            </TransactionRightWrapper>
+          </TransactionItemWrapper>
         </TransactionTouch>
       </>
     </>
-  )
-}
+  );
+};
 
 const style = StyleSheet.create({
   activeIEText: {

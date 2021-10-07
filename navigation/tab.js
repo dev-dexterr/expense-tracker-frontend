@@ -19,6 +19,7 @@ import Profile from "../views/Profile";
 import ProfileDetail from "../views/ProfileDetail";
 import Setting from "../views/Settings";
 import CustomHeader from "../components/customheader/CustomHeader";
+import AddTransaction from "../views/AddTransaction";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,78 +49,76 @@ const CustomTabBarButton = ({ children, onPress }) => {
 };
 
 const HomeTabs = () => {
-
   return (
-    
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarShowLabel: false,
-          headerShown: false,
-          tabBarIcon: ({ focused, color }) => {
-            let iconName;
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarShowLabel: false,
+        headerShown: false,
+        tabBarIcon: ({ focused, color }) => {
+          let iconName;
 
-            if (route.name == "Home") {
-              iconName = focused ? "home" : "home";
-              color = focused ? "black" : "grey";
-            } else if (route.name == "testscreen1") {
-              iconName = focused ? "bar-chart-2" : "bar-chart-2";
-              color = focused ? "black" : "grey";
-            } else if (route.name == "testscreen2") {
-              iconName = focused ? "trending-up" : "trending-up";
-              color = focused ? "black" : "grey";
-            } else if (route.name == "Profile") {
-              iconName = focused ? "user" : "user";
-              color = focused ? "black" : "grey";
-            }
+          if (route.name == "Home") {
+            iconName = focused ? "home" : "home";
+            color = focused ? "black" : "grey";
+          } else if (route.name == "testscreen1") {
+            iconName = focused ? "bar-chart-2" : "bar-chart-2";
+            color = focused ? "black" : "grey";
+          } else if (route.name == "testscreen2") {
+            iconName = focused ? "trending-up" : "trending-up";
+            color = focused ? "black" : "grey";
+          } else if (route.name == "Profile") {
+            iconName = focused ? "user" : "user";
+            color = focused ? "black" : "grey";
+          }
 
-            return <Feather name={iconName} size={25} color={color} />;
+          return <Feather name={iconName} size={25} color={color} />;
+        },
+        tabBarIconStyle: {
+          top: 15,
+        },
+        tabBarStyle: {
+          //FLoating Tab Bar
+          position: "absolute",
+          bottom: 35,
+          marginHorizontal: 20,
+          backgroundColor: "#F5F7FA",
+          //Max Height
+          height: 60,
+          borderRadius: 15,
+          //Shadow
+          shadowColor: "#000",
+          shadowOpacity: 0.06,
+          shadowOffset: {
+            width: 10,
+            height: 10,
           },
-          tabBarIconStyle: {
-            top: 15,
-          },
-          tabBarStyle: {
-            //FLoating Tab Bar
-            position: "absolute",
-            bottom: 35,
-            marginHorizontal: 20,
-            backgroundColor: "#F5F7FA",
-            //Max Height
-            height: 60,
-            borderRadius: 15,
-            //Shadow
-            shadowColor: "#000",
-            shadowOpacity: 0.06,
-            shadowOffset: {
-              width: 10,
-              height: 10,
-            },
-          },
-        })}
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="testscreen1" component={testscreen1} />
-        <Tab.Screen
-          name="testadd"
-          component={testadd}
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <Image
-                source={plus}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: "white",
-                  top: -15,
-                }}
-              ></Image>
-            ),
-            tabBarButton: (props) => <CustomTabBarButton {...props} />,
-          }}
-        />
-        <Tab.Screen name="testscreen2" component={testscreen2} />
-        <Tab.Screen name="Profile" component={Profile} />
-      </Tab.Navigator>
+        },
+      })}
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="testscreen1" component={testscreen1} />
+      <Tab.Screen
+        name="AddTransaction"
+        component={AddTransaction}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={plus}
+              resizeMode="contain"
+              style={{
+                width: 25,
+                height: 25,
+                tintColor: "white",
+                top: -15,
+              }}
+            ></Image>
+          ),
+          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+        }}
+      />
+      <Tab.Screen name="testscreen2" component={testscreen2} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
   );
 };
 
@@ -205,17 +204,3 @@ function testscreen2() {
   );
 }
 
-function testadd() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-      }}
-    >
-      <Text>test add</Text>
-    </View>
-  );
-}
