@@ -1,12 +1,13 @@
 const profileMenu = [
     {
         iconName: "user",
-        name: "Personal Data",
+        name: "Edit Profile",
         navigatorName: "ProfileDetail"
     },
     {
         iconName: "settings",
-        name: "Setting"
+        name: "Setting",
+        navigatorName: "Setting"
     }
 ];
 

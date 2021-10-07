@@ -28,13 +28,12 @@ import {
 } from "../components/HomeStyles";
 
 //Redux
-import { useDispatch, useSelector } from "react-redux";
-import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
+import { useSelector } from "react-redux";
 
 //SAMPLE DATA TESTING
 import sampledata from '../utils/constants/sampleData.js';
 
-//Iconsr
+//Icons
 import { Ionicons } from "@expo/vector-icons";
 
 const Home = () => {

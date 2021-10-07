@@ -29,14 +29,14 @@ import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 //API Client
 import axios from "axios";
 
-//Icons
-import { Ionicons } from "@expo/vector-icons";
-
 //BASE_URL
 import baseURL from "../utils/api.js";
 
 //Keyboard Avoiding View
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
+
+//Text Input
+import TextInput from "../components/textinput/TextInput.js"
 
 const Login = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -135,27 +135,6 @@ const Login = ({ navigation }) => {
         </InnerContainer>
       </StyledContainer>
     </KeyboardAvoidingWrapper>
-  );
-};
-
-const TextInput = ({
-  label,
-  icon,
-  isPassword,
-  hidePassword,
-  setHidePassword,
-  ...props
-}) => {
-  return (
-    <View>
-      <StyledInputLabel>{label}</StyledInputLabel>
-      <StyledTextInput {...props} />
-      {isPassword && (
-        <RightIcon onPress={() => setHidePassword(!hidePassword)}>
-          <Ionicons size={30} name={hidePassword ? "md-eye-off" : "md-eye"} />
-        </RightIcon>
-      )}
-    </View>
   );
 };
 

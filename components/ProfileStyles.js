@@ -99,3 +99,33 @@ export const OptionIcon = styled.View`
     align-items: center;
     top: 12px
 `
+
+export const ProfileDetailTitle = styled.Text`
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+    color: ${secondary};
+    padding: 10px 0px 70px 0px;
+    fontFamily: 'Ubuntu-Bold'
+`
+
+export const StyledFormArea = styled.View`
+    width: 100%;
+`
+
+export const StyledButton = styled.TouchableOpacity`
+    padding: 15px;
+    background-color: ${secondary};
+    justify-content: center;
+    border-radius: 10px;
+    margin-vertical: 40px;
+    height: 60px;
+`;
+
+export const StyledButtonText = styled.Text`
+    color: ${primary};
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
+`
