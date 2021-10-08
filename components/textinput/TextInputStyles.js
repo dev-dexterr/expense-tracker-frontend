@@ -7,16 +7,16 @@ export const colors = {
     tertiary: '#E5E6E8',
 }
 
-const {primary , secondary , tertiary} = colors;
+const { primary, secondary, tertiary } = colors;
 
 export const StyledInputLabel = styled.Text`
-color: ${secondary};
-font-size: 16px;
-text-align: left;
-letter-spacing: 1.5px;
-margin-bottom: 10px;
-font-weight: bold;
-fontFamily: 'Ubuntu-Bold'
+    color: ${secondary};
+    font-size: 16px;
+    text-align: left;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
 
 export const StyledTextInput = styled.TextInput`

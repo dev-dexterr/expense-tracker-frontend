@@ -1,22 +1,34 @@
 import React from "react";
-import { FlatList, Pressable, StyleSheet, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, View, Text } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import {  StyledContainer, InnerContainer, TransactionView, TransactionTitle, TransactionBackground, TransactionDollar, TransactionDollarView } from "../components/AddTransactionStyles.js";
+import { StyledContainer, InnerContainer, TransactionView, TransactionTitle, TransactionBackground, TransactionDollar, StyledFormArea, TransactionDollarView, TransactionTextInput } from "../components/AddTransactionStyles.js";
+
+import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper.js";
+
+//Text Input
+import TextInput from "../components/textinput/TextInput.js"
+//formik
+import { Formik } from "formik";
 
 const AddTransaction = () => {
-    return(
-        <StyledContainer>
-            <InnerContainer>
-                <TransactionView>
-                    <TransactionTitle>Add Transaction</TransactionTitle>
-                </TransactionView>
-                <TransactionBackground>
+    return (
+        <KeyboardAvoidingWrapper>
+            <StyledContainer>
+                <InnerContainer>
+                    <TransactionView>
+                        <TransactionTitle>Add Transaction</TransactionTitle>
+                    </TransactionView>
                     <TransactionDollarView>
                         <TransactionDollar>$ </TransactionDollar>
+                        <TransactionTextInput
+                            placeholder="0"
+                            keyboardType="decimal-pad"
+                        />
                     </TransactionDollarView>
-                </TransactionBackground>
-            </InnerContainer>   
-        </StyledContainer>
+                    
+                </InnerContainer>
+            </StyledContainer>
+        </KeyboardAvoidingWrapper>
     )
 }
 export default AddTransaction;
