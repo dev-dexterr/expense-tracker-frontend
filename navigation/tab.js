@@ -20,6 +20,7 @@ import ProfileDetail from "../views/ProfileDetail";
 import Setting from "../views/Settings";
 import CustomHeader from "../components/customheader/CustomHeader";
 import AddTransaction from "../views/AddTransaction";
+import Category from "../views/Category";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -169,6 +170,20 @@ export default function App() {
           ),
         }}
       />
+      <stack.Screen
+        component={Category}
+        name="Category"
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          gestureEnabled: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <CustomHeader />
+            </TouchableOpacity>
+          ),
+        }}
+      />
     </stack.Navigator>
   );
 }
@@ -203,4 +218,3 @@ function testscreen2() {
     </View>
   );
 }
-

@@ -55,10 +55,48 @@ export const TransactionDollarView = styled.View`
     align-items: center
     padding-left: 50px;
     padding-right: 50px;
+    padding-bottom: 30px;
 ` 
 
 export const TransactionTextInput = styled.TextInput`
     font-size: 68px;
     color: ${senary};
     fontFamily: 'Ubuntu-Bold'
+`
+
+export const CategoryTouch = styled.TouchableOpacity`
+`
+
+export const CategoryItemWrapper = styled.View`
+    padding: 15px 10px 5px 10px;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+`
+export const CategoryLeftWrapper = styled.View`
+    flex-direction: row;
+    align-items: center;
+`
+
+export const CategoryRightWrapper = styled.View`
+    align-items: flex-end;    
+`
+
+export const CategoryText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: ${secondary};
+    fontFamily: 'Ubuntu-Bold';
+    margin-left: 25px;
+`
+
+export const CategoryIconBackground = styled.View`
+    background-color: ${quaternary}
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+`
+export const CategoryIcon = styled.View`
+    align-items: center;
+    top: 12px
 `
