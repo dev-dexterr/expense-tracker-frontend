@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Pressable, StyleSheet, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -70,21 +70,6 @@ const Home = () => {
           </IEBackground>
         </IEContainer>
         <IELists />
-        <TransactionContainer>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
-            data={sampledata}
-            renderItem={({ item }) => (
-              <TransactionLists
-                name={item.name}
-                time={item.time}
-                amount={item.price}
-              />
-            )}
-          />
-        </TransactionContainer>
       </InnerContainer>
     </StyledContainer>
   );
@@ -105,6 +90,49 @@ const IELists = () => {
             </Pressable>
           ))}
         </IEListTextContainer>
+        {selectedTab == 0 &&
+          <TransactionContainer>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id}
+              data={sampledata}
+              renderItem={({ item }) => (
+                <TransactionLists
+                  name={item.name}
+                  time={item.time}
+                  amount={item.price}
+                />
+              )}
+            />
+          </TransactionContainer>
+        }
+        {
+          selectedTab == 1 &&
+          <TransactionContainer>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id}
+              data={sampledata}
+              renderItem={({ item }) => (
+                <TransactionLists
+                  name={item.name}
+                  time={item.time}
+                  amount={item.price}
+                />
+              )}
+            />
+          </TransactionContainer>
+        }
+        {
+          selectedTab == 2 &&
+          <TransactionContainer>
+            <View>
+              <Text>No Transaction</Text>
+            </View>
+          </TransactionContainer>
+        }
       </InnerContainer>
     </StyledContainer>
   );

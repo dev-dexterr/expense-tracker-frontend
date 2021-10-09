@@ -145,9 +145,8 @@ export const IEListText = styled.Text`
 
 export const TransactionContainer = styled.View`
     background-color: ${quaternary}
-    height: 40%;
-    margin-top: -105px;
-    margin-bottom: 80px;
+    height: 150%;
+    margin-top: 8%;
     width: 100%
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;

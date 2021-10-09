@@ -16,6 +16,9 @@ import {
   CategoryText,
   CategoryIconBackground,
   CategoryIcon,
+  StyledFormArea,
+  StyledButton,
+  StyledButtonText
 } from "../components/AddTransactionStyles.js";
 
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper.js";
@@ -25,8 +28,9 @@ import { Feather } from "@expo/vector-icons";
 
 //formik
 import { Formik } from "formik";
+import TextInput from "../components/textinput/TextInput.js";
 
-const AddTransaction = ({navigation}) => {
+const AddTransaction = ({ navigation }) => {
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -34,14 +38,47 @@ const AddTransaction = ({navigation}) => {
           <TransactionView>
             <TransactionTitle>Add Transaction</TransactionTitle>
           </TransactionView>
-          <TransactionDollarView>
-            <TransactionDollar>$ </TransactionDollar>
-            <TransactionTextInput placeholder="0" keyboardType="decimal-pad" />
-          </TransactionDollarView>
-          <CategoryTouch onPress={() => navigation.navigate("Category")}>
-              <Categories name="Choose Category" iconName="gift"/>
-          </CategoryTouch>
+          <Formik
+            initialValues={{ Tamount: "", remark: "" }}
+            onSubmit={(values) => {
+              if (values.Tamount == "") {
+                console.log("Please Fill in the Fields");
+              } else {
+                console.log("Transaction Amount: ", values.Tamount, "Remark: ", values.remark);
+              }
+            }}
+          >{
+              ({ handleBlur, handleChange, handleSubmit, values }) => (
+                <StyledFormArea>
+                  <TransactionDollarView>
+                    <TransactionDollar>$ </TransactionDollar>
+                    <TransactionTextInput
+                      placeholder="0"
+                      keyboardType="decimal-pad"
+                      values={values.Tamount}
+                      onBlur={handleBlur("Tamount")}
+                      onChangeText={handleChange("Tamount")}
+                    />
+                  </TransactionDollarView>
+                  <CategoryTouch onPress={() => navigation.navigate("Category")}>
+                    <Categories name="Choose Category" iconName="gift" />
+                  </CategoryTouch>
+                  <TextInput
+                    label="Remark"
+                    placeholder="(Optional)"
+                    values={values.remark}
+                    onBlur={handleBlur("remark")}
+                    onChangeText={handleChange("remark")}
+                  />
+                  <StyledButton onPress={handleSubmit}>
+                    <StyledButtonText>Add</StyledButtonText>
+                  </StyledButton>
+                </StyledFormArea>
 
+              )
+            }
+
+          </Formik>
 
         </InnerContainer>
       </StyledContainer>
@@ -56,7 +93,7 @@ const Categories = ({ name, iconName }) => {
         <View>
           <CategoryIconBackground>
             <CategoryIcon>
-                <Feather name={iconName} size={24} color="black" />
+              <Feather name={iconName} size={24} color="black" />
             </CategoryIcon>
           </CategoryIconBackground>
         </View>

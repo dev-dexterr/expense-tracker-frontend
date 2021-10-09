@@ -31,7 +31,7 @@ const CustomTabBarButton = ({ children, onPress }) => {
       style={{
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 25,
+        marginBottom: 0,
       }}
       onPress={onPress}
     >
@@ -114,7 +114,7 @@ const HomeTabs = () => {
               }}
             ></Image>
           ),
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+          tabBarButton: (props) => <CustomTabBarButton {...props} />
         }}
       />
       <Tab.Screen name="testscreen2" component={testscreen2} />

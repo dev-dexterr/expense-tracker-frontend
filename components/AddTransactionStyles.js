@@ -68,7 +68,7 @@ export const CategoryTouch = styled.TouchableOpacity`
 `
 
 export const CategoryItemWrapper = styled.View`
-    padding: 15px 10px 5px 10px;
+    padding: 15px 0px 30px 0px;
     flex-direction: row;
     justify-content: space-between; 
     align-items: center;
@@ -99,4 +99,25 @@ export const CategoryIconBackground = styled.View`
 export const CategoryIcon = styled.View`
     align-items: center;
     top: 12px
+`
+
+export const StyledFormArea = styled.View`
+    width: 100%;
+`
+
+export const StyledButton = styled.TouchableOpacity`
+    padding: 15px;
+    background-color: ${secondary};
+    justify-content: center;
+    border-radius: 10px;
+    margin-vertical: 40px;
+    height: 60px;
+`;
+
+export const StyledButtonText = styled.Text`
+    color: ${primary};
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    fontFamily: 'Ubuntu-Bold'
 `
