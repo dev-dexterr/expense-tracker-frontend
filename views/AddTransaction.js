@@ -1,5 +1,5 @@
-import React from "react";
-import { FlatList, Pressable, StyleSheet, View, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, Pressable, StyleSheet, View, Text, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -18,19 +18,22 @@ import {
   CategoryIcon,
   StyledFormArea,
   StyledButton,
-  StyledButtonText
+  StyledButtonText,
+  IEIcon
 } from "../components/AddTransactionStyles.js";
 
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper.js";
 
 //Icon
 import { Feather } from "@expo/vector-icons";
+import { income , expense } from "../utils/constants/icon.js";
 
 //formik
 import { Formik } from "formik";
 import TextInput from "../components/textinput/TextInput.js";
 
-const AddTransaction = ({ navigation }) => {
+const AddTransaction = ({ route, navigation }) => {
+  let data = route.params;
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -61,7 +64,7 @@ const AddTransaction = ({ navigation }) => {
                     />
                   </TransactionDollarView>
                   <CategoryTouch onPress={() => navigation.navigate("Category")}>
-                    <Categories name="Choose Category" iconName="gift" />
+                    <Categories name={data?.name}  iconName={data?.iconName} type={data?.type}/>
                   </CategoryTouch>
                   <TextInput
                     label="Remark"
@@ -86,19 +89,28 @@ const AddTransaction = ({ navigation }) => {
   );
 };
 
-const Categories = ({ name, iconName }) => {
+const Categories = ({ name, iconName, type }) => {
+  const [cname, setcname] = useState()
+  useEffect(() => {
+    if(name == undefined){
+      setcname("Choose Category")
+    }else{
+      setcname(name);
+      console.log("Transaction Type", type);
+    }
+  },[name]);
   return (
     <CategoryItemWrapper>
       <CategoryLeftWrapper>
         <View>
           <CategoryIconBackground>
             <CategoryIcon>
-              <Feather name={iconName} size={24} color="black" />
+                <IEIcon  source={iconName}/>
             </CategoryIcon>
           </CategoryIconBackground>
         </View>
         <View>
-          <CategoryText>{name}</CategoryText>
+          <CategoryText>{cname}</CategoryText>
         </View>
       </CategoryLeftWrapper>
       <CategoryRightWrapper>

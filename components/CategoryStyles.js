@@ -9,10 +9,11 @@ export const colors = {
     tertiary: '#E5E6E8',
     quaternary: '#F5F7FA',
     quinary: 'black',
-    senary: 'grey'
+    senary: 'grey',
+    test: '#e8ecf0'
 }
 
-const {primary , secondary , tertiary, quaternary, quinary, senary} = colors;
+const {primary , secondary , tertiary, quaternary, quinary, senary, test} = colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
@@ -40,7 +41,7 @@ export const IEListTextContainer = styled.View`
     margin-top: -25px;
     flex-direction: row;
     justify-content: center;
-    
+    padding-bottom: 20px;
 `
 
 export const IEListText = styled.Text`
@@ -51,4 +52,51 @@ export const IEListText = styled.Text`
     padding-right: 25px;
     padding-left: 25px;
 `;
+
+export const IEContainerCategory = styled.View`
+    
+`
+
+export const IEContainerWrapper = styled.View`
+    padding: 10px 5px 10px 0px;
+    flex-direction: row;
+    justify-content: flex-start; 
+    align-items: center;
+`
+
+export const IEIconBackground = styled.View`
+    background-color: ${quaternary};
+    border-radius: 50px;
+    padding: 15px;
+`
+
+export const IEIcon = styled.Image`
+    width: 22px;
+    height: 22px;
+`
+
+export const IEText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: ${quinary};
+    fontFamily: 'Roboto-Light';
+    padding-right: 25px;
+    padding-left: 25px;
+`
+
+export const Divider = styled.View`
+    border-bottom-color: ${test};
+    border-bottom-width: 1px;
+    border-radius: 50px;
+    width: 100%
+    margin-top: 0px;
+`
+
+export const Divider2 = styled.View`
+    border-bottom-color: transparent;
+    border-bottom-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 2.6px;
+    border-radius: 50px;
+    width: 100%
+`
 

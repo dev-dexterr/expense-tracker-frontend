@@ -94,7 +94,7 @@ export const CategoryIconBackground = styled.View`
     background-color: ${quaternary}
     width: 50px;
     height: 50px;
-    border-radius: 20px;
+    border-radius: 50px;
 `
 export const CategoryIcon = styled.View`
     align-items: center;
@@ -120,4 +120,9 @@ export const StyledButtonText = styled.Text`
     text-align: center;
     font-weight: bold;
     fontFamily: 'Ubuntu-Bold'
+`
+
+export const IEIcon = styled.Image`
+    width: 22px;
+    height: 22px;
 `
