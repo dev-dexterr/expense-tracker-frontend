@@ -33,6 +33,13 @@ export const UserImg = styled.Image`
     border-radius: 50px;
 `
 
+export const UserImgBackground = styled.View`
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: ${quaternary}
+`
+
 export const UserInfo = styled.View`
     flex-direction: column;
     justify-content: center;

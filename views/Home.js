@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -25,7 +25,14 @@ import {
   TransactionText1,
   TransactionText2,
   TransactionAmount,
+  IEIconBackground,
+  IEIcon,
+  NoTransactionView,
+  NoTransactionText
 } from "../components/HomeStyles";
+
+//Lottie
+import LottieView from 'lottie-react-native';
 
 //Redux
 import { useSelector } from "react-redux";
@@ -83,11 +90,11 @@ const IELists = () => {
       <InnerContainer>
         <IEListTextContainer>
           {IETab.map((ie, index) => (
-            <Pressable key={index} onPress={() => setselectedTab(index)}>
+            <TouchableOpacity key={index} onPress={() => setselectedTab(index)}>
               <IEListText style={[index == selectedTab && style.activeIEText]}>
                 {ie}
               </IEListText>
-            </Pressable>
+            </TouchableOpacity >
           ))}
         </IEListTextContainer>
         {selectedTab == 0 &&
@@ -100,8 +107,8 @@ const IELists = () => {
               renderItem={({ item }) => (
                 <TransactionLists
                   name={item.name}
-                  time={item.time}
-                  amount={item.price}
+                  amount={item.amount}
+                  icon={item.icon}
                 />
               )}
             />
@@ -118,8 +125,8 @@ const IELists = () => {
               renderItem={({ item }) => (
                 <TransactionLists
                   name={item.name}
-                  time={item.time}
-                  amount={item.price}
+                  icon={item.icon}
+                  amount={item.amount}
                 />
               )}
             />
@@ -128,9 +135,14 @@ const IELists = () => {
         {
           selectedTab == 2 &&
           <TransactionContainer>
-            <View>
-              <Text>No Transaction</Text>
-            </View>
+            <NoTransactionView>
+              {/* <NoTransactionText>No Transaction</NoTransactionText> */}
+              <LottieView style={{width: '80%', aspectRatio: 1}}
+                source={require('../assets/icons/13525-empty.json')}
+                autoPlay
+              />
+              
+            </NoTransactionView>
           </TransactionContainer>
         }
       </InnerContainer>
@@ -138,18 +150,20 @@ const IELists = () => {
   );
 };
 
-const TransactionLists = ({ name, time, amount }) => {
+const TransactionLists = ({ name, amount , icon }) => {
   return (
-    <>
-      {/* <TransactionTitle>Today Transaction</TransactionTitle> */}
       <>
         <TransactionTouch>
           <TransactionItemWrapper>
             <TransactionLeftWrapper>
               <View>
-                <TransactionText1>{name}</TransactionText1>
-                <TransactionText2>{time}</TransactionText2>
+                  <IEIconBackground>
+                    <IEIcon source={icon} />
+                  </IEIconBackground>
               </View>
+              <View>
+                <TransactionText1>{name}</TransactionText1>
+              </View> 
             </TransactionLeftWrapper>
             <TransactionRightWrapper>
               <View>
@@ -162,7 +176,6 @@ const TransactionLists = ({ name, time, amount }) => {
           </TransactionItemWrapper>
         </TransactionTouch>
       </>
-    </>
   );
 };
 

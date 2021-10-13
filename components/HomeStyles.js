@@ -144,18 +144,16 @@ export const IEListText = styled.Text`
 `;
 
 export const TransactionContainer = styled.View`
-    background-color: ${quaternary}
     height: 150%;
     margin-top: 8%;
     width: 100%
     border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
 `
 export const TransactionTouch = styled.TouchableOpacity`
 `
 
 export const TransactionItemWrapper = styled.View`
-    padding: 20px 25px 5px 25px;
+    padding: 20px 0px 5px 0px;
     flex-direction: row;
     justify-content: space-between; 
     align-items: center;
@@ -181,8 +179,8 @@ export const TransactionText1 = styled.Text`
     font-size: 18px;
     font-weight: bold;
     color: ${secondary};
-    fontFamily: 'Ubuntu-Bold';
-    padding-bottom: 5px;
+    fontFamily: 'Roboto-Light';
+    margin-left: 15px
 `
 export const TransactionText2 = styled.Text`
     font-size: 15px;
@@ -193,11 +191,33 @@ export const TransactionText2 = styled.Text`
 `
 
 export const TransactionAmount = styled.Text`
-    font-size: 26px;
+    font-size: 20px;
     font-weight: bold;
     color: ${secondary};
     fontFamily: 'Ubuntu-Bold';
-    
+`
+
+export const IEIconBackground = styled.View`
+    background-color: ${quaternary};
+    border-radius: 50px;
+    padding: 11px;
+`
+
+export const IEIcon = styled.Image`
+    width: 22px;
+    height: 22px;
+`
+
+export const NoTransactionView = styled.View`
+    align-items: center;
+    justify-content: center; 
+    flex: 1;
+    margin-top: -5%;
+`
+
+export const NoTransactionText = styled.Text`
+    fontFamily: 'Roboto-Light';
+
 `
 
 

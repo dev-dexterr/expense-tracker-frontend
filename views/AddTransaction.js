@@ -26,7 +26,6 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper.js";
 
 //Icon
 import { Feather } from "@expo/vector-icons";
-import { income , expense } from "../utils/constants/icon.js";
 
 //formik
 import { Formik } from "formik";
@@ -42,12 +41,15 @@ const AddTransaction = ({ route, navigation }) => {
             <TransactionTitle>Add Transaction</TransactionTitle>
           </TransactionView>
           <Formik
-            initialValues={{ Tamount: "", remark: "" }}
+            initialValues={{ Tamount: "", remark: "", type: "" , name: "", icon: ""}}
             onSubmit={(values) => {
-              if (values.Tamount == "") {
+              if (values.Tamount == "" || values.type == "" || values.name == "" || values.icon == "") {
                 console.log("Please Fill in the Fields");
               } else {
-                console.log("Transaction Amount: ", values.Tamount, "Remark: ", values.remark);
+                values.type = data.type;
+                values.name = data.name;
+                values.icon = data.iconName;
+                console.log(values);
               }
             }}
           >{
@@ -80,9 +82,7 @@ const AddTransaction = ({ route, navigation }) => {
 
               )
             }
-
           </Formik>
-
         </InnerContainer>
       </StyledContainer>
     </KeyboardAvoidingWrapper>
@@ -96,7 +96,6 @@ const Categories = ({ name, iconName, type }) => {
       setcname("Choose Category")
     }else{
       setcname(name);
-      console.log("Transaction Type", type);
     }
   },[name]);
   return (

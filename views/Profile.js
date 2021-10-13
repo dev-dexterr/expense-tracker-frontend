@@ -15,6 +15,7 @@ import {
   OptionText,
   OptionIconBackground,
   OptionIcon,
+  UserImgBackground
 } from "../components/ProfileStyles";
 import { StatusBar } from "expo-status-bar";
 
@@ -23,6 +24,9 @@ import { Feather } from "@expo/vector-icons";
 
 //MenuData
 import profileMenu from "../utils/constants/profileMenu.js";
+
+//Lottie
+import LottieView from 'lottie-react-native';
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -36,13 +40,20 @@ const Profile = ({ navigation }) => {
       <InnerContainer>
         <UserInfo>
           <UserImg source={require("../assets/default-user-image.png")} />
+
+          {/* <UserImgBackground>
+            <LottieView style={{aspectRatio: 1, marginVertical: '-10%' }}
+              source={require('../assets/icons/63065-profile-in-out.json')}
+              autoPlay
+            />
+          </UserImgBackground> */}
           <UserName>{username}</UserName>
           <UserEmail>{email}</UserEmail>
           <Divider />
         </UserInfo>
         {profileMenu.map((data, index) => (
           <OptionTouch key={index} onPress={() => navigation.navigate(data.navigatorName)}>
-            <Options  name={data.name} iconName={data.iconName} />
+            <Options name={data.name} iconName={data.iconName} />
           </OptionTouch>
         ))}
       </InnerContainer>
