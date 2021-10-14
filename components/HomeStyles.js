@@ -237,10 +237,6 @@ export const ModalView = styled.View`
     width: 90%
 `
 
-export const TitleText = styled.Text`
-    font-size: 28px 
-`
-
 export const ModalIconContainer = styled.View`
     padding: 25px 15px 25px 15px
 `
@@ -248,6 +244,7 @@ export const ModalIconContainer = styled.View`
 export const ModalContentContainer = styled.View`
     padding: 0px 15px 25px 15px
     height: 60%
+    align-items: center
 `
 
 export const IEIconBackgroundModal = styled.View`
@@ -265,6 +262,33 @@ export const ModalBackgroundButton = styled.View`
     background-color: ${quaternary};
     padding: 10px;
     border-radius: 25px;
+`
+
+
+export const TitleText = styled.Text`
+    font-size: 32px 
+    fontFamily: 'Roboto-Light';
+`
+
+export const AmountText = styled.Text`
+    font-size: 42px 
+    fontFamily: 'Ubuntu-Bold';
+    padding: 0px 10px 10px 10px
+`
+
+export const ModalItemWrapper = styled.View`
+    display: flex
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+`
+export const ModalLeftWrapper = styled.View`
+    flex-direction: row;
+    align-items: center;
+`
+
+export const ModalRightWrapper = styled.View`
+    align-items: flex-end;    
 `
 
 

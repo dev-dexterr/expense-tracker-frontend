@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, Alert, Modal } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Alert,
+  Modal,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -36,11 +44,15 @@ import {
   IEIconModal,
   ModalIconContainer,
   ModalContentContainer,
-  ModalBackgroundButton
+  ModalBackgroundButton,
+  AmountText,
+  ModalRightWrapper,
+  ModalLeftWrapper,
+  ModalItemWrapper,
 } from "../components/HomeStyles";
 
 //Lottie
-import LottieView from 'lottie-react-native';
+import LottieView from "lottie-react-native";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -102,10 +114,10 @@ const IELists = () => {
               <IEListText style={[index == selectedTab && style.activeIEText]}>
                 {ie}
               </IEListText>
-            </TouchableOpacity >
+            </TouchableOpacity>
           ))}
         </IEListTextContainer>
-        {selectedTab == 0 &&
+        {selectedTab == 0 && (
           <TransactionContainer>
             <FlatList
               showsVerticalScrollIndicator={false}
@@ -122,9 +134,8 @@ const IELists = () => {
               )}
             />
           </TransactionContainer>
-        }
-        {
-          selectedTab == 1 &&
+        )}
+        {selectedTab == 1 && (
           <TransactionContainer>
             <FlatList
               showsVerticalScrollIndicator={false}
@@ -141,18 +152,18 @@ const IELists = () => {
               )}
             />
           </TransactionContainer>
-        }
-        {
-          selectedTab == 2 &&
+        )}
+        {selectedTab == 2 && (
           <TransactionContainer>
             <NoTransactionView>
-              <LottieView style={{ width: '40%', aspectRatio: 1 }}
-                source={require('../assets/icons/13525-empty.json')}
+              <LottieView
+                style={{ width: "40%", aspectRatio: 1 }}
+                source={require("../assets/icons/13525-empty.json")}
                 autoPlay
               />
             </NoTransactionView>
           </TransactionContainer>
-        }
+        )}
       </InnerContainer>
     </StyledContainer>
   );
@@ -211,12 +222,25 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
             </IEIconBackgroundModal>
           </ModalIconContainer>
           <ModalContentContainer>
+            <AmountText>
+              <BalanceText2>$ </BalanceText2>
+              {item.amount}
+            </AmountText>
             <TitleText>{item.name}</TitleText>
+            {/* <ModalItemWrapper>
+              <ModalLeftWrapper>
+                <View>
+                  <TitleText>{item.name}</TitleText>
+                </View>
+              </ModalLeftWrapper>
+              <ModalRightWrapper>
+                <View>
+                  <TitleText>{item.datetime}</TitleText>
+                </View>
+              </ModalRightWrapper>
+            </ModalItemWrapper> */}
           </ModalContentContainer>
-
-          <TouchableOpacity
-            onPress={() => setModalVisible(!modalVisible)}
-          >
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
             <ModalBackgroundButton>
               <Text>Close</Text>
             </ModalBackgroundButton>
@@ -224,8 +248,8 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
         </ModalView>
       </CenteredModalView>
     </Modal>
-  )
-}
+  );
+};
 
 const style = StyleSheet.create({
   activeIEText: {
