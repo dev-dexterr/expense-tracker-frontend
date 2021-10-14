@@ -217,7 +217,54 @@ export const NoTransactionView = styled.View`
 
 export const NoTransactionText = styled.Text`
     fontFamily: 'Roboto-Light';
+`
 
+export const CenteredModalView = styled.View`
+    align-items: center;
+    justify-content: center; 
+    flex: 1; 
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+`
+
+export const ModalView = styled.View`
+    background-color: ${primary};
+    border-radius: 25px;
+    align-items: center;
+    elevation: 5
+    box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
+    height: 60%
+    width: 90%
+`
+
+export const TitleText = styled.Text`
+    font-size: 28px 
+`
+
+export const ModalIconContainer = styled.View`
+    padding: 25px 15px 25px 15px
+`
+
+export const ModalContentContainer = styled.View`
+    padding: 0px 15px 25px 15px
+    height: 60%
+`
+
+export const IEIconBackgroundModal = styled.View`
+    background-color: ${quaternary};
+    border-radius: 50px;
+    padding: 25px;
+`
+
+export const IEIconModal = styled.Image`
+    width: 55px;
+    height: 55px;
+`
+
+export const ModalBackgroundButton = styled.View`
+    background-color: ${quaternary};
+    padding: 10px;
+    border-radius: 25px;
 `
 
 

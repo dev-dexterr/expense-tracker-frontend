@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Alert, Modal } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -28,7 +28,15 @@ import {
   IEIconBackground,
   IEIcon,
   NoTransactionView,
-  NoTransactionText
+  NoTransactionText,
+  ModalView,
+  CenteredModalView,
+  TitleText,
+  IEIconBackgroundModal,
+  IEIconModal,
+  ModalIconContainer,
+  ModalContentContainer,
+  ModalBackgroundButton
 } from "../components/HomeStyles";
 
 //Lottie
@@ -109,6 +117,7 @@ const IELists = () => {
                   name={item.name}
                   amount={item.amount}
                   icon={item.icon}
+                  item={item}
                 />
               )}
             />
@@ -127,6 +136,7 @@ const IELists = () => {
                   name={item.name}
                   icon={item.icon}
                   amount={item.amount}
+                  item={item}
                 />
               )}
             />
@@ -136,12 +146,10 @@ const IELists = () => {
           selectedTab == 2 &&
           <TransactionContainer>
             <NoTransactionView>
-              {/* <NoTransactionText>No Transaction</NoTransactionText> */}
-              <LottieView style={{width: '80%', aspectRatio: 1}}
+              <LottieView style={{ width: '40%', aspectRatio: 1 }}
                 source={require('../assets/icons/13525-empty.json')}
                 autoPlay
               />
-              
             </NoTransactionView>
           </TransactionContainer>
         }
@@ -150,34 +158,74 @@ const IELists = () => {
   );
 };
 
-const TransactionLists = ({ name, amount , icon }) => {
+const TransactionLists = ({ name, amount, icon, item }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
-      <>
-        <TransactionTouch>
-          <TransactionItemWrapper>
-            <TransactionLeftWrapper>
-              <View>
-                  <IEIconBackground>
-                    <IEIcon source={icon} />
-                  </IEIconBackground>
-              </View>
-              <View>
-                <TransactionText1>{name}</TransactionText1>
-              </View> 
-            </TransactionLeftWrapper>
-            <TransactionRightWrapper>
-              <View>
-                <TransactionAmount>
-                  <BalanceText2>$ </BalanceText2>
-                  {amount}
-                </TransactionAmount>
-              </View>
-            </TransactionRightWrapper>
-          </TransactionItemWrapper>
-        </TransactionTouch>
-      </>
+    <>
+      <TransactionTouch onPress={() => setModalVisible(true)}>
+        <TransactionItemWrapper>
+          <TransactionLeftWrapper>
+            <View>
+              <IEIconBackground>
+                <IEIcon source={icon} />
+              </IEIconBackground>
+            </View>
+            <View>
+              <TransactionText1>{name}</TransactionText1>
+            </View>
+          </TransactionLeftWrapper>
+          <TransactionRightWrapper>
+            <View>
+              <TransactionAmount>
+                <BalanceText2>$ </BalanceText2>
+                {amount}
+              </TransactionAmount>
+            </View>
+          </TransactionRightWrapper>
+        </TransactionItemWrapper>
+      </TransactionTouch>
+      <IEModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        item={item}
+      />
+    </>
   );
 };
+
+const IEModal = ({ modalVisible, setModalVisible, item }) => {
+  return (
+    <Modal
+      animationType="fade"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => {
+        setModalVisible(!modalVisible);
+      }}
+    >
+      <CenteredModalView>
+        <ModalView>
+          <ModalIconContainer>
+            <IEIconBackgroundModal>
+              <IEIconModal source={item.icon} />
+            </IEIconBackgroundModal>
+          </ModalIconContainer>
+          <ModalContentContainer>
+            <TitleText>{item.name}</TitleText>
+          </ModalContentContainer>
+
+          <TouchableOpacity
+            onPress={() => setModalVisible(!modalVisible)}
+          >
+            <ModalBackgroundButton>
+              <Text>Close</Text>
+            </ModalBackgroundButton>
+          </TouchableOpacity>
+        </ModalView>
+      </CenteredModalView>
+    </Modal>
+  )
+}
 
 const style = StyleSheet.create({
   activeIEText: {
