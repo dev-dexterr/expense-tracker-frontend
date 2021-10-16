@@ -4,47 +4,56 @@ const SAMPLE_DATA = [
     {
         id: "baby",
         name: "Baby",
-        datetime: "11:35 AM",
+        datetime: "Oct 16, 2021 11:35 AM",
         type: "Expense",
         amount: "400",
-        icon: expense.baby
+        icon: expense.baby,
+        remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam,quasdaasdasdasddddddd"
     },
     {
         id: "car-maintenance",
         name: "Car Maintenance",
-        datetime: "12:00 PM",
+        datetime: "Oct 16, 2021 11:35 AM",
         type: "Expense",
         amount: "1260",
-        icon: expense.carMaintenance
+        icon: expense.carMaintenance,
+        remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
     {
         id: "movie",
         name: "Movie",
-        datetime: "7:00 AM",
+        datetime: "Oct 16, 2021 11:35 AM",
         amount: "2",
         type: "Expense",
-        icon: expense.movie
+        icon: expense.movie,
+        remark: ""
     },
     {
         id: "parking",
         name: "Parking",
-        datetime: "1:00 PM",
+        datetime: "Oct 16, 2021 11:35 AM",
         amount: "5",
-        icon: expense.parking
+        type: "Expense",
+        icon: expense.parking,
+        remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
     {
         id: "phone-bill",
         name: "Phone Bill",
-        datetime: "1:00 PM",
+        datetime: "Oct 16, 2021 11:35 AM",
         amount: "120",
-        icon: expense.phoneBill
+        type: "Expense",
+        icon: expense.phoneBill,
+        remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
     {
         id: "gas",
         name: "Gas",
-        datetime: "1:00 PM",
+        datetime: "Oct 16, 2021 11:35 AM",
         amount: "80",
-        icon: expense.gas
+        type: "Expense",
+        icon: expense.gas,
+        remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
 
 ]

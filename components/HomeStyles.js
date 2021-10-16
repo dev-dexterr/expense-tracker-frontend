@@ -212,7 +212,7 @@ export const NoTransactionView = styled.View`
     align-items: center;
     justify-content: center; 
     flex: 1;
-    margin-top: -5%;
+    margin-top: 15%;
 `
 
 export const NoTransactionText = styled.Text`
@@ -233,19 +233,20 @@ export const ModalView = styled.View`
     align-items: center;
     elevation: 5
     box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
-    height: 60%
+    height: 52%
     width: 90%
 `
 
 export const ModalIconContainer = styled.View`
-    padding: 25px 15px 25px 15px
+    padding: 25px 15px 15px 15px
 `
 
 export const ModalContentContainer = styled.View`
-    padding: 0px 15px 25px 15px
-    height: 60%
-    align-items: center
+    padding: 15px 25px 25px 25px
+    height: 40%
+    width: 100%
 `
+
 
 export const IEIconBackgroundModal = styled.View`
     background-color: ${quaternary};
@@ -254,13 +255,13 @@ export const IEIconBackgroundModal = styled.View`
 `
 
 export const IEIconModal = styled.Image`
-    width: 55px;
-    height: 55px;
+    width: 40px;
+    height: 40px;
 `
 
 export const ModalBackgroundButton = styled.View`
     background-color: ${quaternary};
-    padding: 10px;
+    padding: 2px;
     border-radius: 25px;
 `
 
@@ -268,27 +269,48 @@ export const ModalBackgroundButton = styled.View`
 export const TitleText = styled.Text`
     font-size: 32px 
     fontFamily: 'Roboto-Light';
+    padding-bottom: 5px
+    letter-spacing: 1px;
 `
 
 export const AmountText = styled.Text`
     font-size: 42px 
     fontFamily: 'Ubuntu-Bold';
     padding: 0px 10px 10px 10px
+    
 `
 
 export const ModalItemWrapper = styled.View`
-    display: flex
+    padding: 5px 0px 5px 0px
     flex-direction: row;
-    justify-content: space-between; 
-    align-items: center;
+    justify-content: flex-start; 
+    align-content: flex-start;
+
+    
 `
 export const ModalLeftWrapper = styled.View`
     flex-direction: row;
     align-items: center;
+    width: 45%
+    
 `
 
 export const ModalRightWrapper = styled.View`
-    align-items: flex-end;    
+    align-items: flex-start;  
+    width: 55% 
+`
+
+export const ContentText = styled.Text`
+    font-size: 14px 
+    fontFamily: 'Ubuntu-Bold';
+    padding: 2px
+    align-self: flex-start
+`
+
+export const DynamicContentText = styled.Text`
+    font-size: 14px;
+    fontFamily: 'Roboto-Light';
+    padding: 2px;
 `
 
 

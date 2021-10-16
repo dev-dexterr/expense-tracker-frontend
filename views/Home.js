@@ -31,12 +31,10 @@ import {
   TransactionLeftWrapper,
   TransactionRightWrapper,
   TransactionText1,
-  TransactionText2,
   TransactionAmount,
   IEIconBackground,
   IEIcon,
   NoTransactionView,
-  NoTransactionText,
   ModalView,
   CenteredModalView,
   TitleText,
@@ -49,6 +47,8 @@ import {
   ModalRightWrapper,
   ModalLeftWrapper,
   ModalItemWrapper,
+  ContentText,
+  DynamicContentText
 } from "../components/HomeStyles";
 
 //Lottie
@@ -56,6 +56,9 @@ import LottieView from "lottie-react-native";
 
 //Redux
 import { useSelector } from "react-redux";
+
+//Font Awesome Icons
+import { Feather } from "@expo/vector-icons";
 
 //SAMPLE DATA TESTING
 import sampledata from "../utils/constants/sampleData.js";
@@ -105,6 +108,8 @@ const Home = () => {
 const IELists = () => {
   const [selectedTab, setselectedTab] = useState(0);
   const IETab = ["All", "Income", "Expense"];
+  const FilterIncome = sampledata.filter(item => item.type == "Income")
+  const FilterExpense = sampledata.filter(item => item.type == "Expense")
   return (
     <StyledContainer>
       <InnerContainer>
@@ -117,6 +122,7 @@ const IELists = () => {
             </TouchableOpacity>
           ))}
         </IEListTextContainer>
+
         {selectedTab == 0 && (
           <TransactionContainer>
             <FlatList
@@ -141,7 +147,37 @@ const IELists = () => {
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id}
-              data={sampledata}
+              data={FilterIncome}
+              ListEmptyComponent={<NoTransactionView>
+                <LottieView
+                  style={{ width: "40%", aspectRatio: 1 }}
+                  source={require("../assets/icons/13525-empty.json")}
+                  autoPlay
+                />
+              </NoTransactionView>}
+              renderItem={({ item }) => {
+                if (FilterIncome.length) {
+                  return (
+                    <TransactionLists
+                      name={item.name}
+                      icon={item.icon}
+                      amount={item.amount}
+                      item={item}
+                    />
+                  )
+                }
+              }
+              }
+            />
+          </TransactionContainer>
+        )}
+        {selectedTab == 2 && (
+          <TransactionContainer>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id}
+              data={FilterExpense}
               renderItem={({ item }) => (
                 <TransactionLists
                   name={item.name}
@@ -151,19 +187,17 @@ const IELists = () => {
                 />
               )}
             />
-          </TransactionContainer>
-        )}
-        {selectedTab == 2 && (
-          <TransactionContainer>
-            <NoTransactionView>
+            {/* <NoTransactionView>
               <LottieView
                 style={{ width: "40%", aspectRatio: 1 }}
                 source={require("../assets/icons/13525-empty.json")}
                 autoPlay
               />
-            </NoTransactionView>
+            </NoTransactionView> */}
           </TransactionContainer>
         )}
+
+
       </InnerContainer>
     </StyledContainer>
   );
@@ -221,28 +255,51 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
               <IEIconModal source={item.icon} />
             </IEIconBackgroundModal>
           </ModalIconContainer>
+          {item.type == 'Income' &&
+            <>
+              <AmountText style={style.income}>
+                <BalanceText2 style={style.income}>$ </BalanceText2>
+                {item.amount}
+              </AmountText>
+              <TitleText>{item.name}</TitleText>
+            </>
+          }
+          {item.type == 'Expense' &&
+            <>
+              <AmountText style={style.expense}>
+                <BalanceText2 style={style.expense}>$ </BalanceText2>
+                {item.amount}
+              </AmountText>
+              <TitleText>{item.name}</TitleText>
+            </>
+          }
           <ModalContentContainer>
-            <AmountText>
-              <BalanceText2>$ </BalanceText2>
-              {item.amount}
-            </AmountText>
-            <TitleText>{item.name}</TitleText>
-            {/* <ModalItemWrapper>
+            <ModalItemWrapper>
               <ModalLeftWrapper>
-                <View>
-                  <TitleText>{item.name}</TitleText>
-                </View>
+                <ContentText>Transaction Date :</ContentText>
               </ModalLeftWrapper>
               <ModalRightWrapper>
                 <View>
-                  <TitleText>{item.datetime}</TitleText>
+                  <DynamicContentText>{item.datetime}</DynamicContentText>
                 </View>
               </ModalRightWrapper>
-            </ModalItemWrapper> */}
+            </ModalItemWrapper>
+
+            <ModalItemWrapper>
+              <ModalLeftWrapper>
+                <ContentText>Remark :</ContentText>
+              </ModalLeftWrapper>
+              <ModalRightWrapper>
+                <View>
+                  <DynamicContentText>{item.remark}</DynamicContentText>
+                </View>
+              </ModalRightWrapper>
+            </ModalItemWrapper>
+
           </ModalContentContainer>
           <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
             <ModalBackgroundButton>
-              <Text>Close</Text>
+              <Feather name="x-circle" size={28} />
             </ModalBackgroundButton>
           </TouchableOpacity>
         </ModalView>
@@ -255,6 +312,12 @@ const style = StyleSheet.create({
   activeIEText: {
     color: "black",
   },
+  income: {
+    color: "#00a88d",
+  },
+  expense: {
+    color: "#e94e63",
+  }
 });
 
 export default Home;
