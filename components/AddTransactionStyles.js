@@ -126,3 +126,12 @@ export const IEIcon = styled.Image`
     width: 22px;
     height: 22px;
 `
+
+export const EditTransactionTitle = styled.Text`
+    font-size: 32px;
+    text-align: center;
+    font-weight: bold;
+    color: ${secondary};
+    padding: 10px 0px 40px 30px;
+    fontFamily: 'Ubuntu-Bold'
+`

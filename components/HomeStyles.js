@@ -238,7 +238,7 @@ export const ModalView = styled.View`
 `
 
 export const ModalIconContainer = styled.View`
-    padding: 25px 15px 15px 15px
+    padding: 0px 15px 15px 15px
 `
 
 export const ModalContentContainer = styled.View`
@@ -261,6 +261,13 @@ export const IEIconModal = styled.Image`
 
 export const ModalBackgroundButton = styled.View`
     background-color: ${quaternary};
+    padding: 2px;
+    border-radius: 25px;
+    left: 162px;
+    top: 8px
+`
+
+export const ModalBackgroundButton2 = styled.View`
     padding: 2px;
     border-radius: 25px;
 `
@@ -312,6 +319,7 @@ export const DynamicContentText = styled.Text`
     fontFamily: 'Roboto-Light';
     padding: 2px;
 `
+
 
 
 

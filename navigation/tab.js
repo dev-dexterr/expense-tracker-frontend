@@ -21,6 +21,7 @@ import Setting from "../views/Settings";
 import CustomHeader from "../components/customheader/CustomHeader";
 import AddTransaction from "../views/AddTransaction";
 import Category from "../views/Category";
+import EditTransaction from "../views/EditTransaction";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -183,6 +184,21 @@ export default function App() {
             </TouchableOpacity>
           ),
         }}
+      />
+      <stack.Screen 
+        component={EditTransaction}
+        name="EditTransaction"
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          gestureEnabled: false,
+          headerLeft: ()=> (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <CustomHeader />
+            </TouchableOpacity>
+          ),
+        }}
+
       />
     </stack.Navigator>
   );

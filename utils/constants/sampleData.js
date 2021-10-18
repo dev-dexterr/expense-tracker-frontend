@@ -14,7 +14,7 @@ const SAMPLE_DATA = [
         id: "car-maintenance",
         name: "Car Maintenance",
         datetime: "Oct 16, 2021 11:35 AM",
-        type: "Expense",
+        type: "Income",
         amount: "1260",
         icon: expense.carMaintenance,
         remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"

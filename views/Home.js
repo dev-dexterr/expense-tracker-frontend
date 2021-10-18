@@ -48,11 +48,14 @@ import {
   ModalLeftWrapper,
   ModalItemWrapper,
   ContentText,
-  DynamicContentText
+  DynamicContentText,
+  ModalBackgroundButton2
 } from "../components/HomeStyles";
 
 //Lottie
 import LottieView from "lottie-react-native";
+
+import { useNavigation } from "@react-navigation/native";
 
 //Redux
 import { useSelector } from "react-redux";
@@ -130,14 +133,26 @@ const IELists = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id}
               data={sampledata}
-              renderItem={({ item }) => (
-                <TransactionLists
-                  name={item.name}
-                  amount={item.amount}
-                  icon={item.icon}
-                  item={item}
+              ListEmptyComponent={<NoTransactionView>
+                <LottieView
+                  style={{ width: "40%", aspectRatio: 1 }}
+                  source={require("../assets/icons/13525-empty.json")}
+                  autoPlay
                 />
-              )}
+              </NoTransactionView>}
+              renderItem={({ item }) => {
+                if (sampledata.length) {
+                  return (
+                    <TransactionLists
+                      name={item.name}
+                      icon={item.icon}
+                      amount={item.amount}
+                      item={item}
+                    />
+                  )
+                }
+              }
+              }
             />
           </TransactionContainer>
         )}
@@ -178,22 +193,27 @@ const IELists = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id}
               data={FilterExpense}
-              renderItem={({ item }) => (
-                <TransactionLists
-                  name={item.name}
-                  icon={item.icon}
-                  amount={item.amount}
-                  item={item}
+              ListEmptyComponent={<NoTransactionView>
+                <LottieView
+                  style={{ width: "40%", aspectRatio: 1 }}
+                  source={require("../assets/icons/13525-empty.json")}
+                  autoPlay
                 />
-              )}
+              </NoTransactionView>}
+              renderItem={({ item }) => {
+                if (FilterExpense.length) {
+                  return (
+                    <TransactionLists
+                      name={item.name}
+                      icon={item.icon}
+                      amount={item.amount}
+                      item={item}
+                    />
+                  )
+                }
+              }
+              }
             />
-            {/* <NoTransactionView>
-              <LottieView
-                style={{ width: "40%", aspectRatio: 1 }}
-                source={require("../assets/icons/13525-empty.json")}
-                autoPlay
-              />
-            </NoTransactionView> */}
           </TransactionContainer>
         )}
 
@@ -239,6 +259,7 @@ const TransactionLists = ({ name, amount, icon, item }) => {
 };
 
 const IEModal = ({ modalVisible, setModalVisible, item }) => {
+  const navigation = useNavigation();
   return (
     <Modal
       animationType="fade"
@@ -250,6 +271,11 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
     >
       <CenteredModalView>
         <ModalView>
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+            <ModalBackgroundButton>
+              <Feather name="x-circle" size={24} />
+            </ModalBackgroundButton>
+          </TouchableOpacity>
           <ModalIconContainer>
             <IEIconBackgroundModal>
               <IEIconModal source={item.icon} />
@@ -295,12 +321,11 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
                 </View>
               </ModalRightWrapper>
             </ModalItemWrapper>
-
           </ModalContentContainer>
-          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-            <ModalBackgroundButton>
-              <Feather name="x-circle" size={28} />
-            </ModalBackgroundButton>
+          <TouchableOpacity onPress={()=>{navigation.navigate("EditTransaction"); setModalVisible(!modalVisible)}}>
+            <ModalBackgroundButton2>
+                <Feather name="edit" size={24} color="black" />
+            </ModalBackgroundButton2>
           </TouchableOpacity>
         </ModalView>
       </CenteredModalView>
