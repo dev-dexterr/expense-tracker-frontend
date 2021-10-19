@@ -17,7 +17,8 @@ import {
     CategoryRightWrapper,
     CategoryLeftWrapper,
     CategoryItemWrapper,
-    CategoryTouch
+    CategoryTouch,
+    IEIcon
 } from "../components/AddTransactionStyles.js"
 
 //Icon
@@ -28,6 +29,10 @@ import { Formik } from "formik";
 import TextInput from "../components/textinput/TextInput.js";
 
 const EditTransaction = ({ route, navigation }) => {
+    const data = route.params;
+    useEffect(()=> {
+        console.log(data);
+    })
     return (
         <KeyboardAvoidingWrapper>
             <StyledContainer>
@@ -49,9 +54,9 @@ const EditTransaction = ({ route, navigation }) => {
                                             keyboardType="decimal-pad"
                                         />
                                     </TransactionDollarView>
-                                    {/* <CategoryTouch onPress={() => navigation.navigate("Category")}>
-                                        <Categories name={data?.name}  iconName={data?.iconName} type={data?.type}/>
-                                    </CategoryTouch> */}
+                                    <CategoryTouch onPress={() => navigation.navigate("Category")}>
+                                        <Categories name={data?.item.name}  iconName={data?.item.icon} type={data?.item.type}/>
+                                    </CategoryTouch>
                                 </StyledFormArea>
                             )
                         }
@@ -62,36 +67,32 @@ const EditTransaction = ({ route, navigation }) => {
     )
 }
 
-// const Categories = ({ name, iconName, type }) => {
-//     const [cname, setcname] = useState()
-//     useEffect(() => {
-//       if(name == undefined){
-//         setcname("Choose Category")
-//       }else{
-//         setcname(name);
-//       }
-//     },[name]);
-//     return (
-//       <CategoryItemWrapper>
-//         <CategoryLeftWrapper>
-//           <View>
-//             <CategoryIconBackground>
-//               <CategoryIcon>
-//                   <IEIcon  source={iconName}/>
-//               </CategoryIcon>
-//             </CategoryIconBackground>
-//           </View>
-//           <View>
-//             <CategoryText>{cname}</CategoryText>
-//           </View>
-//         </CategoryLeftWrapper>
-//         <CategoryRightWrapper>
-//           <View>
-//             <Feather name="chevron-right" size={24} color="black" />
-//           </View>
-//         </CategoryRightWrapper>
-//       </CategoryItemWrapper>
-//     );
-//   };
+const Categories = ({ name, iconName, type }) => {
+    const [cname, setcname] = useState()
+    useEffect(() => {
+        setcname(name);
+    },[name]);
+    return (
+      <CategoryItemWrapper>
+        <CategoryLeftWrapper>
+          <View>
+            <CategoryIconBackground>
+              <CategoryIcon>
+                  <IEIcon  source={iconName}/>
+              </CategoryIcon>
+            </CategoryIconBackground>
+          </View>
+          <View>
+            <CategoryText>{cname}</CategoryText>
+          </View>
+        </CategoryLeftWrapper>
+        <CategoryRightWrapper>
+          <View>
+            <Feather name="chevron-right" size={24} color="black" />
+          </View>
+        </CategoryRightWrapper>
+      </CategoryItemWrapper>
+    );
+  };
 
 export default EditTransaction

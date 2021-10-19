@@ -322,7 +322,7 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
               </ModalRightWrapper>
             </ModalItemWrapper>
           </ModalContentContainer>
-          <TouchableOpacity onPress={()=>{navigation.navigate("EditTransaction"); setModalVisible(!modalVisible)}}>
+          <TouchableOpacity onPress={()=>{navigation.navigate("EditTransaction", {item}); setModalVisible(!modalVisible)}}>
             <ModalBackgroundButton2>
                 <Feather name="edit" size={24} color="black" />
             </ModalBackgroundButton2>
