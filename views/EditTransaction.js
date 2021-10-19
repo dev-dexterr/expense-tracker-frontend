@@ -24,14 +24,21 @@ import {
 //Icon
 import { Feather } from "@expo/vector-icons";
 
+//Redux
+import { useDispatch } from "react-redux";
+import { setRoute } from "../utils/redux/actions.js";
+
 //formik
 import { Formik } from "formik";
 import TextInput from "../components/textinput/TextInput.js";
 
+
 const EditTransaction = ({ route, navigation }) => {
+    const dispatch = useDispatch();
     const data = route.params;
     useEffect(()=> {
-        console.log(data);
+        console.log("Params",data);
+        dispatch(setRoute('EditTransaction'))
     })
     return (
         <KeyboardAvoidingWrapper>
@@ -41,7 +48,7 @@ const EditTransaction = ({ route, navigation }) => {
                     <Formik
                         initialValues={{}}
                         onSubmit={(values) => {
-                            console.log(values);
+                            console.log(values)
                         }}
                     >
                         {
@@ -55,7 +62,7 @@ const EditTransaction = ({ route, navigation }) => {
                                         />
                                     </TransactionDollarView>
                                     <CategoryTouch onPress={() => navigation.navigate("Category")}>
-                                        <Categories name={data?.item.name}  iconName={data?.item.icon} type={data?.item.type}/>
+                                        <Categories name={data?.name}  iconName={data?.iconName} type={data?.type}/>
                                     </CategoryTouch>
                                 </StyledFormArea>
                             )
@@ -78,7 +85,7 @@ const Categories = ({ name, iconName, type }) => {
           <View>
             <CategoryIconBackground>
               <CategoryIcon>
-                  <IEIcon  source={iconName}/>
+                  <IEIcon source={iconName}/>
               </CategoryIcon>
             </CategoryIconBackground>
           </View>

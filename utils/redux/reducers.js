@@ -1,9 +1,10 @@
-import { SET_USER_NAME , SET_TOKEN, SET_EMAIL } from './actions.js';
+import { SET_USER_NAME , SET_TOKEN, SET_EMAIL, SET_ROUTENAME} from './actions.js';
 
 const initialState = {
     username: '',
     token: '',
-    email: ''
+    email: '',
+    route: ''
 }
 
 function userReducer(state = initialState, action){
@@ -14,6 +15,8 @@ function userReducer(state = initialState, action){
             return {...state, token: action.payload};
         case SET_EMAIL: 
             return {...state, email: action.payload};
+        case SET_ROUTENAME:
+            return {...state, route: action.payload};
         default: 
             return state;
     }

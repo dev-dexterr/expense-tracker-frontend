@@ -27,12 +27,20 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper.js";
 //Icon
 import { Feather } from "@expo/vector-icons";
 
+//Redux
+import { useDispatch } from "react-redux";
+import { setRoute } from "../utils/redux/actions.js";
+
 //formik
 import { Formik } from "formik";
 import TextInput from "../components/textinput/TextInput.js";
 
 const AddTransaction = ({ route, navigation }) => {
+  const dispatch = useDispatch();
   let data = route.params;
+  useEffect(()=> {
+    dispatch(setRoute('AddTransaction'))
+})
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -41,14 +49,14 @@ const AddTransaction = ({ route, navigation }) => {
             <TransactionTitle>Add Transaction</TransactionTitle>
           </TransactionView>
           <Formik
-            initialValues={{ Tamount: "", remark: "", type: "" , name: "", icon: ""}}
+            initialValues={{ Tamount: "", remark: "", type: "" , name: "", iconName: ""}}
             onSubmit={(values) => {
-              if (values.Tamount == "" || values.type == "" || values.name == "" || values.icon == "") {
+              if (values.Tamount == "" || values.type == "" || values.name == "" || values.iconName == "") {
                 console.log("Please Fill in the Fields");
               } else {
                 values.type = data.type;
                 values.name = data.name;
-                values.icon = data.iconName;
+                values.iconName = data.iconName;
                 console.log(values);
               }
             }}

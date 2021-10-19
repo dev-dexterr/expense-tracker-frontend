@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import {
     StyledContainer,
@@ -17,6 +17,9 @@ import {
 
 //Icon
 import { categoryExpense, categoryIncome } from "../utils/constants/categoryList.js";
+
+//Redux
+import { useSelector } from "react-redux";
 
 //Navigation
 import { useNavigation } from "@react-navigation/native";
@@ -72,8 +75,9 @@ const Category = () => {
 
 const IEContainerList = ({ name, iconName, type }) => {
     const navigation = useNavigation();
+    const { route } = useSelector((state) => state.userReducer);
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('AddTransaction', {name:name , iconName: iconName , type: type})}>
+        <TouchableOpacity onPress={() => navigation.navigate(route, {name:name , iconName: iconName , type: type})}>
             <IEContainerWrapper>
                 <View>
                     <IEIconBackground>

@@ -7,7 +7,7 @@ const SAMPLE_DATA = [
         datetime: "Oct 16, 2021 11:35 AM",
         type: "Expense",
         amount: "400",
-        icon: expense.baby,
+        iconName: expense.baby,
         remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam,quasdaasdasdasddddddd"
     },
     {
@@ -16,7 +16,7 @@ const SAMPLE_DATA = [
         datetime: "Oct 16, 2021 11:35 AM",
         type: "Income",
         amount: "1260",
-        icon: expense.carMaintenance,
+        iconName: expense.carMaintenance,
         remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
     {
@@ -25,7 +25,7 @@ const SAMPLE_DATA = [
         datetime: "Oct 16, 2021 11:35 AM",
         amount: "2",
         type: "Expense",
-        icon: expense.movie,
+        iconName: expense.movie,
         remark: ""
     },
     {
@@ -34,7 +34,7 @@ const SAMPLE_DATA = [
         datetime: "Oct 16, 2021 11:35 AM",
         amount: "5",
         type: "Expense",
-        icon: expense.parking,
+        iconName: expense.parking,
         remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
     {
@@ -43,7 +43,7 @@ const SAMPLE_DATA = [
         datetime: "Oct 16, 2021 11:35 AM",
         amount: "120",
         type: "Expense",
-        icon: expense.phoneBill,
+        iconName: expense.phoneBill,
         remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
     {
@@ -52,7 +52,7 @@ const SAMPLE_DATA = [
         datetime: "Oct 16, 2021 11:35 AM",
         amount: "80",
         type: "Expense",
-        icon: expense.gas,
+        iconName: expense.gas,
         remark: "Lorem ipsum dolor sit amet, a. Ut enim ad minim veniam, quasda"
     },
 

@@ -145,7 +145,7 @@ const IELists = () => {
                   return (
                     <TransactionLists
                       name={item.name}
-                      icon={item.icon}
+                      iconName={item.iconName}
                       amount={item.amount}
                       item={item}
                     />
@@ -175,7 +175,7 @@ const IELists = () => {
                   return (
                     <TransactionLists
                       name={item.name}
-                      icon={item.icon}
+                      iconName={item.iconName}
                       amount={item.amount}
                       item={item}
                     />
@@ -205,7 +205,7 @@ const IELists = () => {
                   return (
                     <TransactionLists
                       name={item.name}
-                      icon={item.icon}
+                      iconName={item.iconName}
                       amount={item.amount}
                       item={item}
                     />
@@ -223,7 +223,7 @@ const IELists = () => {
   );
 };
 
-const TransactionLists = ({ name, amount, icon, item }) => {
+const TransactionLists = ({ name, amount, iconName, item }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
@@ -232,7 +232,7 @@ const TransactionLists = ({ name, amount, icon, item }) => {
           <TransactionLeftWrapper>
             <View>
               <IEIconBackground>
-                <IEIcon source={icon} />
+                <IEIcon source={iconName} />
               </IEIconBackground>
             </View>
             <View>
@@ -278,7 +278,7 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
           </TouchableOpacity>
           <ModalIconContainer>
             <IEIconBackgroundModal>
-              <IEIconModal source={item.icon} />
+              <IEIconModal source={item.iconName} />
             </IEIconBackgroundModal>
           </ModalIconContainer>
           {item.type == 'Income' &&
@@ -322,7 +322,7 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
               </ModalRightWrapper>
             </ModalItemWrapper>
           </ModalContentContainer>
-          <TouchableOpacity onPress={()=>{navigation.navigate("EditTransaction", {item}); setModalVisible(!modalVisible)}}>
+          <TouchableOpacity onPress={()=>{navigation.navigate("EditTransaction", item); setModalVisible(!modalVisible)}}>
             <ModalBackgroundButton2>
                 <Feather name="edit" size={24} color="black" />
             </ModalBackgroundButton2>
