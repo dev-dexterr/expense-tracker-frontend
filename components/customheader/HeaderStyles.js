@@ -1,18 +1,7 @@
 import styled from "styled-components/native";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
-
-//colors
-export const colors = {
-    primary: '#ffffff',
-    secondary: '#000000',
-    tertiary: '#E5E6E8',
-    quaternary: '#F5F7FA',
-    quinary: 'black',
-    senary: 'grey'
-}
-
-const {primary , secondary , tertiary, quaternary, quinary, senary} = colors;
+import COLOR from '../../utils/colors.js';
 
 export const HeaderItemWrapper = styled.View`
     padding: 15px 10px 5px 10px;
@@ -22,7 +11,7 @@ export const HeaderItemWrapper = styled.View`
 `
 
 export const HeaderIconBackground = styled.View`
-    background-color: ${quaternary}
+    background-color: ${COLOR.quaternary}
     width: 50px;
     height: 50px;
     border-radius: 20px;

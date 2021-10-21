@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import {
   FlatList,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
-  Alert,
   Modal,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import COLOR from '../utils/colors.js';
 import {
   StyledContainer,
   InnerContainer,
@@ -335,13 +334,13 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
 
 const style = StyleSheet.create({
   activeIEText: {
-    color: "black",
+    color: COLOR.quinary,
   },
   income: {
-    color: "#00a88d",
+    color: COLOR.income,
   },
   expense: {
-    color: "#e94e63",
+    color: COLOR.expense,
   }
 });
 

@@ -1,23 +1,15 @@
 import styled from "styled-components";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
+import COLOR from '../utils/colors.js';
 
 const StatusBarHeight = Constants.statusBarHeight
-
-//colors
-export const colors = {
-    primary: '#ffffff',
-    secondary: '#000000',
-    tertiary: '#E5E6E8',
-}
-
-const {primary , secondary , tertiary} = colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
     padding: 25px;
     padding-top: ${StatusBarHeight + 10}px;
-    background-color: ${primary}
+    background-color: ${COLOR.primary}
     padding-bottom: 120px;
 `
 
@@ -30,7 +22,7 @@ export const PageTitle = styled.Text`
     font-size: 60px;
     text-align: left;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     padding: 10px;
     fontFamily: 'Ubuntu-Bold'
 `
@@ -41,7 +33,7 @@ export const SubTitle = styled.Text`
     letter-spacing: 1px;
     font-weight: bold;
     padding: 10px;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     fontFamily: 'Roboto-Light'
 `
 
@@ -50,7 +42,7 @@ export const StyledFormArea = styled.View`
 `
 
 export const StyledTextInput = styled.TextInput`
-    background-color: ${tertiary};
+    background-color: ${COLOR.tertiary};
     padding: 15px;
     padding-left: 22px;
     padding-right: 22px;
@@ -59,11 +51,11 @@ export const StyledTextInput = styled.TextInput`
     height: 60px;
     margin-vertical: 3px;
     margin-bottom: 50px;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     fontFamily: 'Roboto-Light'
 `
 export const StyledInputLabel = styled.Text`
-    color: ${secondary};
+    color: ${COLOR.secondary};
     font-size: 16px;
     text-align: left;
     letter-spacing: 1.5px;
@@ -74,7 +66,7 @@ export const StyledInputLabel = styled.Text`
 
 export const StyledButton = styled.TouchableOpacity`
     padding: 15px;
-    background-color: ${secondary};
+    background-color: ${COLOR.secondary};
     justify-content: center;
     border-radius: 10px;
     margin-vertical: 40px;
@@ -82,7 +74,7 @@ export const StyledButton = styled.TouchableOpacity`
 `;
 
 export const StyledButtonText = styled.Text`
-    color: ${primary};
+    color: ${COLOR.primary};
     font-size: 20px;
     text-align: center;
     font-weight: bold;
@@ -105,7 +97,7 @@ export const ForgetView = styled.View`
 `
 export const ForgetText = styled.Text`
     justify-content: flex-end;
-    color: ${secondary}
+    color: ${COLOR.secondary}
     align-items: flex-end;
     font-size: 16px;
     fontFamily: 'Ubuntu-Bold'
@@ -120,7 +112,7 @@ export const ExtraView = styled.View`
 
 export const ExtraText = styled.Text`
     justify-content: center;
-    color: ${secondary}
+    color: ${COLOR.secondary}
     align-items: center;
     font-size: 16px;
     margin: 5px;
@@ -134,7 +126,7 @@ export const ExtraTextLink = styled.TouchableOpacity`
 `
 
 export const ExtraLinkContent = styled.Text`
-    color: ${secondary}
+    color: ${COLOR.secondary}
     font-size: 16px;
     margin: 5px;
     margin-top: 10px;

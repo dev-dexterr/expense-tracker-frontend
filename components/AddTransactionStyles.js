@@ -1,26 +1,15 @@
 import styled from "styled-components/native";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
+import COLOR from '../utils/colors.js';
 
 const StatusBarHeight = Constants.statusBarHeight
-
-//colors
-export const colors = {
-    primary: '#ffffff',
-    secondary: '#000000',
-    tertiary: '#E5E6E8',
-    quaternary: '#F5F7FA',
-    quinary: 'black',
-    senary: 'grey'
-}
-
-const {primary , secondary , tertiary, quaternary, quinary, senary} = colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
     padding: 20px;
     padding-top: ${StatusBarHeight + 10}px;
-    background-color: ${primary}
+    background-color: ${COLOR.primary}
     padding-bottom: 200%;
 `
 
@@ -37,7 +26,7 @@ export const TransactionView = styled.View`
 export const TransactionTitle = styled.Text`
     font-size: 28px;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     padding-bottom: 35px;
     fontFamily: 'Ubuntu-Bold'
 `   
@@ -45,7 +34,7 @@ export const TransactionTitle = styled.Text`
 export const TransactionDollar = styled.Text`
     font-weight: bold;
     font-size: 26px;
-    color: ${senary};
+    color: ${COLOR.senary};
     fontFamily: 'Ubuntu-Bold'
 `
 
@@ -60,7 +49,7 @@ export const TransactionDollarView = styled.View`
 
 export const TransactionTextInput = styled.TextInput`
     font-size: 68px;
-    color: ${senary};
+    color: ${COLOR.senary};
     fontFamily: 'Ubuntu-Bold'
 `
 
@@ -85,13 +74,13 @@ export const CategoryRightWrapper = styled.View`
 export const CategoryText = styled.Text`
     font-size: 16px;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     fontFamily: 'Ubuntu-Bold';
     margin-left: 25px;
 `
 
 export const CategoryIconBackground = styled.View`
-    background-color: ${quaternary}
+    background-color: ${COLOR.quaternary}
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -107,7 +96,7 @@ export const StyledFormArea = styled.View`
 
 export const StyledButton = styled.TouchableOpacity`
     padding: 15px;
-    background-color: ${secondary};
+    background-color: ${COLOR.secondary};
     justify-content: center;
     border-radius: 10px;
     margin-vertical: 40px;
@@ -115,7 +104,7 @@ export const StyledButton = styled.TouchableOpacity`
 `;
 
 export const StyledButtonText = styled.Text`
-    color: ${primary};
+    color: ${COLOR.primary};
     font-size: 20px;
     text-align: center;
     font-weight: bold;
@@ -131,7 +120,7 @@ export const EditTransactionTitle = styled.Text`
     font-size: 32px;
     text-align: center;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     padding: 10px 0px 40px 30px;
     fontFamily: 'Ubuntu-Bold'
 `

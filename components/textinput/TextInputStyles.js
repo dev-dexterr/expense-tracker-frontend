@@ -1,19 +1,8 @@
 import styled from "styled-components";
-
-//colors
-export const colors = {
-    primary: '#ffffff',
-    secondary: '#000000',
-    tertiary: '#E5E6E8',
-    quaternary: '#F5F7FA',
-    quinary: 'black',
-    senary: 'grey'
-}
-
-const {primary , secondary , tertiary, quaternary, quinary, senary} = colors;
+import COLOR from '../../utils/colors.js';
 
 export const StyledInputLabel = styled.Text`
-    color: ${quinary};
+    color: ${COLOR.quinary};
     font-size: 16px;
     text-align: left;
     letter-spacing: 1.5px;
@@ -23,7 +12,7 @@ export const StyledInputLabel = styled.Text`
 `
 
 export const StyledTextInput = styled.TextInput`
-    background-color: ${quaternary};
+    background-color: ${COLOR.quaternary};
     padding: 15px;
     padding-left: 22px;
     padding-right: 22px;
@@ -32,7 +21,7 @@ export const StyledTextInput = styled.TextInput`
     height: 60px;
     margin-vertical: 3px;
     margin-bottom: 50px;
-    color: ${quinary};
+    color: ${COLOR.quinary};
     fontFamily: 'Roboto-Light'
 `
 

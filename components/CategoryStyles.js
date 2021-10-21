@@ -1,25 +1,14 @@
 import styled from "styled-components/native";
 import Constants from 'expo-constants';
+import COLOR from '../utils/colors.js';
 
 const StatusBarHeight = Constants.statusBarHeight
-//colors
-export const colors = {
-    primary: '#ffffff',
-    secondary: '#000000',
-    tertiary: '#E5E6E8',
-    quaternary: '#F5F7FA',
-    quinary: 'black',
-    senary: 'grey',
-    test: '#e8ecf0'
-}
-
-const {primary , secondary , tertiary, quaternary, quinary, senary, test} = colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
     padding: 20px;
     padding-top: ${StatusBarHeight + 10}px;
-    background-color: ${primary}
+    background-color: ${COLOR.primary}
     padding-bottom: 120px;
 `
 
@@ -32,7 +21,7 @@ export const ProfileDetailTitle = styled.Text`
     font-size: 32px;
     text-align: center;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     padding: 10px 0px 70px 0px;
     fontFamily: 'Ubuntu-Bold'
 `
@@ -47,7 +36,7 @@ export const IEListTextContainer = styled.View`
 export const IEListText = styled.Text`
     font-size: 18px;
     font-weight: bold;
-    color: ${senary};
+    color: ${COLOR.senary};
     fontFamily: 'Ubuntu-Bold';
     padding-right: 25px;
     padding-left: 25px;
@@ -65,7 +54,7 @@ export const IEContainerWrapper = styled.View`
 `
 
 export const IEIconBackground = styled.View`
-    background-color: ${quaternary};
+    background-color: ${COLOR.quaternary};
     border-radius: 50px;
     padding: 15px;
 `
@@ -78,14 +67,14 @@ export const IEIcon = styled.Image`
 export const IEText = styled.Text`
     font-size: 16px;
     font-weight: bold;
-    color: ${quinary};
+    color: ${COLOR.quinary};
     fontFamily: 'Roboto-Light';
     padding-right: 25px;
     padding-left: 25px;
 `
 
 export const Divider = styled.View`
-    border-bottom-color: ${test};
+    border-bottom-color: ${COLOR.septenary};
     border-bottom-width: 1px;
     border-radius: 50px;
     width: 100%

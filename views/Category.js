@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { FlatList, Pressable, StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import COLOR from '../utils/colors.js';
 import {
     StyledContainer,
     InnerContainer,
@@ -96,7 +97,7 @@ const IEContainerList = ({ name, iconName, type }) => {
 
 const style = StyleSheet.create({
     activeIEText: {
-        color: "black",
+        color: COLOR.quinary,
     },
 });
 

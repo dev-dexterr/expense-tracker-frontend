@@ -1,26 +1,15 @@
 import styled from "styled-components/native";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
+import COLOR from '../utils/colors.js';
 
 const StatusBarHeight = Constants.statusBarHeight
-
-//colors
-export const colors = {
-    primary: '#ffffff',
-    secondary: '#000000',
-    tertiary: '#E5E6E8',
-    quaternary: '#F5F7FA',
-    quinary: 'black',
-    senary: 'grey'
-}
-
-const {primary , secondary , tertiary, quaternary, quinary, senary} = colors;
 
 export const StyledContainer = styled.View`
     flex: 1;
     padding: 20px;
     padding-top: ${StatusBarHeight + 10}px;
-    background-color: ${primary}
+    background-color: ${COLOR.primary}
     padding-bottom: 120px;
 `
 
@@ -33,7 +22,7 @@ export const PageTitle = styled.Text`
     font-size: 30px;
     text-align: left;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     padding: 10px;
     margin-bottom: -20px;
     letter-spacing: 1.5px;
@@ -42,7 +31,7 @@ export const PageTitle = styled.Text`
 export const PageTitleName = styled.Text`
     font-size: 40px;
     text-align: left;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     padding: 10px;
     margin-bottom: 10px;
     letter-spacing: 1px;
@@ -55,11 +44,11 @@ export const SubTitle = styled.Text`
     margin-bottom: 120px;
     letter-spacing: 1.5px;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
 `
 
 export const BalanceBackground = styled.View`
-    background-color: ${quaternary}
+    background-color: ${COLOR.quaternary}
     height: 130px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
@@ -67,7 +56,7 @@ export const BalanceBackground = styled.View`
 export const BalanceText = styled.Text`
     font-weight: bold;
     font-size: 40px;
-    color: ${quinary};
+    color: ${COLOR.quinary};
     text-align: center;
     top: 60px;
     left: 60px;
@@ -76,13 +65,13 @@ export const BalanceText = styled.Text`
 export const BalanceText2 = styled.Text`
     font-weight: bold;
     font-size: 18px;
-    color: ${senary};
+    color: ${COLOR.senary};
     fontFamily: 'Ubuntu-Bold'
 ` 
 export const BalanceText3 = styled.Text`
     font-weight: bold;
     font-size: 20px;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     text-align: center;
     right: 90px
     top: -25px
@@ -90,7 +79,7 @@ export const BalanceText3 = styled.Text`
 ` 
 export const BalanceText4 = styled.Text`
     font-size: 15px;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     text-align: center;
     right: 130px
     top: 5px
@@ -105,7 +94,7 @@ export const IEContainer = styled.View`
 `
 
 export const IEBackground = styled.View`
-    background-color: ${quaternary}
+    background-color: ${COLOR.quaternary}
     height: 100px;
     border-radius: 20px;
     width: 47%;
@@ -124,7 +113,7 @@ export const IEText2 = styled.Text`
     top: 15px;
     font-weight: bold;
     font-size: 15px;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     fontFamily: 'Roboto-Light'
 `
 
@@ -139,7 +128,7 @@ export const IEListTextContainer = styled.View`
 export const IEListText = styled.Text`
     font-size: 16px;
     font-weight: bold;
-    color: ${senary};
+    color: ${COLOR.senary};
     fontFamily: 'Ubuntu-Bold'
 `;
 
@@ -170,7 +159,7 @@ export const TransactionRightWrapper = styled.View`
 export const TransactionTitle = styled.Text`
     font-size: 18px;
     font-weight: bold;
-    color: ${senary};
+    color: ${COLOR.senary};
     fontFamily: 'Roboto-Light';
     padding: 20px;
 `
@@ -178,14 +167,14 @@ export const TransactionTitle = styled.Text`
 export const TransactionText1 = styled.Text`
     font-size: 18px;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     fontFamily: 'Roboto-Light';
     margin-left: 15px
 `
 export const TransactionText2 = styled.Text`
     font-size: 15px;
     font-weight: bold;
-    color: ${senary};
+    color: ${COLOR.senary};
     fontFamily: 'Roboto-Light';
     
 `
@@ -193,12 +182,12 @@ export const TransactionText2 = styled.Text`
 export const TransactionAmount = styled.Text`
     font-size: 20px;
     font-weight: bold;
-    color: ${secondary};
+    color: ${COLOR.secondary};
     fontFamily: 'Ubuntu-Bold';
 `
 
 export const IEIconBackground = styled.View`
-    background-color: ${quaternary};
+    background-color: ${COLOR.quaternary};
     border-radius: 50px;
     padding: 11px;
 `
@@ -228,7 +217,7 @@ export const CenteredModalView = styled.View`
 `
 
 export const ModalView = styled.View`
-    background-color: ${primary};
+    background-color: ${COLOR.primary};
     border-radius: 25px;
     align-items: center;
     elevation: 5
@@ -249,7 +238,7 @@ export const ModalContentContainer = styled.View`
 
 
 export const IEIconBackgroundModal = styled.View`
-    background-color: ${quaternary};
+    background-color: ${COLOR.quaternary};
     border-radius: 50px;
     padding: 25px;
 `
@@ -260,7 +249,7 @@ export const IEIconModal = styled.Image`
 `
 
 export const ModalBackgroundButton = styled.View`
-    background-color: ${quaternary};
+    background-color: ${COLOR.quaternary};
     padding: 2px;
     border-radius: 25px;
     left: 162px;
