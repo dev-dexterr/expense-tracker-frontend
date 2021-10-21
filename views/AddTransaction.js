@@ -49,9 +49,9 @@ const AddTransaction = ({ route, navigation }) => {
             <TransactionTitle>Add Transaction</TransactionTitle>
           </TransactionView>
           <Formik
-            initialValues={{ Tamount: "", remark: "", type: "" , name: "", iconName: ""}}
+            initialValues={{ amount: "", remark: "", type: "" , name: "", iconName: ""}}
             onSubmit={(values) => {
-              if (values.Tamount == "" || values.type == "" || values.name == "" || values.iconName == "") {
+              if (values.amount == "" || values.type == "" || values.name == "" || values.iconName == "") {
                 console.log("Please Fill in the Fields");
               } else {
                 values.type = data.type;
@@ -68,9 +68,9 @@ const AddTransaction = ({ route, navigation }) => {
                     <TransactionTextInput
                       placeholder="0"
                       keyboardType="decimal-pad"
-                      values={values.Tamount}
-                      onBlur={handleBlur("Tamount")}
-                      onChangeText={handleChange("Tamount")}
+                      values={values.amount}
+                      onBlur={handleBlur("amount")}
+                      onChangeText={handleChange("amount")}
                     />
                   </TransactionDollarView>
                   <CategoryTouch onPress={() => navigation.navigate("Category")}>

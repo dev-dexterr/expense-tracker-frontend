@@ -99,7 +99,7 @@ export const StyledButton = styled.TouchableOpacity`
     background-color: ${COLOR.secondary};
     justify-content: center;
     border-radius: 10px;
-    margin-vertical: 40px;
+    margin-vertical: 20px;
     height: 60px;
 `;
 

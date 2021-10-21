@@ -20,7 +20,7 @@ import ProfileDetail from "../views/ProfileDetail";
 import Setting from "../views/Settings";
 import CustomHeader from "../components/customheader/CustomHeader";
 import AddTransaction from "../views/AddTransaction";
-import Category from "../views/Category";
+import Category from "../views/Category.js";
 import EditTransaction from "../views/EditTransaction";
 
 const stack = createNativeStackNavigator();
