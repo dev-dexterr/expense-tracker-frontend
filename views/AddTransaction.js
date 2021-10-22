@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Pressable, StyleSheet, View, Text, Image } from "react-native";
+import { FlatList, Pressable, StyleSheet, View, Text, Image, ActionSheetIOS } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -27,6 +27,8 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper.js";
 //Icon
 import { Feather } from "@expo/vector-icons";
 
+import moment from 'moment';
+
 //Redux
 import { useDispatch } from "react-redux";
 import { setRoute } from "../utils/redux/actions.js";
@@ -34,13 +36,18 @@ import { setRoute } from "../utils/redux/actions.js";
 //formik
 import { Formik } from "formik";
 import TextInput from "../components/textinput/TextInput.js";
+import DatePicker from "../components/datetimepicker/date.js";
 
 const AddTransaction = ({ route, navigation }) => {
   const dispatch = useDispatch();
   let data = route.params;
-  useEffect(()=> {
+  const [datevalue, setDate] = useState(new Date());
+    const onChange = (e, newDate) => {
+        setDate(newDate);
+    };
+  useEffect(() => {
     dispatch(setRoute('AddTransaction'))
-})
+  })
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -49,14 +56,16 @@ const AddTransaction = ({ route, navigation }) => {
             <TransactionTitle>Add Transaction</TransactionTitle>
           </TransactionView>
           <Formik
-            initialValues={{ amount: "", remark: "", type: "" , name: "", iconName: ""}}
+            initialValues={{ amount: "", remark: "", date: "", type: "", name: "", iconName: "" }}
             onSubmit={(values) => {
-              if (values.amount == "" || values.type == "" || values.name == "" || values.iconName == "") {
+              if (values.amount == "") {
                 console.log("Please Fill in the Fields");
+                console.log(values);
               } else {
                 values.type = data.type;
                 values.name = data.name;
                 values.iconName = data.iconName;
+                values.date = moment(datevalue).format("MMM Do YY hh:mm a"); 
                 console.log(values);
               }
             }}
@@ -74,8 +83,11 @@ const AddTransaction = ({ route, navigation }) => {
                     />
                   </TransactionDollarView>
                   <CategoryTouch onPress={() => navigation.navigate("Category")}>
-                    <Categories name={data?.name}  iconName={data?.iconName} type={data?.type}/>
+                    <Categories name={data?.name} iconName={data?.iconName} type={data?.type} />
                   </CategoryTouch>
+                  <View>
+                    <DatePicker label="Date" value={datevalue} onChange={onChange}/>
+                  </View>
                   <TextInput
                     label="Remark"
                     placeholder="(Optional)"
@@ -100,19 +112,19 @@ const AddTransaction = ({ route, navigation }) => {
 const Categories = ({ name, iconName, type }) => {
   const [cname, setcname] = useState()
   useEffect(() => {
-    if(name == undefined){
+    if (name == undefined) {
       setcname("Choose Category")
-    }else{
+    } else {
       setcname(name);
     }
-  },[name]);
+  }, [name]);
   return (
     <CategoryItemWrapper>
       <CategoryLeftWrapper>
         <View>
           <CategoryIconBackground>
             <CategoryIcon>
-                <IEIcon  source={iconName}/>
+              <IEIcon source={iconName} />
             </CategoryIcon>
           </CategoryIconBackground>
         </View>

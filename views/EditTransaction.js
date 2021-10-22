@@ -40,10 +40,15 @@ import { setRoute } from "../utils/redux/actions.js";
 //formik
 import { Formik } from "formik";
 import TextInput from "../components/textinput/TextInput.js";
+import DatePicker from "../components/datetimepicker/date.js";
 
 const EditTransaction = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const data = route.params;
+  const [datevalue, setDate] = useState(new Date());
+  const onChange = (e, newDate) => {
+      setDate(newDate);
+  };
   useEffect(() => {
     console.log("Params", data);
     dispatch(setRoute("EditTransaction"));
@@ -59,6 +64,7 @@ const EditTransaction = ({ route, navigation }) => {
               remark: data.remark,
               type: data.type,
               name: data.name,
+              date: data.datetime,
               iconName: data.iconName,
             }}
             onSubmit={(values) => {
@@ -73,6 +79,7 @@ const EditTransaction = ({ route, navigation }) => {
                 values.type = data.type;
                 values.name = data.name;
                 values.iconName = data.iconName;
+                values.date = data.datetime
                 console.log("Edit Values", values);
               }
             }}
@@ -108,6 +115,9 @@ const EditTransaction = ({ route, navigation }) => {
                     onChangeText={handleChange("type")}
                   />
                 </CategoryTouch>
+                <View>
+                    <DatePicker label="Date" value={datevalue} onChange={onChange}/>
+                </View>
                 <TextInput
                   label="Remark"
                   placeholder={data.remark}
