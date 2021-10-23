@@ -1,11 +1,15 @@
 import { SET_USER_NAME , SET_TOKEN, SET_EMAIL, SET_ROUTENAME} from './actions.js';
 
+import {getterToken} from "../../utils/auth.js";
+
 const initialState = {
     username: '',
-    token: '',
+    token: "sdfsdfd",
     email: '',
     route: ''
-}
+};
+
+getterToken().then(res => initialState.token = res);
 
 function userReducer(state = initialState, action){
     switch(action.type){

@@ -66,17 +66,17 @@ import { Feather } from "@expo/vector-icons";
 import sampledata from "../utils/constants/sampleData.js";
 
 const Home = () => {
-  const { username } = useSelector((state) => state.userReducer);
+  const token = useSelector((state) => state.token);
 
   useEffect(() => {
-    console.log("Username: ", username);
+    console.log("Username: ", token);
   }, []);
   return (
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
         <PageTitle>Hello,</PageTitle>
-        <PageTitleName>{username}</PageTitleName>
+        {/* <PageTitleName>{username}</PageTitleName> */}
         <BalanceBackground>
           <BalanceText>
             <BalanceText2>$</BalanceText2>

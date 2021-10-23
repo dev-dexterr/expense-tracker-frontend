@@ -29,6 +29,8 @@ import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 //API Client
 import axios from "axios";
 
+import {getterToken , setterToken} from "../utils/auth.js";
+
 //BASE_URL
 import baseURL from "../utils/api.js";
 
@@ -51,7 +53,8 @@ const Login = ({ navigation }) => {
         const result = res.data;
         const { data } = result;
         dispatch(setUsername(data.username));
-        dispatch(setToken(data.token));
+        //dispatch(setToken(data.token));
+        setterToken(data.token)
         dispatch(setEmail(data.email));
         navigation.navigate("HomeTabs");
         setSubmitting(false);
