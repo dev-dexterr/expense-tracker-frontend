@@ -33,7 +33,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 
 const Profile = ({ navigation }) => {
-  const { username, email } = useSelector((state) => state.userReducer);
+  const { username, email } = useSelector((state) => state);
   return (
     <StyledContainer>
       <StatusBar style="dark" />

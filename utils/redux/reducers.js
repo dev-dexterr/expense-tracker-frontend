@@ -4,7 +4,7 @@ import {getterToken} from "../../utils/auth.js";
 
 const initialState = {
     username: '',
-    token: "sdfsdfd",
+    token: '',
     email: '',
     route: ''
 };
