@@ -42,12 +42,17 @@ const AddTransaction = ({ route, navigation }) => {
   const dispatch = useDispatch();
   let data = route.params;
   const [datevalue, setDate] = useState(new Date());
-    const onChange = (e, newDate) => {
-        setDate(newDate);
-    };
+  const onChange = (e, newDate) => {
+    setDate(newDate);
+  };
   useEffect(() => {
     dispatch(setRoute('AddTransaction'))
   })
+
+  const handleAddTransaction = async (credentials) => {
+    
+ }
+
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
@@ -65,8 +70,8 @@ const AddTransaction = ({ route, navigation }) => {
                 values.type = data.type;
                 values.name = data.name;
                 values.iconName = data.iconName;
-                values.date = moment(datevalue).format("MMM Do YY hh:mm a"); 
-                console.log(values);
+                values.date = moment(datevalue).format("MMM Do YY hh:mm a");
+                handleAddTransaction(values);
               }
             }}
           >{
@@ -86,7 +91,7 @@ const AddTransaction = ({ route, navigation }) => {
                     <Categories name={data?.name} iconName={data?.iconName} type={data?.type} />
                   </CategoryTouch>
                   <View>
-                    <DatePicker label="Date" value={datevalue} onChange={onChange}/>
+                    <DatePicker label="Date" value={datevalue} onChange={onChange} />
                   </View>
                   <TextInput
                     label="Remark"
