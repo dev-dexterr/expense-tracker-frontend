@@ -3,7 +3,7 @@ import serverConfig from "./serverConfig";
 import { meta } from "./enum.js";
 import { Alert } from "react-native";
 //Redux
-import { useSelector } from "react-redux";
+import { Store } from "./redux/store";
 
 const service = axios.create({
   baseURL: serverConfig.api_url_home,
@@ -12,11 +12,7 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
-    const { token } = useSelector((state) => state.token);
-    if (token) {
-    }
-
-    config.headers["Authorization"] = token;
+    config.headers["Authorization"] = Store.getState().token || "";
     config.headers["Content-Type"] = "application/json";
 
     if (config.method === "post") {
@@ -30,9 +26,8 @@ service.interceptors.request.use(
 );
 
 service.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response.data;
-
     if (res.meta == meta.TOKENEXPIRE) {
       Alert.alert("Alert", "Token Expired", [
         {
@@ -49,8 +44,8 @@ service.interceptors.response.use(
       return res;
     }
   },
-  (error) => {
-    return Promise.reject(error.response.data);
+  error => {
+    return Promise.reject(error);
   }
 );
 

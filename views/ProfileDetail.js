@@ -19,7 +19,7 @@ import { Formik } from "formik";
 
 const ProfileDetail = () => {
   const [hidePassword, setHidePassword] = useState(true);
-  const { username, email } = useSelector((state) => state.userReducer);
+  const { username, email } = useSelector((state) => state);
   return (
     <StyledContainer>
       <StatusBar style="dark" />

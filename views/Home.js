@@ -66,7 +66,7 @@ import { Feather } from "@expo/vector-icons";
 import sampledata from "../utils/constants/sampleData.js";
 
 const Home = () => {
-  const {username}= useSelector((state) => state);
+  const {username, token}= useSelector((state) => state);
 
   useEffect(() => {
     console.log("Username: ", username);

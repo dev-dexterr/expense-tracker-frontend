@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -26,36 +26,30 @@ import { Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 
-//API Client
-import axios from "axios";
+import { getterToken, setterToken } from "../utils/auth.js";
 
-import {getterToken , setterToken} from "../utils/auth.js";
-
-//BASE_URL
-import baseURL from "../utils/api.js";
+import { login } from "../api/generalAPI";
 
 //Keyboard Avoiding View
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 //Text Input
-import TextInput from "../components/textinput/TextInput.js"
+import TextInput from "../components/textinput/TextInput.js";
+import { useSelector } from "react-redux";
 
 const Login = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
+  // const token = useSelector(state => state.token, shallowEqual);//this is the recommend way in react components
 
   const dispatch = useDispatch();
 
   const handleLogin = async (credentials, setSubmitting) => {
-    const url = `${baseURL.BASE_API_URL_OFFICE + baseURL.LOGIN}`;
-    axios
-      .post(url, credentials)
+    login(credentials)
       .then((res) => {
-        const result = res.data;
-        const { data } = result;
+        const data = res.data; //personal preference xd
         dispatch(setUsername(data.username));
-        //dispatch(setToken(data.token));
-        setterToken(data.token)
         dispatch(setEmail(data.email));
+        setterToken(data.token);
         navigation.navigate("HomeTabs");
         setSubmitting(false);
       })
