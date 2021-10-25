@@ -50,7 +50,7 @@ const Signup = ({ navigation }) => {
           <PageTitle>Sign Up {">"} </PageTitle>
           <SubTitle>Create an account with us</SubTitle>
           <Formik
-            initialValues={{ email: "test2@example.com", password: "123456", username: "test2" }}
+            initialValues={{ email: "", password: "", username: "" }}
             onSubmit={(values, { setSubmitting }) => {
               if (
                 values.username == "" ||

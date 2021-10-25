@@ -76,7 +76,7 @@ const Category = () => {
 
 const IEContainerList = ({ name, iconName, type }) => {
     const navigation = useNavigation();
-    const { route } = useSelector((state) => state.userReducer);
+    const { route } = useSelector((state) => state);
     return (
         <TouchableOpacity onPress={() => navigation.navigate(route, {name:name , iconName: iconName , type: type})}>
             <IEContainerWrapper>

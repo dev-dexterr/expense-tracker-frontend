@@ -56,6 +56,12 @@ import LottieView from "lottie-react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
+import { listTransaction } from "../api/generalAPI.js";
+
+//Redux
+import { useDispatch } from "react-redux";
+import { setTransaction } from "../utils/redux/actions.js";
+
 //Redux
 import { useSelector } from "react-redux";
 
@@ -66,10 +72,21 @@ import { Feather } from "@expo/vector-icons";
 import sampledata from "../utils/constants/sampleData.js";
 
 const Home = () => {
-  const {username, token}= useSelector((state) => state);
-
+  const dispatch = useDispatch();
+  const { username} = useSelector((state) => state);
+  const user_id = useSelector((state) => state.userId);
   useEffect(() => {
-    console.log("Username: ", username);
+    listTransaction({ userprofile: user_id }).then((res) => {
+      if (res.meta == "2001") {
+        if (res.datas.length == 0) {
+          console.log("No Data Found!!!");
+          return true;
+        }
+        dispatch(setTransaction(res.datas))
+      }
+    }).catch(err => {
+      console.log(err);
+    })
   }, []);
   return (
     <StyledContainer>
@@ -107,11 +124,12 @@ const Home = () => {
   );
 };
 
-const IELists = () => {
+const IELists = ({ }) => {
   const [selectedTab, setselectedTab] = useState(0);
   const IETab = ["All", "Income", "Expense"];
-  const FilterIncome = sampledata.filter(item => item.type == "Income")
-  const FilterExpense = sampledata.filter(item => item.type == "Expense")
+  const transaction = useSelector((state) => state.transaction);
+  const FilterIncome = transaction.filter(item => item.type == "Income")
+  const FilterExpense = transaction.filter(item => item.type == "Expense")
   return (
     <StyledContainer>
       <InnerContainer>
@@ -131,7 +149,7 @@ const IELists = () => {
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id}
-              data={sampledata}
+              data={transaction}
               ListEmptyComponent={<NoTransactionView>
                 <LottieView
                   style={{ width: "40%", aspectRatio: 1 }}
@@ -140,16 +158,14 @@ const IELists = () => {
                 />
               </NoTransactionView>}
               renderItem={({ item }) => {
-                if (sampledata.length) {
-                  return (
-                    <TransactionLists
-                      name={item.name}
-                      iconName={item.iconName}
-                      amount={item.amount}
-                      item={item}
-                    />
-                  )
-                }
+                return (
+                  <TransactionLists
+                    name={item.name}
+                    iconName={item.iconName}
+                    amount={item.amount}
+                    item={item}
+                  />
+                )
               }
               }
             />
@@ -321,9 +337,10 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
               </ModalRightWrapper>
             </ModalItemWrapper>
           </ModalContentContainer>
-          <TouchableOpacity onPress={()=>{navigation.navigate("EditTransaction", item); setModalVisible(!modalVisible)}}>
+          {/* navigation.navigate("EditTransaction",item); */}
+          <TouchableOpacity onPress={() => {navigation.navigate("EditTransaction",item), setModalVisible(!modalVisible) }}>
             <ModalBackgroundButton2>
-                <Feather name="edit" size={24} color="black" />
+              <Feather name="edit" size={24} color="black" />
             </ModalBackgroundButton2>
           </TouchableOpacity>
         </ModalView>

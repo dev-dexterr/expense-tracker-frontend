@@ -29,9 +29,12 @@ import { Feather } from "@expo/vector-icons";
 
 import moment from 'moment';
 
+import { addTransaction } from "../api/generalAPI.js";
+
 //Redux
+import { shallowEqual, useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setRoute } from "../utils/redux/actions.js";
+import { setRoute, setUserID } from "../utils/redux/actions.js";
 
 //formik
 import { Formik } from "formik";
@@ -42,16 +45,23 @@ const AddTransaction = ({ route, navigation }) => {
   const dispatch = useDispatch();
   let data = route.params;
   const [datevalue, setDate] = useState(new Date());
+  const user_id = useSelector((state) => state.userId, shallowEqual);
   const onChange = (e, newDate) => {
     setDate(newDate);
   };
   useEffect(() => {
     dispatch(setRoute('AddTransaction'))
-  })
+  },[])
 
   const handleAddTransaction = async (credentials) => {
-    
- }
+    addTransaction(credentials).then((res)=>{
+      if(res.meta == 2001){
+        console.log(res.message);
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
+  }
 
   return (
     <KeyboardAvoidingWrapper>
@@ -61,7 +71,7 @@ const AddTransaction = ({ route, navigation }) => {
             <TransactionTitle>Add Transaction</TransactionTitle>
           </TransactionView>
           <Formik
-            initialValues={{ amount: "", remark: "", date: "", type: "", name: "", iconName: "" }}
+            initialValues={{ amount: "", remark: "", datetime: "", type: "", name: "", iconName: "", userprofile: "" }}
             onSubmit={(values) => {
               if (values.amount == "") {
                 console.log("Please Fill in the Fields");
@@ -70,7 +80,8 @@ const AddTransaction = ({ route, navigation }) => {
                 values.type = data.type;
                 values.name = data.name;
                 values.iconName = data.iconName;
-                values.date = moment(datevalue).format("MMM Do YY hh:mm a");
+                values.datetime = moment(datevalue).format("MMM Do YY hh:mm a");
+                values.userprofile = user_id
                 handleAddTransaction(values);
               }
             }}

@@ -16,3 +16,19 @@ export function register(data){
         data: data
     })
 }
+
+export function addTransaction(data){
+    return request({
+        url: api.ADD_TRANSACTION,
+        method: "post",
+        data:data
+    })
+}
+
+export function listTransaction(data){
+    return request({
+        url: api.LIST_TRANSACTION,
+        method: "post",
+        data:data
+    })
+}

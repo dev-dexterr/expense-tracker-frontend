@@ -24,7 +24,7 @@ import { Formik } from "formik";
 
 //Redux
 import { useDispatch } from "react-redux";
-import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
+import { setUsername, setEmail, setToken, setID } from "../utils/redux/actions.js";
 
 import { getterToken, setterToken } from "../utils/auth.js";
 
@@ -35,20 +35,19 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 //Text Input
 import TextInput from "../components/textinput/TextInput.js";
-import { useSelector } from "react-redux";
 
 const Login = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
   // const token = useSelector(state => state.token, shallowEqual);//this is the recommend way in react components
-
   const dispatch = useDispatch();
 
   const handleLogin = async (credentials, setSubmitting) => {
     login(credentials)
       .then((res) => {
-        const data = res.data; //personal preference xd
+        const data = res.data;
         dispatch(setUsername(data.username));
         dispatch(setEmail(data.email));
+        dispatch(setID(data.login))
         setterToken(data.token);
         navigation.navigate("HomeTabs");
         setSubmitting(false);

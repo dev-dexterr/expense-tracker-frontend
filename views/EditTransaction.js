@@ -44,6 +44,7 @@ import DatePicker from "../components/datetimepicker/date.js";
 
 const EditTransaction = ({ route, navigation }) => {
   const dispatch = useDispatch();
+  //const transaction = useSelector((state) => state.transaction);
   const data = route.params;
   const [datevalue, setDate] = useState(new Date());
   const onChange = (e, newDate) => {
@@ -52,91 +53,92 @@ const EditTransaction = ({ route, navigation }) => {
   useEffect(() => {
     console.log("Params", data);
     dispatch(setRoute("EditTransaction"));
-  });
+  },[]);
   return (
-    <KeyboardAvoidingWrapper>
-      <StyledContainer>
-        <InnerContainer>
-          <EditTransactionTitle>Edit Transaction</EditTransactionTitle>
-          <Formik
-            initialValues={{
-              amount: data.amount,
-              remark: data.remark,
-              type: data.type,
-              name: data.name,
-              date: data.datetime,
-              iconName: data.iconName,
-            }}
-            onSubmit={(values) => {
-              if (
-                values.amount == "" ||
-                values.type == "" ||
-                values.name == "" ||
-                values.iconName == ""
-              ) {
-                console.log("Please Fill in the Fields");
-              } else {
-                values.type = data.type;
-                values.name = data.name;
-                values.iconName = data.iconName;
-                values.date = data.datetime
-                console.log("Edit Values", values);
-              }
-            }}
-          >
-            {({
-              handleBlur,
-              handleChange,
-              handleSubmit,
-              values,
-              handleDelete,
-            }) => (
-              <StyledFormArea>
-                <TransactionDollarView>
-                  <TransactionDollar>$ </TransactionDollar>
-                  <TransactionTextInput
-                    placeholder={data.amount}
-                    keyboardType="decimal-pad"
-                    onBlur={handleBlur("amount")}
-                    onChangeText={handleChange("amount")}
-                    values={values.amount}
-                  />
-                </TransactionDollarView>
-                <CategoryTouch onPress={() => navigation.navigate("Category")}>
-                  <Categories
-                    name={data?.name}
-                    iconName={data?.iconName}
-                    type={data?.type}
-                    onBlur={handleBlur("name")}
-                    onChangeText={handleChange("name")}
-                    onBlur={handleBlur("iconName")}
-                    onChangeText={handleChange("iconName")}
-                    onBlur={handleBlur("type")}
-                    onChangeText={handleChange("type")}
-                  />
-                </CategoryTouch>
-                <View>
-                    <DatePicker label="Date" value={datevalue} onChange={onChange}/>
-                </View>
-                <TextInput
-                  label="Remark"
-                  placeholder={data.remark}
-                  values={values.remark}
-                  onBlur={handleBlur("remark")}
-                  onChangeText={handleChange("remark")}
-                />
-                <StyledButton onPress={handleSubmit}>
-                  <StyledButtonText>Edit</StyledButtonText>
-                </StyledButton>
-                <StyledButton onPress={handleDelete}>
-                  <StyledButtonText>Delete</StyledButtonText>
-                </StyledButton>
-              </StyledFormArea>
-            )}
-          </Formik>
-        </InnerContainer>
-      </StyledContainer>
-    </KeyboardAvoidingWrapper>
+    <View></View>
+    // <KeyboardAvoidingWrapper>
+    //   <StyledContainer>
+    //     <InnerContainer>
+    //       <EditTransactionTitle>Edit Transaction</EditTransactionTitle>
+    //       <Formik
+    //         initialValues={{
+    //           amount: data.amount,
+    //           remark: data.remark,
+    //           type: data.type,
+    //           name: data.name,
+    //           date: data.datetime,
+    //           iconName: data.iconName,
+    //         }}
+    //         onSubmit={(values) => {
+    //           if (
+    //             values.amount == "" ||
+    //             values.type == "" ||
+    //             values.name == "" ||
+    //             values.iconName == ""
+    //           ) {
+    //             console.log("Please Fill in the Fields");
+    //           } else {
+    //             values.type = data.type;
+    //             values.name = data.name;
+    //             values.iconName = data.iconName;
+    //             values.date = data.datetime
+    //             console.log("Edit Values", values);
+    //           }
+    //         }}
+    //       >
+    //         {({
+    //           handleBlur,
+    //           handleChange,
+    //           handleSubmit,
+    //           values,
+    //           handleDelete,
+    //         }) => (
+    //           <StyledFormArea>
+    //             <TransactionDollarView>
+    //               <TransactionDollar>$ </TransactionDollar>
+    //               <TransactionTextInput
+    //                 placeholder={data.amount}
+    //                 keyboardType="decimal-pad"
+    //                 onBlur={handleBlur("amount")}
+    //                 onChangeText={handleChange("amount")}
+    //                 values={values.amount}
+    //               />
+    //             </TransactionDollarView>
+    //             <CategoryTouch onPress={() => navigation.navigate("Category")}>
+    //               <Categories
+    //                 name={data?.name}
+    //                 iconName={data?.iconName}
+    //                 type={data?.type}
+    //                 onBlur={handleBlur("name")}
+    //                 onChangeText={handleChange("name")}
+    //                 onBlur={handleBlur("iconName")}
+    //                 onChangeText={handleChange("iconName")}
+    //                 onBlur={handleBlur("type")}
+    //                 onChangeText={handleChange("type")}
+    //               />
+    //             </CategoryTouch>
+    //             <View>
+    //                 <DatePicker label="Date" value={datevalue} onChange={onChange}/>
+    //             </View>
+    //             <TextInput
+    //               label="Remark"
+    //               placeholder={data.remark}
+    //               values={values.remark}
+    //               onBlur={handleBlur("remark")}
+    //               onChangeText={handleChange("remark")}
+    //             />
+    //             <StyledButton onPress={handleSubmit}>
+    //               <StyledButtonText>Edit</StyledButtonText>
+    //             </StyledButton>
+    //             <StyledButton onPress={handleDelete}>
+    //               <StyledButtonText>Delete</StyledButtonText>
+    //             </StyledButton>
+    //           </StyledFormArea>
+    //         )}
+    //       </Formik>
+    //     </InnerContainer>
+    //   </StyledContainer>
+    // </KeyboardAvoidingWrapper>
   );
 };
 
