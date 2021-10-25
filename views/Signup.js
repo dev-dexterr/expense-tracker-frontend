@@ -21,13 +21,9 @@ import {
 import { Formik } from "formik";
 
 //Text Input
-import TextInput from "../components/textinput/TextInput.js"
+import TextInput from "../components/textinput/TextInput.js";
 
-//API Client
-import axios from "axios";
-
-//Base URL
-import baseURl from "../utils/api.js";
+import { register } from "../api/generalAPI.js";
 
 //Keyboard Avoiding View
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
@@ -35,18 +31,15 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 const Signup = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
 
-  const handleSignup = async (credentials, setSubmitting) => {
-    const url = `${baseURl.BASE_API_URL_HOME + baseURl.REGISTER}`;
-    axios
-      .post(url, credentials)
-      .then(() => {
-        navigation.navigate("Login");
-        setSubmitting(false);
-      })
-      .catch((err) => {
-        setSubmitting(false);
-        console.log(err);
-      });
+  const handleSignup = async (credentials) => {
+    register(credentials).then((res) => {
+      const data = res.datas;
+      console.log("Register: ", data);
+      navigation.navigate("Login");
+    }).
+    catch((err) => {
+      console.log(err);
+    })
   };
 
   return (
@@ -57,7 +50,7 @@ const Signup = ({ navigation }) => {
           <PageTitle>Sign Up {">"} </PageTitle>
           <SubTitle>Create an account with us</SubTitle>
           <Formik
-            initialValues={{ email: "", password: "", username: "" }}
+            initialValues={{ email: "test2@example.com", password: "123456", username: "test2" }}
             onSubmit={(values, { setSubmitting }) => {
               if (
                 values.username == "" ||
@@ -134,26 +127,5 @@ const Signup = ({ navigation }) => {
     </KeyboardAvoidingWrapper>
   );
 };
-
-// const TextInput = ({
-//   label,
-//   icon,
-//   isPassword,
-//   hidePassword,
-//   setHidePassword,
-//   ...props
-// }) => {
-//   return (
-//     <View>
-//       <StyledInputLabel>{label}</StyledInputLabel>
-//       <StyledTextInput {...props} />
-//       {isPassword && (
-//         <RightIcon onPress={() => setHidePassword(!hidePassword)}>
-//           <Ionicons size={30} name={hidePassword ? "md-eye-off" : "md-eye"} />
-//         </RightIcon>
-//       )}
-//     </View>
-//   );
-// };
 
 export default Signup;

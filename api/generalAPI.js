@@ -1,16 +1,18 @@
 import request from "../utils/request.js";
+import api from "../utils/api.js";
 
 export function login(data){
     return request({
-        url: "/login",
+        url: api.LOGIN,
         method: "post",
         data: data
     })
 };
 
-//there are many waYS to get the same result
-// export const login = (data) => request({
-//     url: "/login",
-//     method: "post",
-//     data: data
-// });
+export function register(data){
+    return request({
+        url:api.REGISTER,
+        method: "post",
+        data: data
+    })
+}
