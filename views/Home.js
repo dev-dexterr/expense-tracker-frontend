@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   Modal,
+  Alert
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import COLOR from '../utils/colors.js';
@@ -54,13 +55,15 @@ import {
 //Lottie
 import LottieView from "lottie-react-native";
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation} from "@react-navigation/native";
 
 import { listTransaction } from "../api/generalAPI.js";
 
 //Redux
 import { useDispatch } from "react-redux";
 import { setTransaction } from "../utils/redux/actions.js";
+
+import moment from "moment"
 
 //Redux
 import { useSelector } from "react-redux";
@@ -71,23 +74,38 @@ import { Feather } from "@expo/vector-icons";
 //SAMPLE DATA TESTING
 import sampledata from "../utils/constants/sampleData.js";
 
-const Home = () => {
+const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const { username} = useSelector((state) => state);
   const user_id = useSelector((state) => state.userId);
+  
   useEffect(() => {
-    listTransaction({ userprofile: user_id }).then((res) => {
-      if (res.meta == "2001") {
-        if (res.datas.length == 0) {
-          console.log("No Data Found!!!");
-          return true;
+    const unsubscribe = navigation.addListener('focus', () => {
+      listTransaction({ userprofile: user_id }).then((res) => {
+        if (res.meta == "2001") {
+          if (res.datas.length == 0) {
+            console.log("No Data Found!!!");
+            return true;
+          }
+          dispatch(setTransaction(res.datas))
         }
-        dispatch(setTransaction(res.datas))
-      }
-    }).catch(err => {
-      console.log(err);
-    })
-  }, []);
+      }).catch(err => {
+        console.log(err);
+      })
+    });
+    return unsubscribe;
+    // listTransaction({ userprofile: user_id }).then((res) => {
+    //   if (res.meta === "2001") {
+    //     if (res.datas.length == 0) {
+    //       console.log("No Data Found!!!");
+    //       return true;
+    //     }
+    //     dispatch(setTransaction(res.datas))
+    //   }
+    // }).catch(err => {
+    //   console.log(err);
+    // })
+  },[navigation]);
   return (
     <StyledContainer>
       <StatusBar style="dark" />
@@ -321,7 +339,7 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
               </ModalLeftWrapper>
               <ModalRightWrapper>
                 <View>
-                  <DynamicContentText>{item.datetime}</DynamicContentText>
+                  <DynamicContentText>{moment(item.datetime).format('MMM Do YYYY, h:mm a')}</DynamicContentText>
                 </View>
               </ModalRightWrapper>
             </ModalItemWrapper>
@@ -338,7 +356,11 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
             </ModalItemWrapper>
           </ModalContentContainer>
           {/* navigation.navigate("EditTransaction",item); */}
-          <TouchableOpacity onPress={() => {navigation.navigate("EditTransaction",item), setModalVisible(!modalVisible) }}>
+          <TouchableOpacity onPress={() => {
+              //moment(item.datetime)
+              navigation.navigate("EditTransaction",item), 
+              setModalVisible(!modalVisible) 
+            }}>
             <ModalBackgroundButton2>
               <Feather name="edit" size={24} color="black" />
             </ModalBackgroundButton2>

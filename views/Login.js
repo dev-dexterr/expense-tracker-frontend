@@ -49,8 +49,11 @@ const Login = ({ navigation }) => {
         dispatch(setEmail(data.email));
         dispatch(setID(data.login))
         setterToken(data.token);
-        navigation.navigate("HomeTabs");
-        setSubmitting(false);
+        setTimeout(()=>{
+          navigation.navigate("HomeTabs");
+          setSubmitting(false);
+        },1000)
+        
       })
       .catch((err) => {
         setSubmitting(false);

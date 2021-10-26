@@ -57,6 +57,7 @@ const AddTransaction = ({ route, navigation }) => {
     addTransaction(credentials).then((res)=>{
       if(res.meta == 2001){
         console.log(res.message);
+        navigation.navigate('Home')
       }
     }).catch(err=>{
       console.log(err);
@@ -80,7 +81,7 @@ const AddTransaction = ({ route, navigation }) => {
                 values.type = data.type;
                 values.name = data.name;
                 values.iconName = data.iconName;
-                values.datetime = moment(datevalue).format("MMM Do YY hh:mm a");
+                values.datetime = moment(datevalue);
                 values.userprofile = user_id
                 handleAddTransaction(values);
               }

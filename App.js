@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { Store } from "./utils/redux/store";
-
+import { Text } from "react-native";
 import Tabs from "./navigation/tab";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Font from "expo-font";
@@ -19,7 +19,9 @@ export default function App() {
       "Ubuntu-Light": require("./assets/fonts/Ubuntu-Light.ttf"),
       "Ubuntu-Regular": require("./assets/fonts/Ubuntu-Regular.ttf"),
     });
-
+    // setTimeout(() => {
+    //   setFontLoaded(true);
+    // }, 5000);
     setFontLoaded(true);
   }
 
@@ -35,7 +37,7 @@ export default function App() {
             <Tabs />
           </NavigationContainer>
         </Provider>
-      ) : null}
+      ) : <Text>Loading......</Text>}
     </>
   );
 }
