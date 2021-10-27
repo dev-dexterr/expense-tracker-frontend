@@ -94,17 +94,6 @@ const Home = ({navigation}) => {
       })
     });
     return unsubscribe;
-    // listTransaction({ userprofile: user_id }).then((res) => {
-    //   if (res.meta === "2001") {
-    //     if (res.datas.length == 0) {
-    //       console.log("No Data Found!!!");
-    //       return true;
-    //     }
-    //     dispatch(setTransaction(res.datas))
-    //   }
-    // }).catch(err => {
-    //   console.log(err);
-    // })
   },[navigation]);
   return (
     <StyledContainer>
@@ -357,7 +346,7 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
           </ModalContentContainer>
           {/* navigation.navigate("EditTransaction",item); */}
           <TouchableOpacity onPress={() => {
-              //moment(item.datetime)
+              moment(item.datetime)
               navigation.navigate("EditTransaction",item), 
               setModalVisible(!modalVisible) 
             }}>

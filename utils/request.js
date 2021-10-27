@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 import { Store } from "./redux/store";
 
 const service = axios.create({
-  baseURL: serverConfig.api_url_office,
+  baseURL: serverConfig.api_url_home,
   timeout: 15000,
 });
 

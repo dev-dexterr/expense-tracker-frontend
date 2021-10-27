@@ -9,6 +9,8 @@ const BACKEND_API = {
   REGISTER: "/register",
   ADD_TRANSACTION: "/transaction/add",
   LIST_TRANSACTION: "/transaction/list",
+  EDIT_Transaction: "/transaction/edit",
+  DELETE_Transaction: "/transaction/delete/",
 };
 
 export default BACKEND_API;

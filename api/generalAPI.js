@@ -32,3 +32,18 @@ export function listTransaction(data){
         data:data
     })
 }
+
+export function editTransaction(data){
+    return request({
+        url: api.EDIT_Transaction,
+        method: "post",
+        data: data
+    })
+}
+
+export function deleteTransaction(id){
+    return request({
+        url: api.DELETE_Transaction + `${id}`,
+        method: "delete"
+    })
+}

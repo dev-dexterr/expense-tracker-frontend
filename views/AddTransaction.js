@@ -29,6 +29,8 @@ import { Feather } from "@expo/vector-icons";
 
 import moment from 'moment';
 
+import {meta} from '../utils/enum.js'
+
 import { addTransaction } from "../api/generalAPI.js";
 
 //Redux
@@ -55,7 +57,7 @@ const AddTransaction = ({ route, navigation }) => {
 
   const handleAddTransaction = async (credentials) => {
     addTransaction(credentials).then((res)=>{
-      if(res.meta == 2001){
+      if(res.meta == meta.OK){
         console.log(res.message);
         navigation.navigate('Home')
       }
