@@ -42,20 +42,19 @@ import DatePicker from "../components/datetimepicker/date.js";
 
 const EditTransaction = ({ route, navigation }) => {
   const dispatch = useDispatch();
-  //const transaction = useSelector((state) => state.transaction);
   const data = route.params;
   const user_id = useSelector((state) => state.userId);
+  const transaction_id = useSelector((state) => state.transactionId);
   const [datevalue, setDate] = useState(new Date());
   const onChange = (e, newDate) => {
     setDate(newDate);
   };
   useEffect(() => {
-    console.log("Params", data);
     dispatch(setRoute("EditTransaction"));
   }, []);
 
   const handleEditTransaction = async (credentials) => {
-    credentials.id = data.id;
+    credentials.id = transaction_id;
     credentials.userprofile = user_id;
     editTransaction(credentials).then((res)=>{
       if(res.meta == meta.OK){
@@ -68,7 +67,14 @@ const EditTransaction = ({ route, navigation }) => {
   }
 
   const handleDelete = async () => {
-    console.log("Deleted Pressed!!!");
+    deleteTransaction(transaction_id).then(res => {
+      if(res.meta == meta.OK){
+        navigation.navigate('Home')
+        console.log(res);
+      }
+    }).catch(err => {
+      console.log(err);
+    })
   }
 
   return (

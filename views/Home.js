@@ -62,6 +62,7 @@ import { listTransaction } from "../api/generalAPI.js";
 //Redux
 import { useDispatch } from "react-redux";
 import { setTransaction } from "../utils/redux/actions.js";
+import { setTID } from "../utils/redux/actions.js";
 
 import moment from "moment"
 
@@ -282,6 +283,7 @@ const TransactionLists = ({ name, amount, iconName, item }) => {
 
 const IEModal = ({ modalVisible, setModalVisible, item }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   return (
     <Modal
       animationType="fade"
@@ -347,6 +349,7 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
           {/* navigation.navigate("EditTransaction",item); */}
           <TouchableOpacity onPress={() => {
               moment(item.datetime)
+              dispatch(setTID(item.id))
               navigation.navigate("EditTransaction",item), 
               setModalVisible(!modalVisible) 
             }}>
