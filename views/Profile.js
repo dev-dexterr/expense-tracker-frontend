@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { View, ActivityIndicator } from "react-native";
+import React, { useEffect, useState} from "react";
+import { View, ActivityIndicator, TouchableOpacity, BackHandler } from "react-native";
 import {
   StyledContainer,
   InnerContainer,
@@ -28,19 +28,27 @@ import profileMenu from "../utils/constants/profileMenu.js";
 //Lottie
 import LottieView from 'lottie-react-native';
 
+import LogoutModal from "../components/Modal/logout/logout";
+
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
 
 const Profile = ({ navigation }) => {
   const { username, email } = useSelector((state) => state);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleLogout = () => {
+    setModalVisible(true)
+    
+  }
+
   return (
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
         <UserInfo>
           <UserImg source={require("../assets/default-user-image.png")} />
-
           {/* <UserImgBackground>
             <LottieView style={{aspectRatio: 1, marginVertical: '-10%' }}
               source={require('../assets/icons/63065-profile-in-out.json')}
@@ -56,6 +64,10 @@ const Profile = ({ navigation }) => {
             <Options name={data.name} iconName={data.iconName} />
           </OptionTouch>
         ))}
+        <TouchableOpacity onPress={handleLogout}>
+          <Options name="Logout" iconName="log-out" />
+        </TouchableOpacity>
+        <LogoutModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
       </InnerContainer>
     </StyledContainer>
   );

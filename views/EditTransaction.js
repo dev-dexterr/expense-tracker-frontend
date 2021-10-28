@@ -26,7 +26,7 @@ import {
 import { Feather } from "@expo/vector-icons";
 
 import moment from 'moment';
-
+import SuccessModal from "../components/Modal/Success/success.js";
 import {meta} from '../utils/enum.js'
 
 //Redux
@@ -41,6 +41,7 @@ import TextInput from "../components/textinput/TextInput.js";
 import DatePicker from "../components/datetimepicker/date.js";
 
 const EditTransaction = ({ route, navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
   const data = route.params;
   const user_id = useSelector((state) => state.userId);
@@ -51,15 +52,19 @@ const EditTransaction = ({ route, navigation }) => {
   };
   useEffect(() => {
     dispatch(setRoute("EditTransaction"));
-  }, []);
+  },[]);
 
   const handleEditTransaction = async (credentials) => {
     credentials.id = transaction_id;
     credentials.userprofile = user_id;
-    editTransaction(credentials).then((res)=>{
+    await editTransaction(credentials).then((res)=>{
       if(res.meta == meta.OK){
-        navigation.navigate('Home')
         console.log(res);
+        setModalVisible(true)
+        setTimeout(() => {
+          setModalVisible(false)
+          navigation.goBack()
+        }, 2000);
       }
     }).catch(err => {
       console.log(err);
@@ -67,10 +72,14 @@ const EditTransaction = ({ route, navigation }) => {
   }
 
   const handleDelete = async () => {
-    deleteTransaction(transaction_id).then(res => {
+    await deleteTransaction(transaction_id).then(res => {
       if(res.meta == meta.OK){
-        navigation.navigate('Home')
         console.log(res);
+        setModalVisible(true)
+        setTimeout(() => {
+          setModalVisible(false)
+          navigation.goBack()
+        }, 2000);
       }
     }).catch(err => {
       console.log(err);
@@ -105,7 +114,6 @@ const EditTransaction = ({ route, navigation }) => {
                 values.iconName = data.iconName;
                 data.datetime = moment(datevalue);
                 values.date = moment(data.datetime);
-                //console.log("Edit Values", values);
                 handleEditTransaction(values);
               }
             }}
@@ -151,10 +159,12 @@ const EditTransaction = ({ route, navigation }) => {
                 <StyledButton onPress={handleDelete}>
                   <StyledButtonText>Delete</StyledButtonText>
                 </StyledButton>
+                
               </StyledFormArea>
             )
             }
           </Formik>
+          <SuccessModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
         </InnerContainer>
       </StyledContainer>
     </KeyboardAvoidingWrapper>

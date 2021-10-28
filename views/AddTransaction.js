@@ -29,7 +29,7 @@ import { Feather } from "@expo/vector-icons";
 
 import moment from 'moment';
 
-import {meta} from '../utils/enum.js'
+import { meta } from '../utils/enum.js'
 
 import { addTransaction } from "../api/generalAPI.js";
 
@@ -37,6 +37,8 @@ import { addTransaction } from "../api/generalAPI.js";
 import { shallowEqual, useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setRoute, setUserID } from "../utils/redux/actions.js";
+
+import SuccessModal from "../components/Modal/Success/success.js";
 
 //formik
 import { Formik } from "formik";
@@ -48,20 +50,25 @@ const AddTransaction = ({ route, navigation }) => {
   let data = route.params;
   const [datevalue, setDate] = useState(new Date());
   const user_id = useSelector((state) => state.userId, shallowEqual);
+  const [modalVisible, setModalVisible] = useState(false);
   const onChange = (e, newDate) => {
     setDate(newDate);
   };
   useEffect(() => {
     dispatch(setRoute('AddTransaction'))
-  },[])
+  }, [])
 
   const handleAddTransaction = async (credentials) => {
-    addTransaction(credentials).then((res)=>{
-      if(res.meta == meta.OK){
-        console.log(res.message);
-        navigation.navigate('Home')
+    addTransaction(credentials).then((res) => {
+      if (res.meta == meta.OK) {
+        console.log(res);
+        setModalVisible(true)
+        setTimeout(() => {
+          navigation.navigate('Home')
+          setModalVisible(false)
+        }, 2000);
       }
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err);
     })
   }
@@ -117,6 +124,7 @@ const AddTransaction = ({ route, navigation }) => {
                   <StyledButton onPress={handleSubmit}>
                     <StyledButtonText>Add</StyledButtonText>
                   </StyledButton>
+                  <SuccessModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
                 </StyledFormArea>
 
               )
