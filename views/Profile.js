@@ -27,20 +27,16 @@ import profileMenu from "../utils/constants/profileMenu.js";
 
 //Lottie
 import LottieView from 'lottie-react-native';
-
 import LogoutModal from "../components/Modal/logout/logout";
-
-//Redux
-import { useDispatch, useSelector } from "react-redux";
-import { setUsername, setEmail, setToken } from "../utils/redux/actions.js";
+import { useSelector } from "react-redux";
 
 const Profile = ({ navigation }) => {
   const { username, email } = useSelector((state) => state);
   const [modalVisible, setModalVisible] = useState(false);
+  
 
   const handleLogout = () => {
     setModalVisible(true)
-    
   }
 
   return (

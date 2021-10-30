@@ -82,7 +82,8 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      listTransaction({ userprofile: user_id }).then((res) => {
+      listTransaction({ userprofile: user_id || "614b4d2cd50fd9fbf9e4068b" }).then((res) => {
+        console.log(true)
         if (res.meta == "2001") {
           if (res.datas.length == 0) {
             console.log("No Data Found!!!");
@@ -91,11 +92,11 @@ const Home = ({ navigation }) => {
           dispatch(setTransaction(res.datas))
         }
       }).catch(err => {
-        console.log(err);
+        console.log("Err", err);
       })
     });
     return unsubscribe;
-  }, [navigation]);
+  },[navigation]);
   return (
     <StyledContainer>
       <StatusBar style="dark" />

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { Store } from "./utils/redux/store";
-import { Text } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import Tabs from "./navigation/tab";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Font from "expo-font";
+import { getterToken } from "./utils/auth.js";
+import Login from "./views/Login";
+import { setToken } from "./utils/redux/actions";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [userToken, setuserToken] = useState(null)
   const [fontLoaded, setFontLoaded] = useState(false);
 
   async function loadFonts() {
@@ -26,18 +31,53 @@ export default function App() {
   }
 
   useEffect(() => {
-    loadFonts();
-  }, []);
+    setTimeout(async () => {
+      
+      // getterToken().then((res)=> {
+      //   const token = res
+      //   setuserToken(token);
+      //   console.log(`token`, token)
+      // })
+      const token = await getterToken();
+        setuserToken(token);
+        Store.dispatch(setToken(token));
+        console.log(`token`, token)
+        setIsLoading(false);
+        loadFonts();
+    },3000);
+
+    // loadFonts();
+
+  }, [userToken]);
+
+  // if(isLoading){
+  //   return(
+  //     <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+  //       <ActivityIndicator size="large" />
+  //     </View>
+  //   )
+  // }
+
+  const Loading = () => {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
+  }
 
   return (
     <>
       {fontLoaded ? (
         <Provider store={Store}>
-          <NavigationContainer>
-            <Tabs />
-          </NavigationContainer>
+          {userToken != null ? (
+            <NavigationContainer>
+              <Tabs />
+            </NavigationContainer>
+          ): <Login/>
+          }
         </Provider>
-      ) : <Text>Loading......</Text>}
+      ) : <Loading/>}
     </>
   );
 }

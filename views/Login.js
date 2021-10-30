@@ -51,6 +51,7 @@ const Login = ({ navigation }) => {
         setterToken(data.token);
         setTimeout(()=>{
           navigation.navigate("HomeTabs");
+          console.log("Logged!!!!!!!");
           setSubmitting(false);
         },1000)
         

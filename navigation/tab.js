@@ -130,6 +130,11 @@ export default function App() {
   return (
     <stack.Navigator>
       <stack.Screen
+        component={HomeTabs}
+        name="HomeTabs"
+        options={{ headerShown: false, gestureEnabled: false }}
+      />
+      <stack.Screen
         component={Login}
         name="Login"
         options={{ headerShown: false }}
@@ -138,11 +143,6 @@ export default function App() {
         component={Signup}
         name="Signup"
         options={{ headerShown: false }}
-      />
-      <stack.Screen
-        component={HomeTabs}
-        name="HomeTabs"
-        options={{ headerShown: false, gestureEnabled: false }}
       />
       <stack.Screen
         component={ProfileDetail}
