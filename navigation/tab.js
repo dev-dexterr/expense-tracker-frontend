@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import plus from "../assets/plus.png";
+import COLOR from '../utils/colors.js';
 
 //Font Awesome Icons
 import { Feather } from "@expo/vector-icons";
@@ -40,7 +41,7 @@ const CustomTabBarButton = ({ children, onPress }) => {
         style={{
           width: 60,
           height: 60,
-          backgroundColor: "black",
+          backgroundColor: COLOR.blue,
           borderRadius: 50,
         }}
       >

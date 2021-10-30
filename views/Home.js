@@ -55,7 +55,7 @@ import {
 //Lottie
 import LottieView from "lottie-react-native";
 
-import { useNavigation} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 import { listTransaction } from "../api/generalAPI.js";
 
@@ -75,11 +75,11 @@ import { Feather } from "@expo/vector-icons";
 //SAMPLE DATA TESTING
 import sampledata from "../utils/constants/sampleData.js";
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { username} = useSelector((state) => state);
+  const { username } = useSelector((state) => state);
   const user_id = useSelector((state) => state.userId);
-  
+
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       listTransaction({ userprofile: user_id }).then((res) => {
@@ -95,7 +95,7 @@ const Home = ({navigation}) => {
       })
     });
     return unsubscribe;
-  },[navigation]);
+  }, [navigation]);
   return (
     <StyledContainer>
       <StatusBar style="dark" />
@@ -105,23 +105,23 @@ const Home = ({navigation}) => {
         <BalanceBackground>
           <BalanceText>
             <BalanceText2>$</BalanceText2>
-            17,800.88
+            0
           </BalanceText>
           <BalanceText3>Current Balance</BalanceText3>
           <BalanceText4>Available</BalanceText4>
         </BalanceBackground>
         <IEContainer>
-          <IEBackground>
+          <IEBackground IE>
             <IEText1>
               <BalanceText2>$ </BalanceText2>
-              100
+              0
             </IEText1>
             <IEText2>Income</IEText2>
           </IEBackground>
           <IEBackground>
             <IEText1>
               <BalanceText2>$ </BalanceText2>
-              500
+              0
             </IEText1>
             <IEText2>Expense</IEText2>
           </IEBackground>
@@ -263,12 +263,20 @@ const TransactionLists = ({ name, amount, iconName, item }) => {
             </View>
           </TransactionLeftWrapper>
           <TransactionRightWrapper>
-            <View>
-              <TransactionAmount>
-                <BalanceText2>$ </BalanceText2>
-                {amount}
-              </TransactionAmount>
-            </View>
+            <>
+              {item.type == 'Income' &&
+                <TransactionAmount style={style.income}>
+                  <BalanceText2 style={style.income}>$ </BalanceText2>
+                  {amount}
+                </TransactionAmount>
+              }
+              {item.type == 'Expense' &&
+                <TransactionAmount style={style.expense}>
+                  <BalanceText2 style={style.expense}>$ </BalanceText2>
+                  {amount}
+                </TransactionAmount>
+              }
+            </>
           </TransactionRightWrapper>
         </TransactionItemWrapper>
       </TransactionTouch>
@@ -348,11 +356,11 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
           </ModalContentContainer>
           {/* navigation.navigate("EditTransaction",item); */}
           <TouchableOpacity onPress={() => {
-              moment(item.datetime)
-              dispatch(setTID(item.id))
-              navigation.navigate("EditTransaction",item), 
-              setModalVisible(!modalVisible) 
-            }}>
+            moment(item.datetime)
+            dispatch(setTID(item.id))
+            navigation.navigate("EditTransaction", item),
+              setModalVisible(!modalVisible)
+          }}>
             <ModalBackgroundButton2>
               <Feather name="edit" size={24} color="black" />
             </ModalBackgroundButton2>

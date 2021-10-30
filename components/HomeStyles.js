@@ -48,7 +48,7 @@ export const SubTitle = styled.Text`
 `
 
 export const BalanceBackground = styled.View`
-    background-color: ${COLOR.quaternary}
+    background-color: ${COLOR.blue}
     height: 130px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
@@ -56,7 +56,7 @@ export const BalanceBackground = styled.View`
 export const BalanceText = styled.Text`
     font-weight: bold;
     font-size: 40px;
-    color: ${COLOR.quinary};
+    color: ${COLOR.primary};
     text-align: center;
     top: 60px;
     left: 60px;
@@ -65,13 +65,13 @@ export const BalanceText = styled.Text`
 export const BalanceText2 = styled.Text`
     font-weight: bold;
     font-size: 18px;
-    color: ${COLOR.senary};
+    color: ${COLOR.primary};
     fontFamily: 'Ubuntu-Bold'
 ` 
 export const BalanceText3 = styled.Text`
     font-weight: bold;
     font-size: 20px;
-    color: ${COLOR.secondary};
+    color: ${COLOR.primary};
     text-align: center;
     right: 90px
     top: -25px
@@ -79,7 +79,7 @@ export const BalanceText3 = styled.Text`
 ` 
 export const BalanceText4 = styled.Text`
     font-size: 15px;
-    color: ${COLOR.secondary};
+    color: ${COLOR.primary};
     text-align: center;
     right: 130px
     top: 5px
@@ -94,7 +94,7 @@ export const IEContainer = styled.View`
 `
 
 export const IEBackground = styled.View`
-    background-color: ${COLOR.quaternary}
+    background-color: ${props => props.IE ? COLOR.income : COLOR.expense};
     height: 100px;
     border-radius: 20px;
     width: 47%;
@@ -106,6 +106,7 @@ export const IEText1 = styled.Text`
     font-weight: bold;
     font-size: 35px;
     padding: 1px;
+    color: ${COLOR.primary}
     fontFamily: 'Ubuntu-Bold'
 `
 export const IEText2 = styled.Text`
@@ -113,7 +114,7 @@ export const IEText2 = styled.Text`
     top: 15px;
     font-weight: bold;
     font-size: 15px;
-    color: ${COLOR.secondary};
+    color: ${COLOR.primary};
     fontFamily: 'Roboto-Light'
 `
 
