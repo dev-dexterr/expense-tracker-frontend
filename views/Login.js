@@ -21,7 +21,6 @@ import {
 } from "../components/LoginStyles";
 //formik
 import { Formik } from "formik";
-
 //Redux
 import { useDispatch } from "react-redux";
 import { setUsername, setEmail, setToken, setID } from "../utils/redux/actions.js";
@@ -29,18 +28,19 @@ import { setUsername, setEmail, setToken, setID } from "../utils/redux/actions.j
 import { getterToken, setterToken } from "../utils/auth.js";
 
 import { login } from "../api/generalAPI";
-
+import { useNavigation } from "@react-navigation/native";
 //Keyboard Avoiding View
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
+
 
 //Text Input
 import TextInput from "../components/textinput/TextInput.js";
 
-const Login = ({ navigation }) => {
+const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
+  const navigation = useNavigation();
   // const token = useSelector(state => state.token, shallowEqual);//this is the recommend way in react components
   const dispatch = useDispatch();
-
   const handleLogin = async (credentials, setSubmitting) => {
     login(credentials)
       .then((res) => {
@@ -49,12 +49,12 @@ const Login = ({ navigation }) => {
         dispatch(setEmail(data.email));
         dispatch(setID(data.login))
         setterToken(data.token);
-        setTimeout(()=>{
-          navigation.navigate("HomeTabs");
-          console.log("Logged!!!!!!!");
-          setSubmitting(false);
-        },1000)
-        
+        dispatch(setToken(data.token))
+        // setTimeout(()=>{
+        //   navigation.navigate("HomeTabs");
+        //   console.log("Logged!!!!!!!");
+        //   setSubmitting(false);
+        // },1000)
       })
       .catch((err) => {
         setSubmitting(false);

@@ -6,12 +6,12 @@ import Tabs from "./navigation/tab";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Font from "expo-font";
 import { getterToken } from "./utils/auth.js";
-import Login from "./views/Login";
-import { setToken } from "./utils/redux/actions";
+import { setToken , setID, setEmail, setUsername } from "./utils/redux/actions";
+import { getUserInfo } from "./api/generalAPI.js";
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [userToken, setuserToken] = useState(null)
+  const [isLoading, setIsLoading] = useState(true);
+  const [userToken, setuserToken] = useState(null);
   const [fontLoaded, setFontLoaded] = useState(false);
 
   async function loadFonts() {
@@ -32,22 +32,29 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(async () => {
-      
       // getterToken().then((res)=> {
       //   const token = res
       //   setuserToken(token);
       //   console.log(`token`, token)
       // })
       const token = await getterToken();
+      if(token != null){
         setuserToken(token);
         Store.dispatch(setToken(token));
-        console.log(`token`, token)
+        getUserInfo().then((res)=> {
+          const user_id = res.user_info.login
+          const username = res.user_info.username
+          const email = res.user_info.email
+          Store.dispatch(setID(user_id))
+          Store.dispatch(setEmail(email))
+          Store.dispatch(setUsername(username))
+        }).catch(err => console.log(err))
         setIsLoading(false);
-        loadFonts();
-    },3000);
+      }
+      loadFonts();
+    }, 3000);
 
     // loadFonts();
-
   }, [userToken]);
 
   // if(isLoading){
@@ -60,24 +67,42 @@ export default function App() {
 
   const Loading = () => {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" />
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <>
       {fontLoaded ? (
         <Provider store={Store}>
-          {userToken != null ? (
-            <NavigationContainer>
+          <NavigationContainer>
+            {userToken != null ? (
               <Tabs />
-            </NavigationContainer>
-          ): <Login/>
-          }
+            ) : 
+              <Tabs/>
+            }
+          </NavigationContainer>
         </Provider>
-      ) : <Loading/>}
+      ) : (
+        <Loading />
+      )}
     </>
+    // <>
+    //   {fontLoaded ? (
+    //     <Provider store={Store}>
+    //       {userToken != null ? (
+    //         <NavigationContainer>
+    //           <Tabs />
+    //         </NavigationContainer>
+    //       ) : (
+    //          <RootStackScreen/>
+    //       )}
+    //     </Provider>
+    //   ) : (
+    //     <Loading />
+    //   )}
+    // </>
   );
 }

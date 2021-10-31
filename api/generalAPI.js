@@ -47,3 +47,10 @@ export function deleteTransaction(id){
         method: "delete"
     })
 }
+
+export function getUserInfo(){
+    return request({
+        url: api.GET_USERINFO,
+        method: "get"
+    })
+}
