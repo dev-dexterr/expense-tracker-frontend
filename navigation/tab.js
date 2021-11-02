@@ -23,6 +23,8 @@ import CustomHeader from "../components/customheader/CustomHeader";
 import AddTransaction from "../views/AddTransaction";
 import Category from "../views/Category.js";
 import EditTransaction from "../views/EditTransaction";
+import Overview from "../views/Overview";
+import Chart from "../views/Chart";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,11 +65,11 @@ const HomeTabs = () => {
           if (route.name == "Home") {
             iconName = focused ? "home" : "home";
             color = focused ? "black" : "grey";
-          } else if (route.name == "testscreen1") {
+          } else if (route.name == "Chart") {
             iconName = focused ? "bar-chart-2" : "bar-chart-2";
             color = focused ? "black" : "grey";
-          } else if (route.name == "testscreen2") {
-            iconName = focused ? "trending-up" : "trending-up";
+          } else if (route.name == "Overview") {
+            iconName = focused ? "file" : "file";
             color = focused ? "black" : "grey";
           } else if (route.name == "Profile") {
             iconName = focused ? "user" : "user";
@@ -99,7 +101,7 @@ const HomeTabs = () => {
       })}
     >
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="testscreen1" component={testscreen1} />
+      <Tab.Screen name="Chart" component={Chart} />
       <Tab.Screen
         name="AddTransaction"
         component={AddTransaction}
@@ -119,7 +121,7 @@ const HomeTabs = () => {
           tabBarButton: (props) => <CustomTabBarButton {...props} />
         }}
       />
-      <Tab.Screen name="testscreen2" component={testscreen2} />
+      <Tab.Screen name="Overview" component={Overview} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
@@ -205,33 +207,3 @@ export default function App() {
   );
 }
 
-//Test screen
-function testscreen1() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-      }}
-    >
-      <Text>testscreen1</Text>
-    </View>
-  );
-}
-
-function testscreen2() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#ffffff",
-      }}
-    >
-      <Text>testscreen2</Text>
-    </View>
-  );
-}
