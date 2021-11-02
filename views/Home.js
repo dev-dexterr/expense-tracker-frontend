@@ -3,9 +3,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
-  View,
-  Modal,
-  Alert,
+  View
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import COLOR from "../utils/colors.js";
@@ -35,45 +33,20 @@ import {
   IEIconBackground,
   IEIcon,
   NoTransactionView,
-  ModalView,
-  CenteredModalView,
-  TitleText,
-  IEIconBackgroundModal,
-  IEIconModal,
-  ModalIconContainer,
-  ModalContentContainer,
-  ModalBackgroundButton,
-  AmountText,
-  ModalRightWrapper,
-  ModalLeftWrapper,
-  ModalItemWrapper,
-  ContentText,
-  DynamicContentText,
-  ModalBackgroundButton2,
 } from "../components/HomeStyles";
 
 //Lottie
 import LottieView from "lottie-react-native";
 
-import { useNavigation } from "@react-navigation/native";
-
 import { listTransaction } from "../api/generalAPI.js";
-import { Store } from "../utils/redux/store.js";
 //Redux
 import { useDispatch } from "react-redux";
 import { setTransaction } from "../utils/redux/actions.js";
-import { setTID } from "../utils/redux/actions.js";
 
-import moment from "moment";
+import IEModal from "../components/Modal/IE/IE.js";
 
 //Redux
 import { useSelector } from "react-redux";
-
-//Font Awesome Icons
-import { Feather } from "@expo/vector-icons";
-
-//SAMPLE DATA TESTING
-import sampledata from "../utils/constants/sampleData.js";
 
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -292,91 +265,6 @@ const TransactionLists = ({ name, amount, iconName, item }) => {
   );
 };
 
-const IEModal = ({ modalVisible, setModalVisible, item }) => {
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
-  return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
-    >
-      <CenteredModalView>
-        <ModalView>
-          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-            <ModalBackgroundButton>
-              <Feather name="x-circle" size={24} />
-            </ModalBackgroundButton>
-          </TouchableOpacity>
-          <ModalIconContainer>
-            <IEIconBackgroundModal>
-              <IEIconModal source={item.iconName} />
-            </IEIconBackgroundModal>
-          </ModalIconContainer>
-          {item.type == "Income" && (
-            <>
-              <AmountText style={style.income}>
-                <BalanceText2 style={style.income}>$ </BalanceText2>
-                {item.amount}
-              </AmountText>
-              <TitleText>{item.name}</TitleText>
-            </>
-          )}
-          {item.type == "Expense" && (
-            <>
-              <AmountText style={style.expense}>
-                <BalanceText2 style={style.expense}>$ </BalanceText2>
-                {item.amount}
-              </AmountText>
-              <TitleText>{item.name}</TitleText>
-            </>
-          )}
-          <ModalContentContainer>
-            <ModalItemWrapper>
-              <ModalLeftWrapper>
-                <ContentText>Transaction Date :</ContentText>
-              </ModalLeftWrapper>
-              <ModalRightWrapper>
-                <View>
-                  <DynamicContentText>
-                    {moment(item.datetime).format("MMM Do YYYY, h:mm a")}
-                  </DynamicContentText>
-                </View>
-              </ModalRightWrapper>
-            </ModalItemWrapper>
-
-            <ModalItemWrapper>
-              <ModalLeftWrapper>
-                <ContentText>Remark :</ContentText>
-              </ModalLeftWrapper>
-              <ModalRightWrapper>
-                <View>
-                  <DynamicContentText>{item.remark}</DynamicContentText>
-                </View>
-              </ModalRightWrapper>
-            </ModalItemWrapper>
-          </ModalContentContainer>
-          {/* navigation.navigate("EditTransaction",item); */}
-          <TouchableOpacity
-            onPress={() => {
-              moment(item.datetime);
-              dispatch(setTID(item.id));
-              navigation.navigate("EditTransaction", item),
-                setModalVisible(!modalVisible);
-            }}
-          >
-            <ModalBackgroundButton2>
-              <Feather name="edit" size={24} color="black" />
-            </ModalBackgroundButton2>
-          </TouchableOpacity>
-        </ModalView>
-      </CenteredModalView>
-    </Modal>
-  );
-};
 
 const style = StyleSheet.create({
   activeIEText: {
