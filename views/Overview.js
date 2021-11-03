@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { View, TouchableOpacity, StyleSheet, FlatList, Text } from "react-native";
 import COLOR from "../utils/colors.js";
-import { StyledContainer, InnerContainer, IEListTextContainer, IEListText, TransactionContainer, NoTransactionView } from "../components/OverviewStyles.js";
-//SAMPLE DATA TESTING
-import sampledata from "../utils/constants/sampleData.js";
+import { StyledContainer, InnerContainer, IEListTextContainer, IEListText, TransactionContainer, NoTransactionView, OverviewItemWrapper, OverviewLeftWrapper , OverviewRightWrapper } from "../components/OverviewStyles.js";
+
+import { useSelector } from "react-redux";
+
 import DateInput from "../components/dateinput/DateInputSearch.js";
+import NoTransaction from "../components/notransaction/NoTransaction.js";
+import TransactionCard from "../components/TransactionListCard/TransactionCard.js";
 
 const Overview = ({ navigation }) => {
+    const transaction = useSelector((state) => state.transaction);
+    const FilterIncome = transaction.filter((item) => item.type == "Income");
+    const FilterExpense = transaction.filter((item) => item.type == "Expense");
     const [selectedTab, setselectedTab] = useState(0);
     const IETab = ["Income", "Expense"];
     return (
         <StyledContainer>
             <InnerContainer>
-                {/* <IEListTextContainer>
+                <DateInput />
+                <IEListTextContainer>
                     {IETab.map((ie, index) => (
                         <TouchableOpacity TouchableOpacity key={index} onPress={() => setselectedTab(index)}>
                             <IEListText style={[index == selectedTab && style.activeIEText]}>
@@ -27,17 +34,14 @@ const Overview = ({ navigation }) => {
                             showsVerticalScrollIndicator={false}
                             showsHorizontalScrollIndicator={false}
                             keyExtractor={(item) => item.id}
-                            data={sampledata}
+                            data={FilterIncome}
                             ListEmptyComponent={
-                                <NoTransactionView>
-                                    <Text>TEST/TEST</Text>
-                                </NoTransactionView>
+                                <NoTransaction />
+                                    
                             }
                             renderItem={({ item }) => {
                                 return (
-                                    <View>
-                                        <Text>{item.name}</Text>
-                                    </View>
+                                    <TransactionCard item={item}/>
                                 )
                             }}
                         />
@@ -49,23 +53,18 @@ const Overview = ({ navigation }) => {
                             showsVerticalScrollIndicator={false}
                             showsHorizontalScrollIndicator={false}
                             keyExtractor={(item) => item.id}
-                            data={sampledata}
+                            data={FilterExpense}
                             ListEmptyComponent={
-                                <NoTransactionView>
-                                    <Text>TEST/TEST</Text>
-                                </NoTransactionView>
+                                <NoTransaction />
                             }
                             renderItem={({ item }) => {
                                 return (
-                                    <View>
-                                        <Text>{item.name}</Text>
-                                    </View>
+                                    <TransactionCard item={item}/>
                                 )
                             }}
                         />
                     </TransactionContainer>
-                )} */}
-                <DateInput/> 
+                )}
             </InnerContainer>
         </StyledContainer >
     )

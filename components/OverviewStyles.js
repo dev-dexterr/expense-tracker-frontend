@@ -33,7 +33,7 @@ export const IEListText = styled.Text`
 `;
 
 export const TransactionContainer = styled.View`
-    height: 150%;
+    height: 87%;
     margin-top: 8%;
     width: 100%
     border-radius: 20px;
@@ -44,4 +44,20 @@ export const NoTransactionView = styled.View`
     justify-content: center; 
     flex: 1;
     margin-top: 15%;
+`
+
+export const OverviewItemWrapper = styled.View`
+    padding: 5px 0px 5px 0px
+    flex-direction: row;
+    justify-content: flex-start; 
+    align-content: flex-start; 
+`
+export const OverviewLeftWrapper = styled.View`
+    flex-direction: row;
+    align-items: center;
+    
+`
+
+export const OverviewRightWrapper = styled.View`
+    align-items: flex-start;  
 `

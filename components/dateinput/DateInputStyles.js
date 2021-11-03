@@ -44,7 +44,7 @@ export const StyledButton = styled.TouchableOpacity`
     justify-content: center;
     border-radius: 10px;
     margin-vertical: 5px;
-    height: 50px;
+    height: 45px;
 `;
 
 export const StyledButtonText = styled.Text`
@@ -53,7 +53,7 @@ export const StyledButtonText = styled.Text`
     text-align: center;
     font-weight: bold;
     fontFamily: 'Ubuntu-Bold'
-    width: 150px
+    width: 110px
 `
 
 export const ModalBackgroundButton = styled.View`

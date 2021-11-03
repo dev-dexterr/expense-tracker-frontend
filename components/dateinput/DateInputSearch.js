@@ -13,7 +13,7 @@ const DateInput = () => {
     };
     return (
         <View>
-            <StyledTextInput editable={false} />
+            <StyledTextInput editable={false} value="Overall" />
             <RightIcon onPress={() => setModalVisible(true)}>
                 <Ionicons size={30} name="calendar" />
             </RightIcon>

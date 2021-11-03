@@ -9,6 +9,7 @@ const LogoutModal = ({ modalVisible, setModalVisible}) => {
     const IsLogout = () => {
         setterToken("");
         navigation.navigate("Login")
+        setModalVisible(false);
     }
     return(
         <Modal
