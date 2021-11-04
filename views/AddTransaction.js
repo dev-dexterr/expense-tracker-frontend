@@ -56,7 +56,11 @@ const AddTransaction = ({ route, navigation }) => {
   };
   useEffect(() => {
     dispatch(setRoute('AddTransaction'))
-  }, [])
+    const unsubscribe = navigation.addListener('focus', () => {
+      setDate(new Date())
+    });
+    return unsubscribe;
+  }, [navigation])
 
   const handleAddTransaction = async (credentials) => {
     addTransaction(credentials).then((res) => {

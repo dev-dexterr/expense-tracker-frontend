@@ -36,7 +36,7 @@ const TransactionCard = ({ item }) => {
                         <RemarkText>Remark:  {item.remark}</RemarkText>
                     </RemarkView>
                     <DateView>
-                        <DateText>{moment(item.datetime).startOf('day').fromNow()}</DateText>
+                        <DateText>{moment(item.datetime).fromNow()}</DateText>
                     </DateView>
                 </DetailContainer>
             </CardContainer>
