@@ -9,6 +9,6 @@ const colors = {
     income: '#00a88d',
     expense: '#e94e63',
     blue: '#3a4453'
-}   
+}
 
 export default colors;

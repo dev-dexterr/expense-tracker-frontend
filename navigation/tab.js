@@ -66,7 +66,7 @@ const HomeTabs = () => {
             iconName = focused ? "home" : "home";
             color = focused ? "black" : "grey";
           } else if (route.name == "Chart") {
-            iconName = focused ? "bar-chart-2" : "bar-chart-2";
+            iconName = focused ? "pie-chart" : "pie-chart";
             color = focused ? "black" : "grey";
           } else if (route.name == "Overview") {
             iconName = focused ? "file" : "file";
