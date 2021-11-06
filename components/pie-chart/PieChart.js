@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Platform, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import { VictoryPie } from "victory-native";
-import SAMPLE_DATA from "../../utils/constants/sampleData.js";
 import COLOR from '../../utils/colors.js';
 import { useSelector } from "react-redux";
-import { ChartContainer, ListTouch, ListBoxView, ListCategoryView, ListCategoryText, ListCalView, Caltext} from "./PieChartStyles.js";
+import { ChartContainer, ListTouch, ListBoxView, ListCategoryView, ListCategoryText, ListCalView, Caltext, IEListTextContainer, IEListText } from "./PieChartStyles.js";
+import NoTransaction from "../../components/notransaction/NoTransaction.js";
 
 const chartColor = [
     "tomato",
@@ -51,15 +51,20 @@ const random_hex_color_code = () => {
 
 const RenderChart = () => {
     const TransactionData = useSelector((state) => state.transaction);
+    const FilterIncome = TransactionData.filter((item) => item.type == "Income");
+    const FilterExpense = TransactionData.filter((item) => item.type == "Expense");
+    const IETab = ["Income", "Expense"];
+    const [selectedTab, setselectedTab] = useState(0);
 
     function setSelectTransactionByName(name) {
         let transaction = TransactionData.filter((a) => a.name == name)
         setSelectedTransaction(transaction[0])
     }
 
-    const processData = () => {
-
-        let chartData = TransactionData.map((item, index) => {
+    const processData = (transactiondata) => {
+        // console.log("transactiondata", transactiondata);
+        // console.log("filter Income", FilterIncome);
+        let chartData = transactiondata.map((item, index) => {
             // let randomColor = Math.floor(Math.random() * 16777215).toString(16); 
             // let randomColor
             // if(item.color == undefined){
@@ -101,19 +106,19 @@ const RenderChart = () => {
         // }, [])
         const renderItem = ({ item }) => {
             return (
-                <ListTouch style={{backgroundColor: (SelectedTransaction && SelectedTransaction.name == item.name) ? item.color : COLOR.primary}} onPress={
-                    ()=> {
+                <ListTouch style={{ backgroundColor: (SelectedTransaction && SelectedTransaction.name == item.name) ? item.color : COLOR.primary }} onPress={
+                    () => {
                         let transactionName = item.name
                         setSelectTransactionByName(transactionName)
                     }
                 }>
-                        <ListCategoryView>
-                            <ListBoxView style={{backgroundColor: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color}}></ListBoxView>
-                            <ListCategoryText style={{color: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color}}>{item.name}</ListCategoryText>
-                        </ListCategoryView>
-                        <ListCalView>
-                            <Caltext style={{color: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color}}>{item.y} USD - {item.label}</Caltext>
-                        </ListCalView>
+                    <ListCategoryView>
+                        <ListBoxView style={{ backgroundColor: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color }}></ListBoxView>
+                        <ListCategoryText style={{ color: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color }}>{item.name}</ListCategoryText>
+                    </ListCategoryView>
+                    <ListCalView>
+                        <Caltext style={{ color: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color }}>{item.y} USD - {item.label}</Caltext>
+                    </ListCalView>
                 </ListTouch>
             )
         }
@@ -129,12 +134,16 @@ const RenderChart = () => {
         )
     }
 
-    const [SelectedTransaction, setSelectedTransaction] = React.useState(null)
-    let chartData = processData();
-    let colorScales = chartData.map((item) => item.color)
-    // let colorScales = chartColor
-    return (
-        <>
+    const PieChart = ({item}) => {
+        const [chartData , setchartData] = useState([])
+        useEffect(() => {
+            if(item){
+                setchartData(processData(item))  
+            }
+        },[item])
+        let colorScales = chartData.map((item) => item.color)
+        return (
+            <>
             <ChartContainer>
                 <VictoryPie
                     data={chartData}
@@ -144,7 +153,7 @@ const RenderChart = () => {
                     innerRadius={80}
                     labelRadius={({ innerRadius }) => (450 * 0.4 + innerRadius) / 2.5}
                     style={{
-                        labels: { fill: "black" , fontSize: 14, fontWeight: "bold"}
+                        labels: { fill: "black", fontSize: 14, fontWeight: "bold" }
                     }}
                     events={[{
                         target: "data",
@@ -162,10 +171,55 @@ const RenderChart = () => {
                     }]}
                 />
             </ChartContainer>
-            <RenderExpenseSummary />
+            {/* <RenderExpenseSummary /> */}
+            </>
+        )
+    }
+
+    const [SelectedTransaction, setSelectedTransaction] = useState(null)
+    const arrtest = [{id: ""}]
+    // let colorScales = chartColor
+    return (
+        <>
+            <IEListTextContainer>
+                {IETab.map((ie, index) => (
+                    <TouchableOpacity TouchableOpacity key={index} onPress={() => setselectedTab(index)}>
+                        <IEListText style={[index == selectedTab && style.activeIEText]}>
+                            {ie}
+                        </IEListText>
+                    </TouchableOpacity>
+                ))}
+            </IEListTextContainer>
+            {selectedTab == 0 && (
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={(item) => item.id}
+                    data={arrtest}
+                    ListEmptyComponent={
+                        <NoTransaction />
+                    }
+                    renderItem={({item}) => {
+                        return(
+                            <PieChart item={FilterIncome}/>
+                        )
+                    }}
+                />
+            )}
         </>
     )
 }
 
+const style = StyleSheet.create({
+    activeIEText: {
+        color: COLOR.quinary,
+    },
+    income: {
+        color: COLOR.income,
+    },
+    expense: {
+        color: COLOR.expense,
+    },
+});
 
 export default RenderChart;

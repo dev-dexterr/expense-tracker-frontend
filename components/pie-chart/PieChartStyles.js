@@ -1,6 +1,21 @@
 import styled from "styled-components/native";
 import COLOR from '../../utils/colors.js';
 
+export const IEListTextContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 15px
+    padding-right: 50px;
+    padding-left: 50px;
+`
+
+export const IEListText = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    color: ${COLOR.senary};
+    fontFamily: 'Ubuntu-Bold' 
+`;
+
 export const ChartContainer = styled.View`
     justify-content: center;
     align-items: center
