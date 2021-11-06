@@ -2,24 +2,46 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Platform, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import { VictoryPie } from "victory-native";
 import SAMPLE_DATA from "../../utils/constants/sampleData.js";
-
+import COLOR from '../../utils/colors.js';
 import { useSelector } from "react-redux";
-import { ChartContainer } from "./PieChartStyles.js";
+import { ChartContainer, ListTouch, ListBoxView, ListCategoryView, ListCategoryText, ListCalView, Caltext} from "./PieChartStyles.js";
 
 const chartColor = [
     "tomato",
     "orange",
     "gold",
-    "cyan",
+    "#FFD8BE",
     "navy",
-    "Magenta",
-    "AliceBlue",
-    "AntiqueWhite",
-    "Aqua",
-    "Aquamarine",
-    "Azure",
-    "Beige",
-    "Bisque",
+    "#E88EED",
+    "#D6D9CE",
+    "#F7E3AF",
+    "#B0D0D3",
+    "#C08497",
+    "#AAA1C8",
+    "#967AA1",
+    "#192A51",
+    "#0091AD",
+    "#6EFAFB",
+    "#FFF4E4",
+    "#FF57BB",
+    "#04E762",
+    "#00A1E4",
+    "#DC0073",
+    "#89FC00",
+    "#7C6A0A",
+    "#ED1C24",
+    "#235789",
+    "#320A28",
+    "#511730",
+    "#8E443D",
+    "#CB9173",
+    "#E086D3",
+    "#BAD1CD",
+    "#462749",
+    "#A22C29",
+    "#BEEF9E",
+    "#828C51",
+    "#F4C3C2",
 ]
 
 const random_hex_color_code = () => {
@@ -37,14 +59,18 @@ const RenderChart = () => {
 
     const processData = () => {
 
-        let chartData = TransactionData.map((item) => {
+        let chartData = TransactionData.map((item, index) => {
             // let randomColor = Math.floor(Math.random() * 16777215).toString(16); 
-            let randomColor = random_hex_color_code();
+            // let randomColor
+            // if(item.color == undefined){
+            //     randomColor = random_hex_color_code();
+            //     console.log("asdsadsadsa",item.color);
+            // }
             let total = Number(item.amount);
             return {
                 name: item.name,
                 y: total,
-                color: randomColor,
+                color: chartColor[index],
                 id: item.id
             }
         })
@@ -70,14 +96,25 @@ const RenderChart = () => {
 
     const RenderExpenseSummary = () => {
         let data = processData();
-
+        // useEffect(() => {
+        //     console.log(data);
+        // }, [])
         const renderItem = ({ item }) => {
             return (
-                <TouchableOpacity>
-                    <View>
-                        <Text>{item.name}</Text>
-                    </View>
-                </TouchableOpacity>
+                <ListTouch style={{backgroundColor: (SelectedTransaction && SelectedTransaction.name == item.name) ? item.color : COLOR.primary}} onPress={
+                    ()=> {
+                        let transactionName = item.name
+                        setSelectTransactionByName(transactionName)
+                    }
+                }>
+                        <ListCategoryView>
+                            <ListBoxView style={{backgroundColor: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color}}></ListBoxView>
+                            <ListCategoryText style={{color: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color}}>{item.name}</ListCategoryText>
+                        </ListCategoryView>
+                        <ListCalView>
+                            <Caltext style={{color: (SelectedTransaction && SelectedTransaction.name == item.name) ? COLOR.primary : item.color}}>{item.y} USD - {item.label}</Caltext>
+                        </ListCalView>
+                </ListTouch>
             )
         }
 
@@ -94,7 +131,8 @@ const RenderChart = () => {
 
     const [SelectedTransaction, setSelectedTransaction] = React.useState(null)
     let chartData = processData();
-    let colorScales = chartColor
+    let colorScales = chartData.map((item) => item.color)
+    // let colorScales = chartColor
     return (
         <>
             <ChartContainer>
@@ -106,7 +144,7 @@ const RenderChart = () => {
                     innerRadius={80}
                     labelRadius={({ innerRadius }) => (450 * 0.4 + innerRadius) / 2.5}
                     style={{
-                        labels: { fill: "black" }
+                        labels: { fill: "black" , fontSize: 14, fontWeight: "bold"}
                     }}
                     events={[{
                         target: "data",
