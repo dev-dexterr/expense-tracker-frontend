@@ -62,8 +62,6 @@ const RenderChart = () => {
     }
 
     const processData = (transactiondata) => {
-        // console.log("transactiondata", transactiondata);
-        // console.log("filter Income", FilterIncome);
         let chartData = transactiondata.map((item, index) => {
             // let randomColor = Math.floor(Math.random() * 16777215).toString(16); 
             // let randomColor
@@ -99,11 +97,8 @@ const RenderChart = () => {
         return finalChartData;
     }
 
-    const RenderExpenseSummary = () => {
-        let data = processData();
-        // useEffect(() => {
-        //     console.log(data);
-        // }, [])
+    const RenderExpenseSummary = ({item}) => {
+        let data = processData(item);
         const renderItem = ({ item }) => {
             return (
                 <ListTouch style={{ backgroundColor: (SelectedTransaction && SelectedTransaction.name == item.name) ? item.color : COLOR.primary }} onPress={
@@ -153,7 +148,7 @@ const RenderChart = () => {
                     innerRadius={80}
                     labelRadius={({ innerRadius }) => (450 * 0.4 + innerRadius) / 2.5}
                     style={{
-                        labels: { fill: "black", fontSize: 14, fontWeight: "bold" }
+                        labels: { fill: "white", fontSize: 14, fontWeight: "bold" }
                     }}
                     events={[{
                         target: "data",
@@ -171,14 +166,13 @@ const RenderChart = () => {
                     }]}
                 />
             </ChartContainer>
-            {/* <RenderExpenseSummary /> */}
+            <RenderExpenseSummary item={item}/>
             </>
         )
     }
 
     const [SelectedTransaction, setSelectedTransaction] = useState(null)
-    const arrtest = [{id: ""}]
-    // let colorScales = chartColor
+    const arr = [{id: ""}]
     return (
         <>
             <IEListTextContainer>
@@ -195,13 +189,29 @@ const RenderChart = () => {
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={(item) => item.id}
-                    data={arrtest}
+                    data={arr}
                     ListEmptyComponent={
                         <NoTransaction />
                     }
                     renderItem={({item}) => {
                         return(
                             <PieChart item={FilterIncome}/>
+                        )
+                    }}
+                />
+            )}
+            {selectedTab == 1 && (
+                <FlatList 
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={(item) => item.id}
+                    data={arr}
+                    ListEmptyComponent={
+                        <NoTransaction />
+                    }
+                    renderItem={({item}) => {
+                        return(
+                            <PieChart item={FilterExpense}/>
                         )
                     }}
                 />

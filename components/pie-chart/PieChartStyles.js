@@ -14,6 +14,7 @@ export const IEListText = styled.Text`
     font-weight: bold;
     color: ${COLOR.senary};
     fontFamily: 'Ubuntu-Bold' 
+    padding-bottom: 10px
 `;
 
 export const ChartContainer = styled.View`
