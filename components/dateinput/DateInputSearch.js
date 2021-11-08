@@ -1,28 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { View, Modal, Platform, TouchableOpacity, Touchable } from "react-native";
-import { StyledTextInput, RightIcon, CenteredModalView, ModalView, StyledButton, StyledButtonText, ModalBackgroundButton } from "./DateInputStyles.js";
+import moment from "moment";
+//Redux
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setFilterDate } from "../../utils/redux/actions.js";
+import { StyledTextInput, RightIcon, CenteredModalView, ModalView, StyledButton, StyledButtonText, RightIcon2, ModalBackgroundButton, SearchContainer } from "./DateInputStyles.js";
 import DateTimePicker from '@react-native-community/datetimepicker';
 //Icons
 import { Feather, Ionicons } from "@expo/vector-icons";
 
-const DateInput = () => {
+const DateInput = ({setFilterDate}) => {
+    const filterDate = useSelector((state) => state.filterDate);
+    const transaction = useSelector((state) => state.transaction);
     const [date, setdate] = useState(new Date())
     const [modalVisible, setModalVisible] = useState(false);
     const onChange = (e, newDate) => {
         setdate(newDate);
     };
+    useEffect(() => {
+        console.log(date);
+    }, [])
     return (
         <View>
-            <StyledTextInput editable={false} value="Overall" />
-            <RightIcon onPress={() => setModalVisible(true)}>
-                <Ionicons size={30} name="calendar" />
-            </RightIcon>
-            <DateModalPick modalVisible={modalVisible} setModalVisible={setModalVisible} date={date} onChange={onChange} />
+            <SearchContainer>
+                <StyledTextInput editable={false} value={filterDate ? moment(filterDate).format("YYYY / MMM / DD") : "Overall"} />
+                <RightIcon onPress={() => setModalVisible(true)}>
+                    <Ionicons size={30} name="calendar" />
+                </RightIcon>
+                <RightIcon2>
+                    <TouchableOpacity>
+                        <Feather name="search" size={30} color="black" />
+                    </TouchableOpacity>
+                </RightIcon2>
+                <RightIcon2>
+                    <TouchableOpacity>
+                        <Feather name="refresh-ccw" size={30} color="black" />
+                    </TouchableOpacity>
+                </RightIcon2>
+            </SearchContainer>
+            <DateModalPick modalVisible={modalVisible} setModalVisible={setModalVisible} date={date} onChange={onChange} setFilterDate={setFilterDate}/>
         </View>
     )
 }
 
-const DateModalPick = ({ modalVisible, setModalVisible, date, onChange }) => {
+const DateModalPick = ({ modalVisible, setModalVisible, date, onChange, setFilterDate }) => {
+    const dispatch = useDispatch();
     return (
         <Modal
             animationType="fade"
@@ -47,7 +70,11 @@ const DateModalPick = ({ modalVisible, setModalVisible, date, onChange }) => {
                         onChange={onChange}
                         style={{ width: 330 }}
                     />
-                    <StyledButton logout>
+                    <StyledButton logout onPress={() => {
+                        setModalVisible(!modalVisible);
+                        //dispatch(setFilterDate(date))
+                        setFilterDate(date)
+                    }}>
                         <StyledButtonText>Confirm</StyledButtonText>
                     </StyledButton>
                 </ModalView>

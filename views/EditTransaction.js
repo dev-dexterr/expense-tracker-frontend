@@ -124,7 +124,7 @@ const EditTransaction = ({ route, navigation }) => {
                   <TransactionDollar>$ </TransactionDollar>
                   <TransactionTextInput
                     placeholder={data.amount}
-                    keyboardType="decimal-pad"
+                    keyboardType="number-pad"
                     onBlur={handleBlur("amount")}
                     onChangeText={handleChange("amount")}
                     values={values.amount}

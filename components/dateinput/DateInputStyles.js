@@ -62,3 +62,13 @@ export const ModalBackgroundButton = styled.View`
     left: 162px;
     top: 8px
 `
+
+export const SearchContainer = styled.View`
+    flex-direction: row
+`
+
+export const RightIcon2 = styled.View`
+    align-items: center
+    justify-content: center;
+    margin-left: 35px
+`

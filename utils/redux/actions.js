@@ -5,6 +5,7 @@ export const SET_ROUTENAME = 'SET_ROUTENAME';
 export const SET_USER_ID = 'SET_USER_ID';
 export const SET_TRANSACTION_ID = 'SET_TRANSACTION_ID';
 export const SET_TRANSACTION = 'SET_TRANSACTION';
+export const SET_FILTERDATE = 'SET_FILTERDATE';
 
 export const setUsername = username => dispatch => {
     dispatch({
@@ -52,6 +53,13 @@ export const setTransaction = transaction => dispatch => {
     dispatch({
         type: SET_TRANSACTION,
         payload: transaction
+    })
+}
+
+export const setFilterDate = filterDate => dispatch => {
+    dispatch({
+        type: SET_FILTERDATE,
+        payload: filterDate
     })
 }
 

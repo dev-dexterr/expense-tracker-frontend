@@ -51,6 +51,17 @@ import { useSelector } from "react-redux";
 const Home = ({ navigation }) => {
   const dispatch = useDispatch();
   const { username, userId } = useSelector((state) => state);
+  const [Income, setIncome] = useState(0)
+  const [Expense, setExpense] = useState(0)
+
+  // function calIncome() {
+  //   let filterIncome = transaction.filter((item) => item.type == "Income")
+  //   var income = 0;
+  //   for (var i = 0; i < filterIncome.length; i++) {
+  //     income = income + Number(filterIncome[i].amount)
+  //   }
+  //   setIncome(income)
+  // }
 
   const listTransactions = () => {
     listTransaction({ userprofile: userId })
@@ -60,6 +71,22 @@ const Home = ({ navigation }) => {
             console.log("No Data Found!!!");
             return true;
           }
+          //Calculate Income
+          const filterIncome = res.datas.filter((item) => item.type == "Income")
+          var income = 0;
+          for(var i = 0; i < filterIncome.length; i++){
+            income = income + Number(filterIncome[i].amount)
+          }
+          setIncome(income);
+
+          //Calculate Expense
+          const filterExpense = res.datas.filter((item) => item.type == "Expense")
+          var expense = 0;
+          for(var i = 0; i < filterExpense.length; i++){
+            expense = expense + Number(filterExpense[i].amount)
+          }
+          setExpense(expense)
+
           dispatch(setTransaction(res.datas));
         }
       })
@@ -82,7 +109,7 @@ const Home = ({ navigation }) => {
         <PageTitleName>{username}</PageTitleName>
         <BalanceBackground>
           <BalanceText>
-            <BalanceText2>$</BalanceText2>0
+            <BalanceText2>$ </BalanceText2>{Income - Expense}
           </BalanceText>
           <BalanceText3>Current Balance</BalanceText3>
           <BalanceText4>Available</BalanceText4>
@@ -90,13 +117,13 @@ const Home = ({ navigation }) => {
         <IEContainer>
           <IEBackground IE>
             <IEText1>
-              <BalanceText2>$ </BalanceText2>0
+              <BalanceText2>$ </BalanceText2>{Income}
             </IEText1>
             <IEText2>Income</IEText2>
           </IEBackground>
           <IEBackground>
             <IEText1>
-              <BalanceText2>$ </BalanceText2>0
+              <BalanceText2>$ </BalanceText2>{Expense}
             </IEText1>
             <IEText2>Expense</IEText2>
           </IEBackground>
@@ -107,7 +134,7 @@ const Home = ({ navigation }) => {
   );
 };
 
-const IELists = ({}) => {
+const IELists = ({ }) => {
   const [selectedTab, setselectedTab] = useState(0);
   const IETab = ["All", "Income", "Expense"];
   const transaction = useSelector((state) => state.transaction);
