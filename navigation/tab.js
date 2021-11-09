@@ -25,6 +25,7 @@ import Category from "../views/Category.js";
 import EditTransaction from "../views/EditTransaction";
 import Overview from "../views/Overview";
 import Chart from "../views/Chart";
+import About from "../views/About";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -163,6 +164,20 @@ export default function App() {
       <stack.Screen
         component={Setting}
         name="Setting"
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          gestureEnabled: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <CustomHeader />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <stack.Screen 
+        component={About}
+        name="About"
         options={{
           headerTitle: "",
           headerTransparent: true,

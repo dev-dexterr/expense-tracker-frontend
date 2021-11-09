@@ -12,7 +12,7 @@ const profileMenu = [
     {
         iconName: "help-circle",
         name: "About Us",
-        navigatorName: "AboutUS"
+        navigatorName: "About"
     }
 ];
 

@@ -29,7 +29,7 @@ export const CenteredModalView = styled.View`
 `
 
 export const ModalView = styled.View`
-    background-color: ${COLOR.secondary};
+    background-color: ${COLOR.primary};
     border-radius: 25px;
     align-items: center;
     elevation: 5
@@ -40,7 +40,7 @@ export const ModalView = styled.View`
 
 export const StyledButton = styled.TouchableOpacity`
     padding: 0px;
-    background-color: ${COLOR.primary};
+    background-color: ${COLOR.blue};
     justify-content: center;
     border-radius: 10px;
     margin-vertical: 5px;
@@ -48,7 +48,7 @@ export const StyledButton = styled.TouchableOpacity`
 `;
 
 export const StyledButtonText = styled.Text`
-    color: ${COLOR.secondary};
+    color: ${COLOR.primary};
     font-size: 16px;
     text-align: center;
     font-weight: bold;
@@ -70,5 +70,5 @@ export const SearchContainer = styled.View`
 export const RightIcon2 = styled.View`
     align-items: center
     justify-content: center;
-    margin-left: 35px
+    margin-left: 70px
 `

@@ -96,7 +96,7 @@ export const StyledFormArea = styled.View`
 
 export const StyledButton = styled.TouchableOpacity`
     padding: 15px;
-    background-color: ${COLOR.secondary};
+    background-color: ${props => props.EditAdd ? COLOR.blue : COLOR.expense};;
     justify-content: center;
     border-radius: 10px;
     margin-vertical: 20px;

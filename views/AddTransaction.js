@@ -125,7 +125,7 @@ const AddTransaction = ({ route, navigation }) => {
                     onBlur={handleBlur("remark")}
                     onChangeText={handleChange("remark")}
                   />
-                  <StyledButton onPress={handleSubmit}>
+                  <StyledButton EditAdd onPress={handleSubmit}>
                     <StyledButtonText>Add</StyledButtonText>
                   </StyledButton>
                   <SuccessModal modalVisible={modalVisible} setModalVisible={setModalVisible} />

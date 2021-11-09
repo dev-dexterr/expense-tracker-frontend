@@ -153,7 +153,7 @@ const EditTransaction = ({ route, navigation }) => {
                   onBlur={handleBlur("remark")}
                   onChangeText={handleChange("remark")}
                 />
-                <StyledButton onPress={handleSubmit}>
+                <StyledButton EditAdd onPress={handleSubmit}>
                   <StyledButtonText>Edit</StyledButtonText>
                 </StyledButton>
                 <StyledButton onPress={handleDelete}>

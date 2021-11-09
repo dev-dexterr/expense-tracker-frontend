@@ -3,38 +3,34 @@ import { View, Modal, Platform, TouchableOpacity, Touchable } from "react-native
 import moment from "moment";
 //Redux
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { setFilterDate } from "../../utils/redux/actions.js";
 import { StyledTextInput, RightIcon, CenteredModalView, ModalView, StyledButton, StyledButtonText, RightIcon2, ModalBackgroundButton, SearchContainer } from "./DateInputStyles.js";
 import DateTimePicker from '@react-native-community/datetimepicker';
 //Icons
 import { Feather, Ionicons } from "@expo/vector-icons";
 
-const DateInput = ({setFilterDate}) => {
-    const filterDate = useSelector((state) => state.filterDate);
+const DateInput = ({setFilterDate , setFilterExpense, setFilterIncome, FilterDate}) => {
     const transaction = useSelector((state) => state.transaction);
     const [date, setdate] = useState(new Date())
     const [modalVisible, setModalVisible] = useState(false);
     const onChange = (e, newDate) => {
         setdate(newDate);
     };
-    useEffect(() => {
-        console.log(date);
-    }, [])
+
     return (
         <View>
             <SearchContainer>
-                <StyledTextInput editable={false} value={filterDate ? moment(filterDate).format("YYYY / MMM / DD") : "Overall"} />
+                <StyledTextInput editable={false} value={FilterDate ? moment(FilterDate).format("YYYY / MMM / DD") : "Overall"} />
                 <RightIcon onPress={() => setModalVisible(true)}>
                     <Ionicons size={30} name="calendar" />
                 </RightIcon>
                 <RightIcon2>
-                    <TouchableOpacity>
-                        <Feather name="search" size={30} color="black" />
-                    </TouchableOpacity>
-                </RightIcon2>
-                <RightIcon2>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=> {
+                        var income = transaction.filter((item) => item.type == "Income")
+                        var expense = transaction.filter((item) => item.type == "Expense")
+                        setFilterExpense(expense)
+                        setFilterIncome(income)
+                        setFilterDate("")
+                    }}>
                         <Feather name="refresh-ccw" size={30} color="black" />
                     </TouchableOpacity>
                 </RightIcon2>
@@ -45,7 +41,6 @@ const DateInput = ({setFilterDate}) => {
 }
 
 const DateModalPick = ({ modalVisible, setModalVisible, date, onChange, setFilterDate }) => {
-    const dispatch = useDispatch();
     return (
         <Modal
             animationType="fade"
@@ -69,10 +64,10 @@ const DateModalPick = ({ modalVisible, setModalVisible, date, onChange, setFilte
                         display={Platform.OS === 'ios' ? 'spinner' : 'default'}
                         onChange={onChange}
                         style={{ width: 330 }}
+                        textColor="black"
                     />
                     <StyledButton logout onPress={() => {
                         setModalVisible(!modalVisible);
-                        //dispatch(setFilterDate(date))
                         setFilterDate(date)
                     }}>
                         <StyledButtonText>Confirm</StyledButtonText>
