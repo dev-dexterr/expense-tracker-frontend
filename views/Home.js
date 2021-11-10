@@ -54,15 +54,6 @@ const Home = ({ navigation }) => {
   const [Income, setIncome] = useState(0)
   const [Expense, setExpense] = useState(0)
 
-  // function calIncome() {
-  //   let filterIncome = transaction.filter((item) => item.type == "Income")
-  //   var income = 0;
-  //   for (var i = 0; i < filterIncome.length; i++) {
-  //     income = income + Number(filterIncome[i].amount)
-  //   }
-  //   setIncome(income)
-  // }
-
   const listTransactions = () => {
     listTransaction({ userprofile: userId })
       .then((res) => {

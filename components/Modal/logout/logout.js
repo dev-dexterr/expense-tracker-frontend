@@ -2,13 +2,16 @@ import React from 'react';
 import {Modal, Text, View} from "react-native";
 import {CenteredModalView,ModalView,StyledButton,StyledButtonText} from "./LogoutStyles.js";
 import { setterToken } from "../../../utils/auth.js";
-import { useNavigation } from "@react-navigation/native";
+//Redux
+import { useDispatch } from "react-redux";
+import {setToken} from "../../../utils/redux/actions.js";
+
 
 const LogoutModal = ({ modalVisible, setModalVisible}) => {
-    const navigation = useNavigation();
+    const dispatch = useDispatch();
     const IsLogout = () => {
         setterToken("");
-        navigation.navigate("Login")
+        dispatch(setToken(null))
         setModalVisible(false);
     }
     return(

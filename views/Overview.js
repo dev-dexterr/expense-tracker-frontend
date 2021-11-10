@@ -4,7 +4,6 @@ import COLOR from "../utils/colors.js";
 import { StyledContainer, InnerContainer, IEListTextContainer, IEListText, TransactionContainer, NoTransactionView, OverviewItemWrapper, OverviewLeftWrapper, OverviewRightWrapper } from "../components/OverviewStyles.js";
 
 import { useSelector } from "react-redux";
-import { listTransaction } from "../api/generalAPI.js";
 
 import DateInput from "../components/dateinput/DateInputSearch.js";
 import NoTransaction from "../components/notransaction/NoTransaction.js";

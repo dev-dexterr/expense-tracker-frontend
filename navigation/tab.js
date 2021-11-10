@@ -12,6 +12,9 @@ import { Feather } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
 
+//Redux
+import { shallowEqual, useSelector } from "react-redux";
+
 // Views
 import Login from "../views/Login";
 import Signup from "../views/Signup";
@@ -26,6 +29,7 @@ import EditTransaction from "../views/EditTransaction";
 import Overview from "../views/Overview";
 import Chart from "../views/Chart";
 import About from "../views/About";
+
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -100,6 +104,7 @@ const HomeTabs = () => {
           },
         },
       })}
+      initialRouteName="Home"
     >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Chart" component={Chart} />
@@ -128,25 +133,21 @@ const HomeTabs = () => {
   );
 };
 
-export default function App() {
+export const HomeStack = () => {
   const navigation = useNavigation();
   return (
-    <stack.Navigator>
+    <stack.Navigator 
+    initialRouteName="HomeStack">
       <stack.Screen
         component={HomeTabs}
         name="HomeTabs"
         options={{ headerShown: false, gestureEnabled: false }}
       />
-      <stack.Screen
-        component={Login}
-        name="Login"
+      {/* <stack.Screen 
+        component={AuthStack}
+        name="AuthStack"
         options={{ headerShown: false }}
-      />
-      <stack.Screen
-        component={Signup}
-        name="Signup"
-        options={{ headerShown: false }}
-      />
+      /> */}
       <stack.Screen
         component={ProfileDetail}
         name="ProfileDetail"
@@ -175,7 +176,7 @@ export default function App() {
           ),
         }}
       />
-      <stack.Screen 
+      <stack.Screen
         component={About}
         name="About"
         options={{
@@ -203,14 +204,14 @@ export default function App() {
           ),
         }}
       />
-      <stack.Screen 
+      <stack.Screen
         component={EditTransaction}
         name="EditTransaction"
         options={{
           headerTitle: "",
           headerTransparent: true,
           gestureEnabled: false,
-          headerLeft: ()=> (
+          headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <CustomHeader />
             </TouchableOpacity>
@@ -218,6 +219,34 @@ export default function App() {
         }}
 
       />
+    </stack.Navigator>
+  )
+}
+
+export const Initial = () => {
+  const isToken = useSelector(state => state.token, shallowEqual);
+  return (
+    <stack.Navigator>
+      {isToken != null ?
+        <stack.Group screenOptions={{ headerShown: false }}>
+            <stack.Screen
+            component={HomeStack}
+            name="HomeStack"
+          />
+        </stack.Group>
+        :
+        <stack.Group screenOptions={{ headerShown: false }}>
+          <stack.Screen
+            component={Login}
+            name="Login"
+          />
+          <stack.Screen
+            component={Signup}
+            name="Signup"
+          />
+        </stack.Group>
+
+      }
     </stack.Navigator>
   );
 }

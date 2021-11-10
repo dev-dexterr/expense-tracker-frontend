@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { Store } from "./utils/redux/store";
 import { ActivityIndicator, Text, View } from "react-native";
-import Tabs from "./navigation/tab";
+import {Initial} from "./navigation/tab.js"
 import { NavigationContainer } from "@react-navigation/native";
 import * as Font from "expo-font";
 import { getterToken } from "./utils/auth.js";
@@ -32,11 +32,6 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(async () => {
-      // getterToken().then((res)=> {
-      //   const token = res
-      //   setuserToken(token);
-      //   console.log(`token`, token)
-      // })
       const token = await getterToken();
       if(token != null){
         setuserToken(token);
@@ -53,17 +48,7 @@ export default function App() {
       }
       loadFonts();
     }, 3000);
-
-    // loadFonts();
   }, [userToken]);
-
-  // if(isLoading){
-  //   return(
-  //     <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-  //       <ActivityIndicator size="large" />
-  //     </View>
-  //   )
-  // }
 
   const Loading = () => {
     return (
@@ -78,31 +63,12 @@ export default function App() {
       {fontLoaded ? (
         <Provider store={Store}>
           <NavigationContainer>
-            {userToken != null ? (
-              <Tabs />
-            ) : 
-              <Tabs/>
-            }
+            <Initial />
           </NavigationContainer>
         </Provider>
       ) : (
         <Loading />
       )}
     </>
-    // <>
-    //   {fontLoaded ? (
-    //     <Provider store={Store}>
-    //       {userToken != null ? (
-    //         <NavigationContainer>
-    //           <Tabs />
-    //         </NavigationContainer>
-    //       ) : (
-    //          <RootStackScreen/>
-    //       )}
-    //     </Provider>
-    //   ) : (
-    //     <Loading />
-    //   )}
-    // </>
   );
 }

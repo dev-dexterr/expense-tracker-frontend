@@ -39,7 +39,6 @@ import TextInput from "../components/textinput/TextInput.js";
 const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const navigation = useNavigation();
-  // const token = useSelector(state => state.token, shallowEqual);//this is the recommend way in react components
   const dispatch = useDispatch();
   const handleLogin = async (credentials, setSubmitting) => {
     login(credentials)
@@ -50,11 +49,11 @@ const Login = () => {
         dispatch(setID(data.login))
         setterToken(data.token);
         dispatch(setToken(data.token))
-        // setTimeout(()=>{
-        //   navigation.navigate("HomeTabs");
-        //   console.log("Logged!!!!!!!");
-        //   setSubmitting(false);
-        // },1000)
+        setTimeout(()=>{
+          navigation.navigate("HomeStack");
+          console.log("Logged!!!!!!!");
+          setSubmitting(false);
+        },2000)
       })
       .catch((err) => {
         setSubmitting(false);
