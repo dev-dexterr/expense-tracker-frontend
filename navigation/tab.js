@@ -29,7 +29,7 @@ import EditTransaction from "../views/EditTransaction";
 import Overview from "../views/Overview";
 import Chart from "../views/Chart";
 import About from "../views/About";
-
+import OnBoarding from "../views/Onboarding";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -227,7 +227,7 @@ export const Initial = () => {
   const isToken = useSelector(state => state.token, shallowEqual);
   return (
     <stack.Navigator>
-      {isToken != null ?
+      {/* {isToken != null ?
         <stack.Group screenOptions={{ headerShown: false }}>
             <stack.Screen
             component={HomeStack}
@@ -245,8 +245,13 @@ export const Initial = () => {
             name="Signup"
           />
         </stack.Group>
-
-      }
+      } */}
+      <stack.Screen 
+        
+        component={OnBoarding}
+        name="OnBoarding"
+        options={{headerShown: false}}
+      />
     </stack.Navigator>
   );
 }
