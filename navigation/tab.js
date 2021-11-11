@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -136,8 +136,8 @@ const HomeTabs = () => {
 export const HomeStack = () => {
   const navigation = useNavigation();
   return (
-    <stack.Navigator 
-    initialRouteName="HomeStack">
+    <stack.Navigator
+      initialRouteName="HomeStack">
       <stack.Screen
         component={HomeTabs}
         name="HomeTabs"
@@ -223,19 +223,28 @@ export const HomeStack = () => {
   )
 }
 
-export const Initial = () => {
+export const Initial = ({ isAppFirstLaunched }) => {
   const isToken = useSelector(state => state.token, shallowEqual);
+  // useEffect(() => {
+  //   console.log("test", isAppFirstLaunched);
+  // }, [isAppFirstLaunched])
   return (
     <stack.Navigator>
-      {/* {isToken != null ?
+      {isToken != null ?
         <stack.Group screenOptions={{ headerShown: false }}>
-            <stack.Screen
+          <stack.Screen
             component={HomeStack}
             name="HomeStack"
           />
         </stack.Group>
         :
         <stack.Group screenOptions={{ headerShown: false }}>
+          {isAppFirstLaunched && (
+            <stack.Screen
+              component={OnBoarding}
+              name="OnBoarding"
+              options={{ headerShown: false }}
+            />)}
           <stack.Screen
             component={Login}
             name="Login"
@@ -245,13 +254,7 @@ export const Initial = () => {
             name="Signup"
           />
         </stack.Group>
-      } */}
-      <stack.Screen 
-        
-        component={OnBoarding}
-        name="OnBoarding"
-        options={{headerShown: false}}
-      />
+      }
     </stack.Navigator>
   );
 }
