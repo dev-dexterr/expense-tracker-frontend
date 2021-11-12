@@ -8,7 +8,8 @@ const colors = {
     septenary: '#e8ecf0',
     income: '#00a88d',
     expense: '#e94e63',
-    blue: '#3a4453'
+    blue: '#3a4453',
+    darkgrey: '#A9A9A9'
 }
 
 export default colors;

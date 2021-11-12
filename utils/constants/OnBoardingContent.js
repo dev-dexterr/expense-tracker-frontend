@@ -1,21 +1,21 @@
 const slides = [
   {
     id: "1",
-    title: "Test 0",
-    subtitle: "Loren ipsum dolor sit amet,asdas dasdas",
-    image: require("../../assets/Leprechaun-cuate.png"),
+    title: "Be Easier to Manage \n Your Own Money",
+    subtitle: "Just using your phone, you can manage \n all your cash more easy and detail",
+    image: require("../../assets/onboard1.png"),
   },
   {
     id: "2",
-    title: "Test 1",
-    subtitle: "Loren ipsum dolor sit amet,asdas dasdasd",
-    image: require("../../assets/Leprechaun-cuate.png"),
+    title: "Safe And Secure",
+    subtitle: "All personal data are safely \n and securely stored in our system",
+    image: require("../../assets/onboard2.png"),
   },
   {
     id: "3",
-    title: "Test 2",
-    subtitle: "Loren ipsum dolor sit amet,asdas dasdasd",
-    image: require("../../assets/Leprechaun-cuate.png"),
+    title: "Track Your Bills Like \n Never Before",
+    subtitle: "Builds a personalized budget. \n based on your income, bills and goals you set",
+    image: require("../../assets/onboard3.png"),
   },
 ];
 

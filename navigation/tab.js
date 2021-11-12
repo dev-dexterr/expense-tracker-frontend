@@ -230,7 +230,7 @@ export const Initial = ({ isAppFirstLaunched }) => {
   // }, [isAppFirstLaunched])
   return (
     <stack.Navigator>
-      {isToken != null ?
+      {/* {isToken != null ?
         <stack.Group screenOptions={{ headerShown: false }}>
           <stack.Screen
             component={HomeStack}
@@ -254,7 +254,11 @@ export const Initial = ({ isAppFirstLaunched }) => {
             name="Signup"
           />
         </stack.Group>
-      }
+      } */}
+      <stack.Screen
+              component={OnBoarding}
+              name="OnBoarding"
+              options={{ headerShown: false }} />
     </stack.Navigator>
   );
 }

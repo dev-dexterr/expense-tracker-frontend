@@ -34,7 +34,7 @@ const Slide = ({ item }) => {
     <SlideContainer style={{ alignItems: "center" }}>
       <Image
         source={item.image}
-        style={{ height: "65%", width, resizeMode: "contain" }}
+        style={{ height: "70%", width, resizeMode: "contain" }}
       />
       <SlideTextContainer>
         <SlideTitle>{item.title}</SlideTitle>
@@ -57,7 +57,7 @@ const OnBoarding = ({navigation}) => {
           <FooterContainer>
             {slides.map((_, index) => (
               <FooterIndicator key={index} style={[CurrentSlideIndex == index && {
-                backgroundColor: COLOR.expense,
+                backgroundColor: COLOR.quinary,
                 width: 22
               }]} />
             ))}
@@ -72,8 +72,8 @@ const OnBoarding = ({navigation}) => {
             </FooterButtonView2>
             :
             <FooterButtonView>
-              <FooterBtn onPress={skipSlide} style={{ backgroundColor: 'transparent', borderWidth: 2, borderColor: COLOR.expense }}>
-                <FooterBtnText style={{ color: COLOR.expense }}>Skip</FooterBtnText>
+              <FooterBtn onPress={skipSlide} style={{ backgroundColor: 'transparent', borderWidth: 2, borderColor: COLOR.blue }}>
+                <FooterBtnText style={{ color: COLOR.blue }}>Skip</FooterBtnText>
               </FooterBtn>
               <View style={{ width: 20 }} />
               <FooterBtn onPress={goNextSlide}>
@@ -118,7 +118,7 @@ const OnBoarding = ({navigation}) => {
         data={slides}
         keyExtractor={(item) => item.id}
         horizontal
-        contentContainerStyle={{ height: height * 0.65 }}
+        contentContainerStyle={{ height: height * 0.75 }}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {

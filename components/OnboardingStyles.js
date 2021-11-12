@@ -23,19 +23,23 @@ export const SlideTextContainer = styled.View`
 export const SlideTitle = styled.Text`
     color: ${COLOR.secondary};
     font-weight: bold;
-    font-size: 25px;
+    font-size: 28px;
     fontFamily: 'Ubuntu-Bold'
-    padding: 0px 20px 10px 20px;
+    padding: 20px 20px 20px 20px;
+    max-width: 90%;
+    text-align: center;
+    line-height: 35px;
 `
 
 export const SlideSubTitle = styled.Text`
     color: ${COLOR.secondary};
     fontFamily: 'Roboto-Light';
-    font-size: 16px;
-    padding: 10px 20px 20px 20px;
+    font-size: 17px;
+    padding: 10px 0px 20px 0px;
     max-width: 90%;
     text-align: center;
     line-height: 25px;
+    height: 120px
 `
 
 export const FooterView = styled.View`
@@ -55,7 +59,7 @@ export const FooterIndicator = styled.View`
     height: 3px;
     width: 10px;
     border-radius: 10px;
-    background-color: ${COLOR.secondary}
+    background-color: ${COLOR.darkgrey}
 `
 
 export const FooterButtoncontainer = styled.View`
@@ -76,7 +80,7 @@ export const FooterBtn = styled.TouchableOpacity`
     border-radius: 10px;
     align-items: center;
     justify-content: center; 
-    background-color: ${COLOR.expense}
+    background-color: ${COLOR.blue}
 `
 
 export const FooterBtnText = styled.Text`
