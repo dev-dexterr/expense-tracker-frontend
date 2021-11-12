@@ -30,7 +30,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    AsyncStorage.clear();
+    //AsyncStorage.clear();
     setTimeout(async () => {
       const appData = await AsyncStorage.getItem('isAppFirstLaunched');
       if (appData == null) {

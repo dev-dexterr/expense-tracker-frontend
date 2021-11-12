@@ -30,6 +30,7 @@ import Overview from "../views/Overview";
 import Chart from "../views/Chart";
 import About from "../views/About";
 import OnBoarding from "../views/Onboarding";
+import PasswordChange from "../views/ProfilePasswordChange";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,16 +70,16 @@ const HomeTabs = () => {
 
           if (route.name == "Home") {
             iconName = focused ? "home" : "home";
-            color = focused ? "black" : "grey";
+            color = focused ? COLOR.blue : COLOR.senary;
           } else if (route.name == "Chart") {
             iconName = focused ? "pie-chart" : "pie-chart";
-            color = focused ? "black" : "grey";
+            color = focused ? COLOR.blue : COLOR.senary;
           } else if (route.name == "Overview") {
             iconName = focused ? "file" : "file";
-            color = focused ? "black" : "grey";
+            color = focused ? COLOR.blue : COLOR.senary;
           } else if (route.name == "Profile") {
             iconName = focused ? "user" : "user";
-            color = focused ? "black" : "grey";
+            color = focused ? COLOR.blue : COLOR.senary;
           }
 
           return <Feather name={iconName} size={25} color={color} />;
@@ -143,14 +144,23 @@ export const HomeStack = () => {
         name="HomeTabs"
         options={{ headerShown: false, gestureEnabled: false }}
       />
-      {/* <stack.Screen 
-        component={AuthStack}
-        name="AuthStack"
-        options={{ headerShown: false }}
-      /> */}
       <stack.Screen
         component={ProfileDetail}
         name="ProfileDetail"
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          gestureEnabled: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <CustomHeader />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <stack.Screen 
+        component={PasswordChange}
+        name="PasswordChange"
         options={{
           headerTitle: "",
           headerTransparent: true,
@@ -230,7 +240,7 @@ export const Initial = ({ isAppFirstLaunched }) => {
   // }, [isAppFirstLaunched])
   return (
     <stack.Navigator>
-      {/* {isToken != null ?
+      {isToken != null ?
         <stack.Group screenOptions={{ headerShown: false }}>
           <stack.Screen
             component={HomeStack}
@@ -248,17 +258,23 @@ export const Initial = ({ isAppFirstLaunched }) => {
           <stack.Screen
             component={Login}
             name="Login"
+            options={{
+              gestureEnabled: false,
+            }}
           />
           <stack.Screen
             component={Signup}
             name="Signup"
+            options={{
+              gestureEnabled: false,
+            }}
           />
         </stack.Group>
-      } */}
-      <stack.Screen
+      }
+      {/* <stack.Screen
               component={OnBoarding}
               name="OnBoarding"
-              options={{ headerShown: false }} />
+              options={{ headerShown: false }} /> */}
     </stack.Navigator>
   );
 }

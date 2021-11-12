@@ -49,11 +49,6 @@ const Login = () => {
         dispatch(setID(data.login))
         setterToken(data.token);
         dispatch(setToken(data.token))
-        setTimeout(()=>{
-          navigation.navigate("HomeStack");
-          console.log("Logged!!!!!!!");
-          setSubmitting(false);
-        },2000)
       })
       .catch((err) => {
         setSubmitting(false);

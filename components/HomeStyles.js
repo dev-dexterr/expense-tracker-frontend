@@ -25,13 +25,12 @@ export const PageTitle = styled.Text`
     color: ${COLOR.secondary};
     padding: 10px;
     margin-bottom: -20px;
-    letter-spacing: 1.5px;
     fontFamily: 'Roboto-Light'
 `
 export const PageTitleName = styled.Text`
     font-size: 40px;
     text-align: left;
-    color: ${COLOR.secondary};
+    color: ${COLOR.blue};
     padding: 10px;
     margin-bottom: 10px;
     letter-spacing: 1px;

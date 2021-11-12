@@ -112,16 +112,16 @@ export const StyledFormArea = styled.View`
 
 export const StyledButton = styled.TouchableOpacity`
     padding: 15px;
-    background-color: ${COLOR.secondary};
+    background-color: ${COLOR.blue};
     justify-content: center;
     border-radius: 10px;
-    margin-vertical: 40px;
+    margin-vertical: 20px;
     height: 60px;
 `;
 
 export const StyledButtonText = styled.Text`
     color: ${COLOR.primary};
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     font-weight: bold;
     fontFamily: 'Ubuntu-Bold'

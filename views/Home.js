@@ -35,6 +35,8 @@ import {
   NoTransactionView,
 } from "../components/HomeStyles";
 
+import moment from "moment";
+
 //Lottie
 import LottieView from "lottie-react-native";
 
@@ -53,7 +55,22 @@ const Home = ({ navigation }) => {
   const { username, userId } = useSelector((state) => state);
   const [Income, setIncome] = useState(0)
   const [Expense, setExpense] = useState(0)
+  const [Greeting, setGreeting] = useState("")
 
+  const generateGreeting = () => {
+    var currentHour = moment().format("HH");
+    if (currentHour >= 3 && currentHour < 12) {
+      setGreeting("Good Morning");
+    } else if (currentHour >= 12 && currentHour < 15) {
+      setGreeting("Good Afternoon");
+    } else if (currentHour >= 15 && currentHour < 20) {
+      setGreeting("Good Evening");
+    } else if (currentHour >= 20 && currentHour < 3) {
+      setGreeting("Good Night");
+    } else {
+      setGreeting("Hello")
+    }
+  }
   const listTransactions = () => {
     listTransaction({ userprofile: userId })
       .then((res) => {
@@ -65,7 +82,7 @@ const Home = ({ navigation }) => {
           //Calculate Income
           const filterIncome = res.datas.filter((item) => item.type == "Income")
           var income = 0;
-          for(var i = 0; i < filterIncome.length; i++){
+          for (var i = 0; i < filterIncome.length; i++) {
             income = income + Number(filterIncome[i].amount)
           }
           setIncome(income);
@@ -73,7 +90,7 @@ const Home = ({ navigation }) => {
           //Calculate Expense
           const filterExpense = res.datas.filter((item) => item.type == "Expense")
           var expense = 0;
-          for(var i = 0; i < filterExpense.length; i++){
+          for (var i = 0; i < filterExpense.length; i++) {
             expense = expense + Number(filterExpense[i].amount)
           }
           setExpense(expense)
@@ -87,6 +104,7 @@ const Home = ({ navigation }) => {
   }
   useEffect(() => {
     listTransactions();
+    generateGreeting();
     const unsubscribe = navigation.addListener('focus', () => {
       listTransactions();
     });
@@ -96,7 +114,7 @@ const Home = ({ navigation }) => {
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
-        <PageTitle>Hello,</PageTitle>
+        <PageTitle>{Greeting},</PageTitle>
         <PageTitleName>{username}</PageTitleName>
         <BalanceBackground>
           <BalanceText>
