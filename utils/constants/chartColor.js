@@ -1,4 +1,10 @@
 const chartColor = [
+    "#CF787F",
+    "#9094E0",
+    "#86D062",
+    "#DCBE79",
+    "#73ADA6",
+    "#D7D7D4",
     "tomato",
     "orange",
     "gold",

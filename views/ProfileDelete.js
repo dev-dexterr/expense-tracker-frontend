@@ -8,7 +8,7 @@ import { meta } from "../utils/enum.js";
 import { deleteUser } from "../api/generalAPI.js";
 //Text Input
 import TextInput from "../components/textinput/TextInput.js";
-import { StyledContainer, ProfileDetailTitle, InnerContainer, StyledButton, StyledButtonText, OptionTouch, SettingTitle, DeleteWarning, StyledFormArea } from "../components/ProfileStyles.js";
+import { StyledContainer, WarningB, ProfileDetailTitle, InnerContainer, StyledButton, StyledButtonText, OptionTouch, SettingTitle, DeleteWarning, StyledFormArea } from "../components/ProfileStyles.js";
 
 import { useDispatch } from "react-redux";
 import {setToken, setUsername , setEmail , setTID , setTransaction} from "../utils/redux/actions.js";
@@ -41,7 +41,7 @@ const ProfileDelete = () => {
             <InnerContainer>
                 <ProfileDetailTitle style={{ color: COLOR.expense }}>Delete Profile</ProfileDetailTitle>
                 <DeleteWarning>Once you delete your account, there is no going back. Please be certain.</DeleteWarning>
-                <DeleteWarning>We will immediately delete all of your transaction, along with all of your profile detail.</DeleteWarning>
+                <DeleteWarning>We will immediately delete all of your <WarningB>transaction</WarningB>, along with all of your <WarningB>profile detail</WarningB>.</DeleteWarning>
                 <Formik
                     initialValues={{ username: "", userprofile: "" }}
                     onSubmit={(values, { setSubmitting, resetForm }) => {

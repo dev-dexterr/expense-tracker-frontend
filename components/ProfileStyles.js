@@ -18,8 +18,8 @@ export const InnerContainer = styled.View`
 `
 
 export const UserImg = styled.Image`
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50px;
 `
 
@@ -147,12 +147,16 @@ export const SettingSubTitle = styled.Text`
 
 export const DeleteWarning = styled.Text`
     color: ${COLOR.secondary};
-    font-size: 20px;
+    font-size: 17px;
     top: -30px
     text-align:left;
     font-weight: bold;
     padding: 0px 0px 5px 10px;
     fontFamily: 'Roboto-Light'
     padding-bottom: 25px;
+`
+
+export const WarningB = styled.Text`
+    color: ${COLOR.expense};
 `
 

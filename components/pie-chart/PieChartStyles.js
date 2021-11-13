@@ -44,9 +44,9 @@ export const ListBoxView = styled.View`
 `
 
 export const ListCategoryText = styled.Text`
-    font-size: 15px;
+    font-size: 16px;
     margin-left: 10px;
-    fontFamily: 'Ubuntu-Bold'
+    fontFamily: 'Roboto-Light'
 `
 
 export const ListCalView = styled.View`
@@ -54,7 +54,7 @@ export const ListCalView = styled.View`
 `
 
 export const Caltext = styled.Text`
-    font-size: 15px;
-    fontFamily: 'Ubuntu-Bold'
+    font-size: 16px;
+    fontFamily: 'Roboto-Light'
     margin-right: 10px;
 `

@@ -46,7 +46,7 @@ const Profile = ({ navigation }) => {
       <StatusBar style="dark" />
       <InnerContainer>
         <UserInfo>
-          <UserImg source={require("../assets/default-user-image.png")} />
+          <UserImg source={require("../assets/avatar-circle.png")} />
           {/* <UserImgBackground>
             <LottieView style={{aspectRatio: 1, marginVertical: '-10%' }}
               source={require('../assets/icons/63065-profile-in-out.json')}

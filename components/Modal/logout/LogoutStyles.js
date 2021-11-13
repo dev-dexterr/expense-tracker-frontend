@@ -22,7 +22,7 @@ justify-content: center;
 
 export const StyledButton = styled.TouchableOpacity`
     padding: 15px;
-    background-color: ${props => props.logout ? COLOR.expense : COLOR.secondary};
+    background-color: ${props => props.logout ? COLOR.expense : COLOR.blue};
     justify-content: center;
     border-radius: 10px;
     margin-vertical: 10px;

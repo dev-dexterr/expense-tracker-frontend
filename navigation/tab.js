@@ -76,10 +76,10 @@ const HomeTabs = () => {
             iconName = focused ? "pie-chart" : "pie-chart";
             color = focused ? COLOR.blue : COLOR.senary;
           } else if (route.name == "Overview") {
-            iconName = focused ? "file" : "file";
+            iconName = focused ? "clipboard" : "clipboard";
             color = focused ? COLOR.blue : COLOR.senary;
           } else if (route.name == "Profile") {
-            iconName = focused ? "user" : "user";
+            iconName = focused ? "menu" : "menu";
             color = focused ? COLOR.blue : COLOR.senary;
           }
 
