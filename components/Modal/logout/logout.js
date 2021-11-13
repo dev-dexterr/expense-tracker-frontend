@@ -4,7 +4,8 @@ import {CenteredModalView,ModalView,StyledButton,StyledButtonText} from "./Logou
 import { setterToken } from "../../../utils/auth.js";
 //Redux
 import { useDispatch } from "react-redux";
-import {setToken} from "../../../utils/redux/actions.js";
+import {setToken, setUsername , setEmail , setTID , setTransaction} from "../../../utils/redux/actions.js";
+
 
 
 const LogoutModal = ({ modalVisible, setModalVisible}) => {
@@ -12,6 +13,10 @@ const LogoutModal = ({ modalVisible, setModalVisible}) => {
     const IsLogout = () => {
         setterToken("");
         dispatch(setToken(null))
+        dispatch(setUsername(null))
+        dispatch(setEmail(null))
+        dispatch(setTID(null))
+        dispatch(setTransaction([]))
         setModalVisible(false);
     }
     return(

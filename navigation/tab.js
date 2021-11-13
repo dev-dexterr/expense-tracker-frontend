@@ -19,7 +19,7 @@ import { shallowEqual, useSelector } from "react-redux";
 import Login from "../views/Login";
 import Signup from "../views/Signup";
 import Home from "../views/Home";
-import Profile from "../views/Profile";
+import Profile from "../views/Profile.js";
 import ProfileDetail from "../views/ProfileDetail";
 import Setting from "../views/Settings";
 import CustomHeader from "../components/customheader/CustomHeader";
@@ -31,6 +31,7 @@ import Chart from "../views/Chart";
 import About from "../views/About";
 import OnBoarding from "../views/Onboarding";
 import PasswordChange from "../views/ProfilePasswordChange";
+import ProfileDelete from "../views/ProfileDelete";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -158,9 +159,23 @@ export const HomeStack = () => {
           ),
         }}
       />
-      <stack.Screen 
+      <stack.Screen
         component={PasswordChange}
         name="PasswordChange"
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          gestureEnabled: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <CustomHeader />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <stack.Screen 
+        component={ProfileDelete}
+        name="ProfileDelete"
         options={{
           headerTitle: "",
           headerTransparent: true,

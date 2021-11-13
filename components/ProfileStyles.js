@@ -126,3 +126,33 @@ export const StyledButtonText = styled.Text`
     font-weight: bold;
     fontFamily: 'Ubuntu-Bold'
 `
+
+export const SettingTitle = styled.Text`
+    color: ${COLOR.secondary};
+    font-size: 20px;
+    text-align: left;
+    font-weight: bold;
+    padding: 0px 0px 10px 10px;
+    fontFamily: 'Ubuntu-Bold'
+`
+
+export const SettingSubTitle = styled.Text`
+    color: ${COLOR.secondary};
+    font-size: 16px;
+    text-align: left;
+    font-weight: bold;
+    padding: 0px 0px 5px 10px;
+    fontFamily: 'Roboto-Light'
+`
+
+export const DeleteWarning = styled.Text`
+    color: ${COLOR.secondary};
+    font-size: 20px;
+    top: -30px
+    text-align:left;
+    font-weight: bold;
+    padding: 0px 0px 5px 10px;
+    fontFamily: 'Roboto-Light'
+    padding-bottom: 25px;
+`
+

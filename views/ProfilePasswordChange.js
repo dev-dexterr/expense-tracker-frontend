@@ -55,7 +55,7 @@ const PasswordChange = ({ navigation }) => {
   return (
     <StyledContainer>
       <InnerContainer>
-        <ProfileDetailTitle>Password</ProfileDetailTitle>
+        <ProfileDetailTitle>Edit Password</ProfileDetailTitle>
         <SuccessModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}

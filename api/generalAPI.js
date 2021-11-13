@@ -48,6 +48,13 @@ export function deleteTransaction(id){
     })
 }
 
+export function deleteUser(id){
+    return request({
+        url: api.DELETE_USER + `${id}`,
+        method: "delete"
+    })
+}
+
 export function getUserInfo(){
     return request({
         url: api.GET_USERINFO,

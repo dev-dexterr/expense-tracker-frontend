@@ -13,7 +13,8 @@ const BACKEND_API = {
   DELETE_Transaction: "/transaction/delete/",
   GET_USERINFO: "/user/info",
   RESETPWD: "/user/resetpwd",
-  EDIT_USER: "/user/edit"
+  EDIT_USER: "/user/edit",
+  DELETE_USER: "/user/delete/"
 };
 
 export default BACKEND_API;
