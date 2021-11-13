@@ -11,7 +11,9 @@ const BACKEND_API = {
   LIST_TRANSACTION: "/transaction/list",
   EDIT_Transaction: "/transaction/edit",
   DELETE_Transaction: "/transaction/delete/",
-  GET_USERINFO: "/user/info"
+  GET_USERINFO: "/user/info",
+  RESETPWD: "/user/resetpwd",
+  EDIT_USER: "/user/edit"
 };
 
 export default BACKEND_API;

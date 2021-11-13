@@ -54,3 +54,19 @@ export function getUserInfo(){
         method: "get"
     })
 }
+
+export function resetPwd(data){
+    return request({
+        url: api.RESETPWD,
+        method: "post",
+        data: data
+    })
+}
+
+export function editUser(data){
+    return request({
+        url: api.EDIT_USER,
+        method: "post",
+        data: data
+    })
+}
