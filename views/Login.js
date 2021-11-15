@@ -64,7 +64,7 @@ const Login = () => {
           <PageTitle>Log in {">>"} </PageTitle>
           <SubTitle>Continue where you stopped!</SubTitle>
           <Formik
-            initialValues={{ username: "dexter", password: "123456" }}
+            initialValues={{ username: "", password: "" }}
             onSubmit={(values, { setSubmitting }) => {
               if (values.username == "" || values.password == "") {
                 console.log("Please Fill in the Fields");
@@ -102,9 +102,9 @@ const Login = () => {
                   hidePassword={hidePassword}
                   setHidePassword={setHidePassword}
                 />
-                <ForgetView>
+                {/* <ForgetView>
                   <ForgetText>Forget Password?</ForgetText>
-                </ForgetView>
+                </ForgetView> */}
                 {!isSubmitting && (
                   <StyledButton onPress={handleSubmit}>
                     <StyledButtonText>Login</StyledButtonText>
