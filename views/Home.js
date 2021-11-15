@@ -33,6 +33,7 @@ import {
   IEIconBackground,
   IEIcon,
   NoTransactionView,
+  IEMainContainer
 } from "../components/HomeStyles";
 
 import moment from "moment";
@@ -150,8 +151,7 @@ const IELists = ({ }) => {
   const FilterIncome = transaction.filter((item) => item.type == "Income");
   const FilterExpense = transaction.filter((item) => item.type == "Expense");
   return (
-    <StyledContainer>
-      <InnerContainer>
+    <IEMainContainer>
         <IEListTextContainer>
           {IETab.map((ie, index) => (
             <TouchableOpacity key={index} onPress={() => setselectedTab(index)}>
@@ -253,8 +253,7 @@ const IELists = ({ }) => {
             />
           </TransactionContainer>
         )}
-      </InnerContainer>
-    </StyledContainer>
+        </IEMainContainer>
   );
 };
 

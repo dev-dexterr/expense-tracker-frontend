@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {
   StyledContainer,
@@ -7,11 +7,8 @@ import {
   PageTitle,
   SubTitle,
   StyledFormArea,
-  StyledTextInput,
-  StyledInputLabel,
   StyledButton,
   StyledButtonText,
-  RightIcon,
   ExtraView,
   ExtraText,
   ExtraTextLink,
@@ -24,9 +21,6 @@ import { Formik } from "formik";
 import TextInput from "../components/textinput/TextInput.js";
 
 import { register } from "../api/generalAPI.js";
-
-//Keyboard Avoiding View
-import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 
 const Signup = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -43,7 +37,6 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingWrapper>
       <StyledContainer>
         <StatusBar style="dark" />
         <InnerContainer>
@@ -124,7 +117,6 @@ const Signup = ({ navigation }) => {
           </Formik>
         </InnerContainer>
       </StyledContainer>
-    </KeyboardAvoidingWrapper>
   );
 };
 

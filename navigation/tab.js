@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Text, TouchableOpacity, View, Image } from "react-native";
+import { Text, TouchableOpacity, View, Image, Platform } from "react-native";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useWindowDimensions } from 'react-native';
 
 import plus from "../assets/plus.png";
 import COLOR from '../utils/colors.js';
@@ -61,6 +62,7 @@ const CustomTabBarButton = ({ children, onPress }) => {
 };
 
 const HomeTabs = () => {
+  const { height, width } = useWindowDimensions();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -149,98 +151,56 @@ export const HomeStack = () => {
         component={ProfileDetail}
         name="ProfileDetail"
         options={{
-          headerTitle: "",
-          headerTransparent: true,
+          headerShown:false,
           gestureEnabled: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <CustomHeader />
-            </TouchableOpacity>
-          ),
         }}
       />
       <stack.Screen
         component={PasswordChange}
         name="PasswordChange"
         options={{
-          headerTitle: "",
-          headerTransparent: true,
+          headerShown:false,
           gestureEnabled: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <CustomHeader />
-            </TouchableOpacity>
-          ),
         }}
       />
       <stack.Screen 
         component={ProfileDelete}
         name="ProfileDelete"
         options={{
-          headerTitle: "",
-          headerTransparent: true,
+          headerShown:false,
           gestureEnabled: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <CustomHeader />
-            </TouchableOpacity>
-          ),
         }}
       />
       <stack.Screen
         component={Setting}
         name="Setting"
         options={{
-          headerTitle: "",
-          headerTransparent: true,
+          headerShown:false,
           gestureEnabled: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <CustomHeader />
-            </TouchableOpacity>
-          ),
         }}
       />
       <stack.Screen
         component={About}
         name="About"
         options={{
-          headerTitle: "",
-          headerTransparent: true,
+          headerShown:false,
           gestureEnabled: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <CustomHeader />
-            </TouchableOpacity>
-          ),
         }}
       />
       <stack.Screen
         component={Category}
         name="Category"
         options={{
-          headerTitle: "",
-          headerTransparent: true,
+          headerShown:false,
           gestureEnabled: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <CustomHeader />
-            </TouchableOpacity>
-          ),
         }}
       />
       <stack.Screen
         component={EditTransaction}
         name="EditTransaction"
         options={{
-          headerTitle: "",
-          headerTransparent: true,
+          headerShown:false,
           gestureEnabled: false,
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <CustomHeader />
-            </TouchableOpacity>
-          ),
         }}
 
       />
@@ -281,7 +241,7 @@ export const Initial = ({ isAppFirstLaunched }) => {
             component={Signup}
             name="Signup"
             options={{
-              gestureEnabled: false,
+              gestureEnabled: true,
             }}
           />
         </stack.Group>

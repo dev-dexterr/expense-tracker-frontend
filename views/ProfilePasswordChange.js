@@ -5,7 +5,8 @@ import {
   Platform,
   SafeAreaView,
   TouchableWithoutFeedback,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import {
   StyledContainer,
@@ -26,7 +27,7 @@ import SuccessModal from "../components/Modal/Success/success.js";
 import { shallowEqual, useSelector } from "react-redux";
 
 import { Formik } from "formik";
-
+import CustomHeader from "../components/customheader/CustomHeader";
 import { resetPwd } from "../api/generalAPI";
 
 const PasswordChange = ({ navigation }) => {
@@ -55,7 +56,10 @@ const PasswordChange = ({ navigation }) => {
   return (
     <StyledContainer>
       <InnerContainer>
-        <ProfileDetailTitle>Edit Password</ProfileDetailTitle>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <CustomHeader label="Edit Password" />
+        </TouchableOpacity>
+        {/* <ProfileDetailTitle>Edit Password</ProfileDetailTitle> */}
         <SuccessModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
@@ -69,7 +73,10 @@ const PasswordChange = ({ navigation }) => {
           }}
           onSubmit={(values, { setSubmitting, resetForm }, actions) => {
             if (
-              values.newPassword == "" || values.confirmPassword == "" || values.oldPassword == "" || values == ""
+              values.newPassword == "" ||
+              values.confirmPassword == "" ||
+              values.oldPassword == "" ||
+              values == ""
             ) {
               console.log("Please Fill in the Fields");
               setSubmitting(false);
@@ -80,12 +87,18 @@ const PasswordChange = ({ navigation }) => {
               values.userprofile = user_id;
               handleReset(values, setSubmitting);
               setTimeout(() => {
-                resetForm({values: ""});
+                resetForm({ values: "" });
               }, 3000);
             }
           }}
         >
-          {({ handleBlur, handleChange, handleSubmit, values, isSubmitting }) => (
+          {({
+            handleBlur,
+            handleChange,
+            handleSubmit,
+            values,
+            isSubmitting,
+          }) => (
             <SafeAreaView>
               <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}

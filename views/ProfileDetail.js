@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Keyboard, KeyboardAvoidingView, Platform, SafeAreaView, TouchableWithoutFeedback,ActivityIndicator } from "react-native";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  ActivityIndicator,
+  TouchableOpacity
+} from "react-native";
 import {
   StyledContainer,
   InnerContainer,
@@ -16,7 +24,7 @@ import TextInput from "../components/textinput/TextInput.js";
 import { useNavigation } from "@react-navigation/native";
 
 import SuccessModal from "../components/Modal/Success/success.js";
-
+import CustomHeader from "../components/customheader/CustomHeader";
 import { editUser } from "../api/generalAPI";
 import { meta } from "../utils/enum.js";
 //Redux
@@ -24,7 +32,7 @@ import { shallowEqual, useSelector } from "react-redux";
 
 import { Formik } from "formik";
 import { Store } from "../utils/redux/store";
-import { setEmail,setUsername } from "../utils/redux/actions";
+import { setEmail, setUsername } from "../utils/redux/actions";
 
 const ProfileDetail = () => {
   const { username, email } = useSelector((state) => state, shallowEqual);
@@ -33,12 +41,13 @@ const ProfileDetail = () => {
   const user_id = useSelector((state) => state.userId, shallowEqual);
 
   const handlePassChange = () => {
-    navigation.navigate('PasswordChange');
-  }
+    navigation.navigate("PasswordChange");
+  };
 
   const handleEdit = async (credentials, setSubmitting) => {
-    await editUser(credentials).then((res)=> {
-        if(res.meta == meta.OK){
+    await editUser(credentials)
+      .then((res) => {
+        if (res.meta == meta.OK) {
           Store.dispatch(setEmail(credentials.email));
           Store.dispatch(setUsername(credentials.username));
           setModalVisible(true);
@@ -47,33 +56,36 @@ const ProfileDetail = () => {
             setModalVisible(false);
           }, 2000);
         }
-    })
-    .catch((err) => {
-      setSubmitting(false);
-      console.log(err);
-    });
-  }
+      })
+      .catch((err) => {
+        setSubmitting(false);
+        console.log(err);
+      });
+  };
 
   return (
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
-        <ProfileDetailTitle>Edit Profile</ProfileDetailTitle>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <CustomHeader label="Edit Profile" />
+        </TouchableOpacity>
+        {/* <ProfileDetailTitle>Edit Profile</ProfileDetailTitle> */}
         <SuccessModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
         />
         <Formik
           initialValues={{ username: username, email: email }}
-          onSubmit={(values, { setSubmitting , resetForm }) => {
-            if (values.username == "" ||  values.email == "") {
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            if (values.username == "" || values.email == "") {
               console.log("Please Fill in the Fields");
               setSubmitting(false);
-            }else if(values.username == username && values.email == email){
+            } else if (values.username == username && values.email == email) {
               console.log("SAME");
-            }else {
+            } else {
               values.userprofile = user_id;
-              handleEdit(values, setSubmitting)
+              handleEdit(values, setSubmitting);
             }
           }}
         >
@@ -85,7 +97,9 @@ const ProfileDetail = () => {
             isSubmitting,
           }) => (
             <SafeAreaView>
-              <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+              <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+              >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                   <StyledFormArea>
                     <TextInput

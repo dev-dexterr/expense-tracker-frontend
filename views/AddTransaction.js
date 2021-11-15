@@ -65,7 +65,6 @@ const AddTransaction = ({ route, navigation }) => {
   const handleAddTransaction = async (credentials) => {
     addTransaction(credentials).then((res) => {
       if (res.meta == meta.OK) {
-        console.log(res);
         setModalVisible(true)
         setTimeout(() => {
           navigation.navigate('Home')
@@ -86,10 +85,9 @@ const AddTransaction = ({ route, navigation }) => {
           </TransactionView>
           <Formik
             initialValues={{ amount: "", remark: "", datetime: "", type: "", name: "", iconName: "", userprofile: "" }}
-            onSubmit={(values) => {
+            onSubmit={(values,{ resetForm }) => {
               if (values.amount == "") {
                 console.log("Please Fill in the Fields");
-                console.log(values);
               } else {
                 values.type = data.type;
                 values.name = data.name;
@@ -97,10 +95,13 @@ const AddTransaction = ({ route, navigation }) => {
                 values.datetime = moment(datevalue);
                 values.userprofile = user_id
                 handleAddTransaction(values);
+                setTimeout(() => {
+                  resetForm({ values: ""});
+                }, 3000);
               }
             }}
           >{
-              ({ handleBlur, handleChange, handleSubmit, values }) => (
+              ({ handleBlur, handleChange, handleSubmit, values}) => (
                 <StyledFormArea>
                   <TransactionDollarView>
                     <TransactionDollar>$ </TransactionDollar>
@@ -130,7 +131,6 @@ const AddTransaction = ({ route, navigation }) => {
                   </StyledButton>
                   <SuccessModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
                 </StyledFormArea>
-
               )
             }
           </Formik>

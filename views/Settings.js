@@ -1,20 +1,23 @@
 import React from "react";
+import {TouchableOpacity,View} from "react-native";
 import {
     StyledContainer,
-    ProfileDetailTitle,
     InnerContainer,
     OptionTouch,
     SettingTitle,
     SettingSubTitle
 } from "../components/ProfileStyles.js";
 import settingMenu from "../utils/constants/settingMenu.js";
+import CustomHeader from "../components/customheader/CustomHeader";
 import Option from "../components/option/Option.js";
 
 const Setting = ({navigation}) => {
     return(
         <StyledContainer>
             <InnerContainer>
-                <ProfileDetailTitle>Settings</ProfileDetailTitle>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <CustomHeader label="Settings"/>
+                </TouchableOpacity>
                 {settingMenu.map((data,index1) => (
                     <OptionTouch key={index1}>
                         <SettingTitle>{data.titleName}</SettingTitle>

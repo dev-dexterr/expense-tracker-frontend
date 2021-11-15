@@ -1,6 +1,9 @@
 import styled from "styled-components/native";
 import Constants from 'expo-constants';
 import COLOR from '../../../utils/colors.js';
+import { Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 export const CenteredModalView = styled.View`
     align-items: center;
@@ -15,12 +18,12 @@ export const ModalView = styled.View`
     align-items: center;
     elevation: 5
     box-shadow: rgba(0, 0, 0, 0.06) 2px 2px 2.6px;
-    height: 52%
-    width: 90%
+    height: ${height * 0.5}px
+    width: ${width * 0.9}px
 `
 
 export const ModalIconContainer = styled.View`
-    padding: 0px 15px 15px 15px
+    padding: 15px 15px 15px 15px
 `
 
 export const ModalContentContainer = styled.View`
@@ -43,15 +46,21 @@ export const IEIconModal = styled.Image`
 
 export const ModalBackgroundButton = styled.View`
     background-color: ${COLOR.quaternary};
-    padding: 2px;
     border-radius: 25px;
-    left: 162px;
-    top: 8px
+    margin-right: 10px
 `
 
 export const ModalBackgroundButton2 = styled.View`
-    padding: 2px;
     border-radius: 25px;
+    align-items: center;  
+    margin-left: 10px
+`
+
+export const ModalBackgroundContainer = styled.View`
+    align-items: center;
+    justify-content: space-between; 
+    flex-direction: row
+    flex: 1; 
 `
 
 
@@ -74,8 +83,6 @@ export const ModalItemWrapper = styled.View`
     flex-direction: row;
     justify-content: flex-start; 
     align-content: flex-start;
-
-    
 `
 export const ModalLeftWrapper = styled.View`
     flex-direction: row;

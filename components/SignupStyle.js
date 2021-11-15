@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
 import COLOR from '../utils/colors.js';
+import { Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const StatusBarHeight = Constants.statusBarHeight
 
@@ -19,22 +22,22 @@ export const InnerContainer = styled.View`
 `
 
 export const PageTitle = styled.Text`
-    font-size: 60px;
+    font-size: 48px;
     text-align: left;
     font-weight: bold;
     color: ${COLOR.secondary};
-    padding: 10px;
     fontFamily: 'Ubuntu-Bold'
 `
 
 export const SubTitle = styled.Text`
     font-size: 16px;
-    margin-bottom: 50px;
+    margin-bottom: ${height * 0.03}px;
     letter-spacing: 1.5px;
-    padding: 10px;
     font-weight: bold;
     color: ${COLOR.secondary};
     fontFamily: 'Roboto-Light'
+    padding-top: 10px
+    padding-bottom: 20px
 `
 
 export const StyledFormArea = styled.View`
@@ -69,7 +72,6 @@ export const StyledButton = styled.TouchableOpacity`
     background-color: ${COLOR.secondary};
     justify-content: center;
     border-radius: 10px;
-    margin-vertical: 15px;
     height: 60px;
 `;
 

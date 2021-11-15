@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {View} from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper.js";
 
 import {
@@ -25,15 +25,16 @@ import {
 //Icon
 import { Feather } from "@expo/vector-icons";
 
-import moment from 'moment';
+import moment from "moment";
 import SuccessModal from "../components/Modal/Success/success.js";
-import {meta} from '../utils/enum.js'
+import { meta } from "../utils/enum.js";
 
 //Redux
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setRoute } from "../utils/redux/actions.js";
 
-import { editTransaction , deleteTransaction } from "../api/generalAPI.js";
+import { editTransaction, deleteTransaction } from "../api/generalAPI.js";
+import CustomHeader from "../components/customheader/CustomHeader";
 
 //formik
 import { Formik } from "formik";
@@ -52,45 +53,51 @@ const EditTransaction = ({ route, navigation }) => {
   };
   useEffect(() => {
     dispatch(setRoute("EditTransaction"));
-  },[]);
+  }, []);
 
   const handleEditTransaction = async (credentials) => {
     credentials.id = transaction_id;
     credentials.userprofile = user_id;
-    await editTransaction(credentials).then((res)=>{
-      if(res.meta == meta.OK){
-        console.log(res);
-        setModalVisible(true)
-        setTimeout(() => {
-          setModalVisible(false)
-          navigation.goBack()
-        }, 2000);
-      }
-    }).catch(err => {
-      console.log(err);
-    })
-  }
+    await editTransaction(credentials)
+      .then((res) => {
+        if (res.meta == meta.OK) {
+          console.log(res);
+          setModalVisible(true);
+          setTimeout(() => {
+            setModalVisible(false);
+            navigation.goBack();
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleDelete = async () => {
-    await deleteTransaction(transaction_id).then(res => {
-      if(res.meta == meta.OK){
-        console.log(res);
-        setModalVisible(true)
-        setTimeout(() => {
-          setModalVisible(false)
-          navigation.goBack()
-        }, 2000);
-      }
-    }).catch(err => {
-      console.log(err);
-    })
-  }
+    await deleteTransaction(transaction_id)
+      .then((res) => {
+        if (res.meta == meta.OK) {
+          console.log(res);
+          setModalVisible(true);
+          setTimeout(() => {
+            setModalVisible(false);
+            navigation.goBack();
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <KeyboardAvoidingWrapper>
       <StyledContainer>
         <InnerContainer>
-          <EditTransactionTitle>Edit Transaction</EditTransactionTitle>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <CustomHeader label="Edit Transaction" />
+          </TouchableOpacity>
           <Formik
             initialValues={{
               amount: data.amount,
@@ -98,7 +105,7 @@ const EditTransaction = ({ route, navigation }) => {
               type: data.type,
               name: data.name,
               date: moment(data.datetime),
-              iconName: data.iconName
+              iconName: data.iconName,
             }}
             onSubmit={(values) => {
               if (
@@ -118,7 +125,7 @@ const EditTransaction = ({ route, navigation }) => {
               }
             }}
           >
-            {({ handleBlur, handleChange, handleSubmit, values}) => (
+            {({ handleBlur, handleChange, handleSubmit, values }) => (
               <StyledFormArea>
                 <TransactionDollarView>
                   <TransactionDollar>$ </TransactionDollar>
@@ -144,7 +151,11 @@ const EditTransaction = ({ route, navigation }) => {
                   />
                 </CategoryTouch>
                 <View>
-                  <DatePicker label="Date" value={datevalue} onChange={onChange} />
+                  <DatePicker
+                    label="Date"
+                    value={datevalue}
+                    onChange={onChange}
+                  />
                 </View>
                 <TextInput
                   label="Remark"
@@ -159,12 +170,13 @@ const EditTransaction = ({ route, navigation }) => {
                 <StyledButton onPress={handleDelete}>
                   <StyledButtonText>Delete</StyledButtonText>
                 </StyledButton>
-                
               </StyledFormArea>
-            )
-            }
+            )}
           </Formik>
-          <SuccessModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
+          <SuccessModal
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+          />
         </InnerContainer>
       </StyledContainer>
     </KeyboardAvoidingWrapper>

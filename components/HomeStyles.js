@@ -2,6 +2,9 @@ import styled from "styled-components/native";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
 import COLOR from '../utils/colors.js';
+import { Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const StatusBarHeight = Constants.statusBarHeight
 
@@ -118,11 +121,13 @@ export const IEText2 = styled.Text`
 `
 
 export const IEListTextContainer = styled.View`
-    margin-top: -25px;
     flex-direction: row;
     justify-content: space-between;
     padding-right: 5px;
     padding-left: 5px;
+`
+export const IEMainContainer = styled.View`
+    padding: 20px
 `
 
 export const IEListText = styled.Text`
@@ -133,9 +138,9 @@ export const IEListText = styled.Text`
 `;
 
 export const TransactionContainer = styled.View`
-    height: 150%;
-    margin-top: 8%;
+    height: 68.9%;
     width: 100%
+    padding-top: 5px
     border-radius: 20px;
 `
 export const TransactionTouch = styled.TouchableOpacity`
