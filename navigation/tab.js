@@ -210,9 +210,6 @@ export const HomeStack = () => {
 
 export const Initial = ({ isAppFirstLaunched }) => {
   const isToken = useSelector(state => state.token, shallowEqual);
-  // useEffect(() => {
-  //   console.log("test", isAppFirstLaunched);
-  // }, [isAppFirstLaunched])
   return (
     <stack.Navigator>
       {isToken != null ?
@@ -246,10 +243,6 @@ export const Initial = ({ isAppFirstLaunched }) => {
           />
         </stack.Group>
       }
-      {/* <stack.Screen
-              component={OnBoarding}
-              name="OnBoarding"
-              options={{ headerShown: false }} /> */}
     </stack.Navigator>
   );
 }

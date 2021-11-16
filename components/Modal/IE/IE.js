@@ -116,7 +116,7 @@ const IEModal = ({ modalVisible, setModalVisible, item }) => {
                     onPress={() => setModalVisible(!modalVisible)}
                   >
                     <ModalBackgroundButton>
-                      <Feather name="x-circle" size={24} />
+                      <Feather name="x-square" size={24} />
                     </ModalBackgroundButton>
                   </TouchableOpacity>
                 </View>

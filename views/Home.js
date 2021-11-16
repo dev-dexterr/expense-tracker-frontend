@@ -47,6 +47,7 @@ import { useDispatch } from "react-redux";
 import { setTransaction } from "../utils/redux/actions.js";
 
 import IEModal from "../components/Modal/IE/IE.js";
+import { meta } from '../utils/enum.js'
 
 //Redux
 import { useSelector } from "react-redux";
@@ -75,7 +76,7 @@ const Home = ({ navigation }) => {
   const listTransactions = () => {
     listTransaction({ userprofile: userId })
       .then((res) => {
-        if (res.meta == 2001) {
+        if (res.meta == meta.OK) {
           if (res.datas.length == 0) {
             console.log("No Data Found!!!");
             return true;
