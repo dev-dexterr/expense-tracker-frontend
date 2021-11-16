@@ -1,10 +1,6 @@
 import styled from "styled-components/native";
-import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import Constants from 'expo-constants';
 import COLOR from '../utils/colors.js';
-import { Dimensions } from "react-native";
-
-const { width, height } = Dimensions.get("window");
 
 const StatusBarHeight = Constants.statusBarHeight
 
